@@ -12,7 +12,7 @@
                 - 給laravel7 用的 ^3.x => laravel^8.x
             2. php artisan ui react
             3. npm install
-            4. npm dev
+            4. npm run dev
                 - npm run watch
                         - 這個指令能將每次 react 檔案存檔後自動編譯
                 - [參考網址](https://medium.com/@JerrryWeng/%E5%AF%A6%E7%BF%92%E7%94%9F%E7%9A%84%E9%96%80%E7%A5%A8-4-%E4%BE%86%E5%81%9A%E5%80%8B%E7%B0%A1%E6%98%93-blog-%E5%90%A7-df49d596f638)  
