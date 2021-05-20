@@ -24,6 +24,9 @@
             * 在該專案資料夾下指令開啟serve
                 - php artisan serve
             * 建立要使用的table
+            * 建立後台
+                - php artisan ui react --auth
+                - php artisan migrate
 
     * 功能
         * 前台使用的member
