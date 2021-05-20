@@ -13,6 +13,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'FrontendController@index')->name('index');
+// Route::resource('index', 'FrontendController', [
+//     'name' => [
+//         'index' => 'index',
+//         'store' => 'index.store',
+//         'create' => 'index.create',
+//         'show' => 'index.show',
+//         'update' => 'index.update',
+//         'destroy' => 'index.destroy',
+//         'edit' => 'index.edit'
+//     ]
+// ]);
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

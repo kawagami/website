@@ -1,10 +1,77 @@
+$stroke : #fff;
+$svg_1_stroke : #000;
+$svg_2_stroke : #000;
+$svg_3_stroke : #000;
+$svg_4_stroke : #000;
+$svg_5_stroke : #000;
+
 html,
 body {
     padding: 0;
     margin: 0;
 }
 
-.container{
-    width: 100px;
-    height: 100px;
+nav {
+    .logo {
+        width: 60px;
+        height: 60px;
+        background-image: url('https://pht.qoo-static.com/NuyOBNU1CGmbWlUxjDZOfUMZ43qjtUro8w2FhFU6YRwAoT7rh-VdsYhuPCV_lbI-7j8=w300');
+        background-position: center;
+        background-size: cover;
+    }
+}
+
+main {
+    .svg-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 50px;
+
+
+        #svg_1 {
+            stroke: $svg_1_stroke;
+
+            &:hover {
+                stroke: #f00;
+                fill: #f00;
+            }
+        }
+
+        #svg_2 {
+            stroke: $svg_2_stroke;
+
+            &:hover {
+                stroke: rgb(255, 132, 17);
+                fill: rgb(255, 132, 17);
+            }
+        }
+
+        #svg_3 {
+            stroke: $svg_3_stroke;
+
+            &:hover {
+                stroke: #ff0;
+                fill: #ff0;
+            }
+        }
+
+        #svg_4 {
+            stroke: $svg_4_stroke;
+
+            &:hover {
+                stroke: #0f5;
+                fill: #0f5;
+            }
+        }
+
+        #svg_5 {
+            stroke: $svg_5_stroke;
+
+            &:hover {
+                stroke: #03f;
+                fill: #03f;
+            }
+        }
+    }
 }
