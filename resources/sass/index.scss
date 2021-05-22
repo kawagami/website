@@ -8,8 +8,17 @@ $card_width:400px;
 $card_height:500px;
 $default_deg:30deg;
 
-@mixin card_to_middle_mixin {
-    transform: rotate(0);
+@mixin font_style {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    writing-mode: vertical-lr;
+    font-size: 72px;
+    // font-family: '細明體';
+}
+
+@mixin card_to_middle_mixin($x:0, $y:0) {
+    transform: rotate(0) translateX($x);
 }
 
 @mixin rotate_times ($times, $size:1, $translateX:0) {
@@ -35,22 +44,24 @@ $default_deg:30deg;
 @mixin disappear {
     animation-name: up_to_disappear;
     animation-timing-function: linear;
-    animation-duration: 1s;
+    animation-duration: 0.5s;
 }
 
 @keyframes card_to_middle {
     0% {}
 
     33% {
-        @include card_to_middle_mixin;
+        transform: rotate(-15deg);
     }
 
     66% {
-        @include card_to_middle_mixin;
+        // transform: rotate(0) translateX(600px);
+        transform: rotate(15deg);
     }
 
     100% {
-        @include card_to_middle_mixin;
+        // transform: rotate(0) translateX(600px);
+        transform: rotate(-15deg);
     }
 }
 
@@ -133,26 +144,31 @@ main {
             // background-color: brown;
 
             #category-card1 {
+                @include font_style;
                 @include size($card_width, $card_height, #faa, $bdr:20px);
                 transform: rotate($default_deg);
             }
 
             #category-card2 {
+                @include font_style;
                 @include size($card_width, $card_height, #aaa, $bdr:20px);
                 transform: rotate($default_deg);
             }
 
             #category-card3 {
+                @include font_style;
                 @include size($card_width, $card_height, #aaf, $bdr:20px);
                 transform: rotate($default_deg);
             }
 
             #category-card4 {
+                @include font_style;
                 @include size($card_width, $card_height, #ffa, $bdr:20px);
                 transform: rotate($default_deg);
             }
 
             #category-card5 {
+                @include font_style;
                 @include size($card_width, $card_height, #e5e, $bdr:20px);
                 transform: rotate($default_deg);
             }

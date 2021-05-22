@@ -1,28 +1,28 @@
 @-webkit-keyframes card_to_middle {
   33% {
-    transform: rotate(0);
+    transform: rotate(-15deg);
   }
 
   66% {
-    transform: rotate(0);
+    transform: rotate(15deg);
   }
 
   100% {
-    transform: rotate(0);
+    transform: rotate(-15deg);
   }
 }
 
 @keyframes card_to_middle {
   33% {
-    transform: rotate(0);
+    transform: rotate(-15deg);
   }
 
   66% {
-    transform: rotate(0);
+    transform: rotate(15deg);
   }
 
   100% {
-    transform: rotate(0);
+    transform: rotate(-15deg);
   }
 }
 
@@ -107,8 +107,8 @@
           animation-name: up_to_disappear;
   -webkit-animation-timing-function: linear;
           animation-timing-function: linear;
-  -webkit-animation-duration: 1s;
-          animation-duration: 1s;
+  -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s;
 }
 
 .anime_guruguru {
@@ -149,6 +149,12 @@ main #react-card > div {
 }
 
 main #react-card > div #category-card1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  -ms-writing-mode: tb-lr;
+      writing-mode: vertical-lr;
+  font-size: 72px;
   width: 400px;
   height: 500px;
   background-color: #faa;
@@ -158,6 +164,12 @@ main #react-card > div #category-card1 {
 }
 
 main #react-card > div #category-card2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  -ms-writing-mode: tb-lr;
+      writing-mode: vertical-lr;
+  font-size: 72px;
   width: 400px;
   height: 500px;
   background-color: #aaa;
@@ -167,6 +179,12 @@ main #react-card > div #category-card2 {
 }
 
 main #react-card > div #category-card3 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  -ms-writing-mode: tb-lr;
+      writing-mode: vertical-lr;
+  font-size: 72px;
   width: 400px;
   height: 500px;
   background-color: #aaf;
@@ -176,6 +194,12 @@ main #react-card > div #category-card3 {
 }
 
 main #react-card > div #category-card4 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  -ms-writing-mode: tb-lr;
+      writing-mode: vertical-lr;
+  font-size: 72px;
   width: 400px;
   height: 500px;
   background-color: #ffa;
@@ -185,6 +209,12 @@ main #react-card > div #category-card4 {
 }
 
 main #react-card > div #category-card5 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  -ms-writing-mode: tb-lr;
+      writing-mode: vertical-lr;
+  font-size: 72px;
   width: 400px;
   height: 500px;
   background-color: #e5e;

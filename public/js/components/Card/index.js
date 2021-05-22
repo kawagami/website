@@ -2435,24 +2435,24 @@ var Card = /*#__PURE__*/function (_Component) {
       categoryCard3: false,
       categoryCard4: false,
       categoryCard5: false,
-      display: 'flex',
       disappear: null
     });
 
     _defineProperty(_assertThisInitialized(_this), "handleClick", function (event) {
       return function (params) {
+        var parent = params.target.parentNode;
         setTimeout(function () {
           _this.setState({
             disappear: 'disappear'
           });
-        }, 500);
-        setTimeout(function () {
+        }, 1000);
+        setTimeout(function (ev) {
           _this.setState({
             display: 'none'
           });
 
-          console.log(params);
-        }, 1450);
+          parent.remove();
+        }, 1500);
 
         _this.setState(_defineProperty({
           categoryCard1: false,
@@ -2476,35 +2476,31 @@ var Card = /*#__PURE__*/function (_Component) {
           categoryCard3 = _this$state.categoryCard3,
           categoryCard4 = _this$state.categoryCard4,
           categoryCard5 = _this$state.categoryCard5,
-          display = _this$state.display,
           disappear = _this$state.disappear;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "card-container",
-        style: {
-          display: display
-        },
         className: disappear
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "category-card1",
         className: categoryCard1 ? 'anime_guruguru' : null,
         onMouseUp: this.handleClick('categoryCard1')
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "\u6587\u5B57\u6E2C\u8A66"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "category-card2",
         className: categoryCard2 ? 'anime_guruguru' : null,
         onMouseUp: this.handleClick('categoryCard2')
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "\u6587\u5B57\u6E2C\u8A66"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "category-card3",
         className: categoryCard3 ? 'anime_guruguru' : null,
         onMouseUp: this.handleClick('categoryCard3')
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "\u6587\u5B57\u6E2C\u8A66"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "category-card4",
         className: categoryCard4 ? 'anime_guruguru' : null,
         onMouseUp: this.handleClick('categoryCard4')
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "\u6587\u5B57\u6E2C\u8A66"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "category-card5",
         className: categoryCard5 ? 'anime_guruguru' : null,
         onMouseUp: this.handleClick('categoryCard5')
-      }));
+      }, "\u6587\u5B57\u6E2C\u8A66"));
     }
   }]);
 

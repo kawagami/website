@@ -93,7 +93,12 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
+window.onload = function (params) {
+  var base = document.getElementById('react-card');
+  var divBox = "<div style=\"width:100%;height:100vh;background-color:#faa;\"></div>"; // base.innerHTML += divBox
 
+  console.log(params);
+};
 
 /***/ }),
 
