@@ -8,9 +8,13 @@ $card_width:400px;
 $card_height:500px;
 $default_deg:30deg;
 
+@mixin card_to_middle_mixin {
+    transform: rotate(0);
+}
+
 @mixin rotate_times ($times, $size:1, $translateX:0) {
 
-    transform: rotate($default_deg+$times*360deg) scale($size) translateX($translateX);
+    transform: rotate($default_deg + $times * -360deg) scale($size) translateX($translateX);
 }
 
 @mixin size ($w, $h, $bgc:#fff, $border:1px solid #000, $bdr:0) {
@@ -21,11 +25,53 @@ $default_deg:30deg;
     border-radius: $bdr;
 }
 
-@mixin cardMinus45 {
+@mixin card_anime {
     z-index: 9;
-    animation-name: guruguru;
+    animation-name: card_to_middle;
+    // animation-timing-function: linear;
+    animation-duration: 1.5s;
+}
+
+@mixin disappear {
+    animation-name: up_to_disappear;
     animation-timing-function: linear;
-    animation-duration: 3s;
+    animation-duration: 1s;
+}
+
+@keyframes card_to_middle {
+    0% {}
+
+    33% {
+        @include card_to_middle_mixin;
+    }
+
+    66% {
+        @include card_to_middle_mixin;
+    }
+
+    100% {
+        @include card_to_middle_mixin;
+    }
+}
+
+@keyframes up_to_disappear {
+    0% {
+        transform: translateY(0)
+    }
+
+    100% {
+        transform: translateY(-100vh)
+    }
+}
+
+@keyframes left_to_disappear {
+    0% {
+        transform: translateX(0)
+    }
+
+    100% {
+        transform: translateX(-100%)
+    }
 }
 
 @keyframes guruguru {
@@ -34,28 +80,30 @@ $default_deg:30deg;
     }
 
     33% {
-        @include rotate_times(2, 5);
+        @include rotate_times(2, 2);
     }
 
-    50% {
-        @include rotate_times(4, 10);
-        opacity: 1;
+    66% {
+        @include rotate_times(4, 6);
     }
 
     100% {
         @include rotate_times(6, 15);
-        opacity: 0;
     }
+}
+
+.disappear {
+    @include disappear;
+}
+
+.anime_guruguru {
+    @include card_anime;
 }
 
 html,
 body {
     padding: 0;
     margin: 0;
-}
-
-.anime_guruguru {
-    @include cardMinus45;
 }
 
 nav {

@@ -86,17 +86,6 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "./resources/js/index.js":
-/*!*******************************!*\
-  !*** ./resources/js/index.js ***!
-  \*******************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-
-
-/***/ }),
-
 /***/ "./resources/sass/app.scss":
 /*!*********************************!*\
   !*** ./resources/sass/app.scss ***!
@@ -120,13 +109,13 @@
 /***/ }),
 
 /***/ 0:
-/*!*******************************************************************************************!*\
-  !*** multi ./resources/js/index.js ./resources/sass/app.scss ./resources/sass/index.scss ***!
-  \*******************************************************************************************/
+/*!******************************************************************************************!*\
+  !*** multi ./resources/jsindex.js ./resources/sass/app.scss ./resources/sass/index.scss ***!
+  \******************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\code\website\resources\js\index.js */"./resources/js/index.js");
+!(function webpackMissingModule() { var e = new Error("Cannot find module 'C:\\code\\website\\resources\\jsindex.js'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
 __webpack_require__(/*! C:\code\website\resources\sass\app.scss */"./resources/sass/app.scss");
 module.exports = __webpack_require__(/*! C:\code\website\resources\sass\index.scss */"./resources/sass/index.scss");
 

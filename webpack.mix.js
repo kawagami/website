@@ -14,5 +14,6 @@ const mix = require('laravel-mix');
 mix.react('resources/js/app.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css')
     .sass('resources/sass/index.scss', 'public/css')
+    .js('resources/js/index.js', 'public/js')
     .react('resources/js/Frontend.jsx', 'public/js')
     .react('resources/js/components/Card/index.jsx', 'public/js/components/Card');

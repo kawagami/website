@@ -1,20 +1,86 @@
+@-webkit-keyframes card_to_middle {
+  33% {
+    transform: rotate(0);
+  }
+
+  66% {
+    transform: rotate(0);
+  }
+
+  100% {
+    transform: rotate(0);
+  }
+}
+
+@keyframes card_to_middle {
+  33% {
+    transform: rotate(0);
+  }
+
+  66% {
+    transform: rotate(0);
+  }
+
+  100% {
+    transform: rotate(0);
+  }
+}
+
+@-webkit-keyframes up_to_disappear {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(-100vh);
+  }
+}
+
+@keyframes up_to_disappear {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(-100vh);
+  }
+}
+
+@-webkit-keyframes left_to_disappear {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes left_to_disappear {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
 @-webkit-keyframes guruguru {
   0% {
     transform: rotate(30deg) scale(1) translateX(0);
   }
 
   33% {
-    transform: rotate(750deg) scale(5) translateX(0);
+    transform: rotate(-690deg) scale(2) translateX(0);
   }
 
-  50% {
-    transform: rotate(1470deg) scale(10) translateX(0);
-    opacity: 1;
+  66% {
+    transform: rotate(-1410deg) scale(6) translateX(0);
   }
 
   100% {
-    transform: rotate(2190deg) scale(15) translateX(0);
-    opacity: 0;
+    transform: rotate(-2130deg) scale(15) translateX(0);
   }
 }
 
@@ -24,34 +90,39 @@
   }
 
   33% {
-    transform: rotate(750deg) scale(5) translateX(0);
+    transform: rotate(-690deg) scale(2) translateX(0);
   }
 
-  50% {
-    transform: rotate(1470deg) scale(10) translateX(0);
-    opacity: 1;
+  66% {
+    transform: rotate(-1410deg) scale(6) translateX(0);
   }
 
   100% {
-    transform: rotate(2190deg) scale(15) translateX(0);
-    opacity: 0;
+    transform: rotate(-2130deg) scale(15) translateX(0);
   }
+}
+
+.disappear {
+  -webkit-animation-name: up_to_disappear;
+          animation-name: up_to_disappear;
+  -webkit-animation-timing-function: linear;
+          animation-timing-function: linear;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+}
+
+.anime_guruguru {
+  z-index: 9;
+  -webkit-animation-name: card_to_middle;
+          animation-name: card_to_middle;
+  -webkit-animation-duration: 1.5s;
+          animation-duration: 1.5s;
 }
 
 html,
 body {
   padding: 0;
   margin: 0;
-}
-
-.anime_guruguru {
-  z-index: 9;
-  -webkit-animation-name: guruguru;
-          animation-name: guruguru;
-  -webkit-animation-timing-function: linear;
-          animation-timing-function: linear;
-  -webkit-animation-duration: 3s;
-          animation-duration: 3s;
 }
 
 nav .logo {

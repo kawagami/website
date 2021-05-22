@@ -1,7 +1,8 @@
 {
     "/js/Frontend.js": "/js/Frontend.js",
     "/js/app.js": "/js/app.js",
+    "/js/components/Card/index.js": "/js/components/Card/index.js",
+    "/js/index.js": "/js/index.js",
     "/css/app.css": "/css/app.css",
-    "/css/index.css": "/css/index.css",
-    "/js/components/Card/index.js": "/js/components/Card/index.js"
+    "/css/index.css": "/css/index.css"
 }
