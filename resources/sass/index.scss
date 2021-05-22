@@ -4,11 +4,58 @@ $svg_2_stroke : #000;
 $svg_3_stroke : #000;
 $svg_4_stroke : #000;
 $svg_5_stroke : #000;
+$card_width:400px;
+$card_height:500px;
+$default_deg:30deg;
+
+@mixin rotate_times ($times, $size:1, $translateX:0) {
+
+    transform: rotate($default_deg+$times*360deg) scale($size) translateX($translateX);
+}
+
+@mixin size ($w, $h, $bgc:#fff, $border:1px solid #000, $bdr:0) {
+    width: $w;
+    height: $h;
+    background-color: $bgc;
+    border: $border;
+    border-radius: $bdr;
+}
+
+@mixin cardMinus45 {
+    z-index: 9;
+    animation-name: guruguru;
+    animation-timing-function: linear;
+    animation-duration: 3s;
+}
+
+@keyframes guruguru {
+    0% {
+        @include rotate_times(0);
+    }
+
+    33% {
+        @include rotate_times(2, 5);
+    }
+
+    50% {
+        @include rotate_times(4, 10);
+        opacity: 1;
+    }
+
+    100% {
+        @include rotate_times(6, 15);
+        opacity: 0;
+    }
+}
 
 html,
 body {
     padding: 0;
     margin: 0;
+}
+
+.anime_guruguru {
+    @include cardMinus45;
 }
 
 nav {
@@ -22,55 +69,44 @@ nav {
 }
 
 main {
-    .svg-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 50px;
 
+    #react-card {
+        width: 100%;
+        height: 100vh;
+        overflow: hidden;
 
-        #svg_1 {
-            stroke: $svg_1_stroke;
+        >div {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 100px;
+            // background-color: brown;
 
-            &:hover {
-                stroke: #f00;
-                fill: #f00;
+            #category-card1 {
+                @include size($card_width, $card_height, #faa, $bdr:20px);
+                transform: rotate($default_deg);
             }
-        }
 
-        #svg_2 {
-            stroke: $svg_2_stroke;
-
-            &:hover {
-                stroke: rgb(255, 132, 17);
-                fill: rgb(255, 132, 17);
+            #category-card2 {
+                @include size($card_width, $card_height, #aaa, $bdr:20px);
+                transform: rotate($default_deg);
             }
-        }
 
-        #svg_3 {
-            stroke: $svg_3_stroke;
-
-            &:hover {
-                stroke: #ff0;
-                fill: #ff0;
+            #category-card3 {
+                @include size($card_width, $card_height, #aaf, $bdr:20px);
+                transform: rotate($default_deg);
             }
-        }
 
-        #svg_4 {
-            stroke: $svg_4_stroke;
-
-            &:hover {
-                stroke: #0f5;
-                fill: #0f5;
+            #category-card4 {
+                @include size($card_width, $card_height, #ffa, $bdr:20px);
+                transform: rotate($default_deg);
             }
-        }
 
-        #svg_5 {
-            stroke: $svg_5_stroke;
-
-            &:hover {
-                stroke: #03f;
-                fill: #03f;
+            #category-card5 {
+                @include size($card_width, $card_height, #e5e, $bdr:20px);
+                transform: rotate($default_deg);
             }
         }
     }

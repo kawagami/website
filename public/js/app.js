@@ -65971,15 +65971,27 @@ if (document.getElementById('example')) {
 
 /***/ }),
 
+/***/ "./resources/sass/index.scss":
+/*!***********************************!*\
+  !*** ./resources/sass/index.scss ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ 0:
-/*!*************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/sass/app.scss ***!
-  \*************************************************************/
+/*!*****************************************************************************************!*\
+  !*** multi ./resources/js/app.js ./resources/sass/app.scss ./resources/sass/index.scss ***!
+  \*****************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! C:\code\website\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\code\website\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\code\website\resources\sass\app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! C:\code\website\resources\sass\index.scss */"./resources/sass/index.scss");
 
 
 /***/ })

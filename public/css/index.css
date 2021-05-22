@@ -1,7 +1,57 @@
+@-webkit-keyframes guruguru {
+  0% {
+    transform: rotate(30deg) scale(1) translateX(0);
+  }
+
+  33% {
+    transform: rotate(750deg) scale(5) translateX(0);
+  }
+
+  50% {
+    transform: rotate(1470deg) scale(10) translateX(0);
+    opacity: 1;
+  }
+
+  100% {
+    transform: rotate(2190deg) scale(15) translateX(0);
+    opacity: 0;
+  }
+}
+
+@keyframes guruguru {
+  0% {
+    transform: rotate(30deg) scale(1) translateX(0);
+  }
+
+  33% {
+    transform: rotate(750deg) scale(5) translateX(0);
+  }
+
+  50% {
+    transform: rotate(1470deg) scale(10) translateX(0);
+    opacity: 1;
+  }
+
+  100% {
+    transform: rotate(2190deg) scale(15) translateX(0);
+    opacity: 0;
+  }
+}
+
 html,
 body {
   padding: 0;
   margin: 0;
+}
+
+.anime_guruguru {
+  z-index: 9;
+  -webkit-animation-name: guruguru;
+          animation-name: guruguru;
+  -webkit-animation-timing-function: linear;
+          animation-timing-function: linear;
+  -webkit-animation-duration: 3s;
+          animation-duration: 3s;
 }
 
 nav .logo {
@@ -12,55 +62,63 @@ nav .logo {
   background-size: cover;
 }
 
-main .svg-container {
+main #react-card {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+main #react-card > div {
+  width: 100%;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 50px;
+  padding: 100px;
 }
 
-main .svg-container #svg_1 {
-  stroke: #000;
+main #react-card > div #category-card1 {
+  width: 400px;
+  height: 500px;
+  background-color: #faa;
+  border: 1px solid #000;
+  border-radius: 20px;
+  transform: rotate(30deg);
 }
 
-main .svg-container #svg_1:hover {
-  stroke: #f00;
-  fill: #f00;
+main #react-card > div #category-card2 {
+  width: 400px;
+  height: 500px;
+  background-color: #aaa;
+  border: 1px solid #000;
+  border-radius: 20px;
+  transform: rotate(30deg);
 }
 
-main .svg-container #svg_2 {
-  stroke: #000;
+main #react-card > div #category-card3 {
+  width: 400px;
+  height: 500px;
+  background-color: #aaf;
+  border: 1px solid #000;
+  border-radius: 20px;
+  transform: rotate(30deg);
 }
 
-main .svg-container #svg_2:hover {
-  stroke: #ff8411;
-  fill: #ff8411;
+main #react-card > div #category-card4 {
+  width: 400px;
+  height: 500px;
+  background-color: #ffa;
+  border: 1px solid #000;
+  border-radius: 20px;
+  transform: rotate(30deg);
 }
 
-main .svg-container #svg_3 {
-  stroke: #000;
-}
-
-main .svg-container #svg_3:hover {
-  stroke: #ff0;
-  fill: #ff0;
-}
-
-main .svg-container #svg_4 {
-  stroke: #000;
-}
-
-main .svg-container #svg_4:hover {
-  stroke: #0f5;
-  fill: #0f5;
-}
-
-main .svg-container #svg_5 {
-  stroke: #000;
-}
-
-main .svg-container #svg_5:hover {
-  stroke: #03f;
-  fill: #03f;
+main #react-card > div #category-card5 {
+  width: 400px;
+  height: 500px;
+  background-color: #e5e;
+  border: 1px solid #000;
+  border-radius: 20px;
+  transform: rotate(30deg);
 }
 

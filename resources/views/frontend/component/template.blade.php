@@ -16,7 +16,7 @@
 </head>
 
 <body>
-    @include('frontend.component.header')
+    {{-- @include('frontend.component.header') --}}
 
     @yield('main')
 
