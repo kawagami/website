@@ -13,3 +13,8 @@
                 1. 第一層component react-container 綁在react-main
                 2. 在react-container state控制頁面顯示
                 3. 頁面內容在id-page 調整，要能夠修改react-container 的state(新增page、修改現在page為舊page)
+
+- 20210523
+    * 目前做到用取得的資料更新頁面這步，遇到react有擋外部資料成為html結構的樣子
+        - 預計換成規則內的用法，每個頁面做個component，在state資料中多一欄判斷是哪個頁面的，用來render 相對應的component
+        

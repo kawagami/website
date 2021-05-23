@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'FrontendController@index')->name('index');
+Route::post('/test', 'FrontendController@test')->name('test');
 // Route::resource('index', 'FrontendController', [
 //     'name' => [
 //         'index' => 'index',

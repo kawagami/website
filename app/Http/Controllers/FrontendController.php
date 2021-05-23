@@ -82,4 +82,10 @@ class FrontendController extends Controller
     {
         //
     }
+
+    public function test()
+    {
+        $data = view('frontend/component/card');
+        return $data;
+    }
 }
