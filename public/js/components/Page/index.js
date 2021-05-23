@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -2267,161 +2267,53 @@ if (false) {} else {
 
 /***/ }),
 
-/***/ "./resources/js/components/Card/index.jsx":
+/***/ "./resources/js/components/Page/index.jsx":
 /*!************************************************!*\
-  !*** ./resources/js/components/Card/index.jsx ***!
+  !*** ./resources/js/components/Page/index.jsx ***!
   \************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Card; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Page; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-function _typeof(obj) {
-  "@babel/helpers - typeof";
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
-  if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
-    _typeof = function _typeof(obj) {
-      return typeof obj;
-    };
-  } else {
-    _typeof = function _typeof(obj) {
-      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
-    };
-  }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-  return _typeof(obj);
-}
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
-function _classCallCheck(instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError("Cannot call a class as a function");
-  }
-}
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-function _defineProperties(target, props) {
-  for (var i = 0; i < props.length; i++) {
-    var descriptor = props[i];
-    descriptor.enumerable = descriptor.enumerable || false;
-    descriptor.configurable = true;
-    if ("value" in descriptor) descriptor.writable = true;
-    Object.defineProperty(target, descriptor.key, descriptor);
-  }
-}
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
-function _createClass(Constructor, protoProps, staticProps) {
-  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
-  if (staticProps) _defineProperties(Constructor, staticProps);
-  return Constructor;
-}
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
-function _inherits(subClass, superClass) {
-  if (typeof superClass !== "function" && superClass !== null) {
-    throw new TypeError("Super expression must either be null or a function");
-  }
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
 
-  subClass.prototype = Object.create(superClass && superClass.prototype, {
-    constructor: {
-      value: subClass,
-      writable: true,
-      configurable: true
-    }
-  });
-  if (superClass) _setPrototypeOf(subClass, superClass);
-}
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _setPrototypeOf(o, p) {
-  _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
-    o.__proto__ = p;
-    return o;
-  };
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
-  return _setPrototypeOf(o, p);
-}
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
-function _createSuper(Derived) {
-  var hasNativeReflectConstruct = _isNativeReflectConstruct();
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
-  return function _createSuperInternal() {
-    var Super = _getPrototypeOf(Derived),
-        result;
-
-    if (hasNativeReflectConstruct) {
-      var NewTarget = _getPrototypeOf(this).constructor;
-
-      result = Reflect.construct(Super, arguments, NewTarget);
-    } else {
-      result = Super.apply(this, arguments);
-    }
-
-    return _possibleConstructorReturn(this, result);
-  };
-}
-
-function _possibleConstructorReturn(self, call) {
-  if (call && (_typeof(call) === "object" || typeof call === "function")) {
-    return call;
-  }
-
-  return _assertThisInitialized(self);
-}
-
-function _assertThisInitialized(self) {
-  if (self === void 0) {
-    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-  }
-
-  return self;
-}
-
-function _isNativeReflectConstruct() {
-  if (typeof Reflect === "undefined" || !Reflect.construct) return false;
-  if (Reflect.construct.sham) return false;
-  if (typeof Proxy === "function") return true;
-
-  try {
-    Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {}));
-    return true;
-  } catch (e) {
-    return false;
-  }
-}
-
-function _getPrototypeOf(o) {
-  _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {
-    return o.__proto__ || Object.getPrototypeOf(o);
-  };
-  return _getPrototypeOf(o);
-}
-
-function _defineProperty(obj, key, value) {
-  if (key in obj) {
-    Object.defineProperty(obj, key, {
-      value: value,
-      enumerable: true,
-      configurable: true,
-      writable: true
-    });
-  } else {
-    obj[key] = value;
-  }
-
-  return obj;
-}
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
 
-var Card = /*#__PURE__*/function (_Component) {
-  _inherits(Card, _Component);
+var Page = /*#__PURE__*/function (_Component) {
+  _inherits(Page, _Component);
 
-  var _super = _createSuper(Card);
+  var _super = _createSuper(Page);
 
-  function Card() {
+  function Page() {
     var _this;
 
-    _classCallCheck(this, Card);
+    _classCallCheck(this, Page);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
@@ -2429,96 +2321,52 @@ var Card = /*#__PURE__*/function (_Component) {
 
     _this = _super.call.apply(_super, [this].concat(args));
 
-    _defineProperty(_assertThisInitialized(_this), "state", {
-      categoryCard1: false,
-      categoryCard2: false,
-      categoryCard3: false,
-      categoryCard4: false,
-      categoryCard5: false,
-      disappear: null
-    });
+    _defineProperty(_assertThisInitialized(_this), "newPage", function (params) {
+      var newObj = {
+        id: Math.floor(Math.random() * 1000000),
+        name: '測試資料1',
+        oldFlag: false,
+        pageContent: '測試資料content1'
+      }; // console.log(newObj);
 
-    _defineProperty(_assertThisInitialized(_this), "handleClick", function (event) {
-      return function (params) {
-        var parent = params.target.parentNode;
-        setTimeout(function () {
-          _this.setState({
-            disappear: 'disappear'
-          });
-        }, 1000);
-        setTimeout(function (ev) {
-          _this.setState({
-            display: 'none'
-          });
-
-          parent.remove();
-        }, 1500);
-
-        _this.setState(_defineProperty({
-          categoryCard1: false,
-          categoryCard2: false,
-          categoryCard3: false,
-          categoryCard4: false,
-          categoryCard5: false
-        }, event, true));
-      };
+      _this.props.chagngePage(newObj);
     });
 
     return _this;
   }
 
-  _createClass(Card, [{
+  _createClass(Page, [{
     key: "render",
     value: function render() {
-      var _this$state = this.state,
-          categoryCard1 = _this$state.categoryCard1,
-          categoryCard2 = _this$state.categoryCard2,
-          categoryCard3 = _this$state.categoryCard3,
-          categoryCard4 = _this$state.categoryCard4,
-          categoryCard5 = _this$state.categoryCard5,
-          disappear = _this$state.disappear;
+      var _this$props$page = this.props.page,
+          id = _this$props$page.id,
+          name = _this$props$page.name,
+          oldFlag = _this$props$page.oldFlag,
+          pageContent = _this$props$page.pageContent;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        id: "card-container",
-        className: disappear
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        id: "category-card1",
-        className: categoryCard1 ? 'anime_guruguru' : null,
-        onMouseUp: this.handleClick('categoryCard1')
-      }, "\u6587\u5B57\u6E2C\u8A66"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        id: "category-card2",
-        className: categoryCard2 ? 'anime_guruguru' : null,
-        onMouseUp: this.handleClick('categoryCard2')
-      }, "\u6587\u5B57\u6E2C\u8A66"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        id: "category-card3",
-        className: categoryCard3 ? 'anime_guruguru' : null,
-        onMouseUp: this.handleClick('categoryCard3')
-      }, "\u6587\u5B57\u6E2C\u8A66"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        id: "category-card4",
-        className: categoryCard4 ? 'anime_guruguru' : null,
-        onMouseUp: this.handleClick('categoryCard4')
-      }, "\u6587\u5B57\u6E2C\u8A66"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        id: "category-card5",
-        className: categoryCard5 ? 'anime_guruguru' : null,
-        onMouseUp: this.handleClick('categoryCard5')
-      }, "\u6587\u5B57\u6E2C\u8A66"));
+        className: oldFlag ? 'page up_to_disappear' : 'page'
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, id), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, oldFlag), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, pageContent), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "btn btn-primary",
+        onClick: this.newPage
+      }, "\u65B0\u589E\u6E2C\u8A66\u7528\u8CC7\u6599"));
     }
   }]);
 
-  return Card;
+  return Page;
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
 
 
 /***/ }),
 
-/***/ 3:
+/***/ 2:
 /*!******************************************************!*\
-  !*** multi ./resources/js/components/Card/index.jsx ***!
+  !*** multi ./resources/js/components/Page/index.jsx ***!
   \******************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\code\website\resources\js\components\Card\index.jsx */"./resources/js/components/Card/index.jsx");
+module.exports = __webpack_require__(/*! C:\code\website\resources\js\components\Page\index.jsx */"./resources/js/components/Page/index.jsx");
 
 
 /***/ })

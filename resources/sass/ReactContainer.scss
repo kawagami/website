@@ -1,0 +1,40 @@
+@keyframes up_to_disappear {
+    0% {
+        transform: translateY(0vh);
+    }
+
+    33% {
+        transform: translateY(-60vh);
+    }
+
+    66% {
+        transform: translateY(-90vh);
+    }
+
+    100% {
+        transform: translateY(-100vh);
+    }
+}
+
+.up_to_disappear {
+    animation-name: up_to_disappear;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+}
+
+html,
+body {
+    padding: 0;
+    margin: 0;
+}
+
+#react-main {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+
+    .page {
+        width: 100%;
+        height: 100vh;
+    }
+}

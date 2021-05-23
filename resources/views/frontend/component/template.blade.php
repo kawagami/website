@@ -10,17 +10,13 @@
 
     <title>Website</title>
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
-    <link rel="stylesheet" href="{{asset('css/index.css')}}">
     @yield('css')
 
 </head>
 
 <body>
-    {{-- @include('frontend.component.header') --}}
 
     @yield('main')
-
-    @include('frontend.component.footer')
 
     <script src="{{asset('js/app.js')}}"></script>
     @yield('js')
