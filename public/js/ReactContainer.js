@@ -30623,7 +30623,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _components_Page__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/Page */ "./resources/js/components/Page/index.jsx");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _components_Page__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/Page */ "./resources/js/components/Page/index.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
@@ -30664,6 +30666,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
 var ReactContainer = /*#__PURE__*/function (_Component) {
   _inherits(ReactContainer, _Component);
 
@@ -30689,6 +30692,29 @@ var ReactContainer = /*#__PURE__*/function (_Component) {
       }]
     });
 
+    _defineProperty(_assertThisInitialized(_this), "newPage", function (params) {
+      // 將資料塞回ReactContainer 中的state
+      var _assertThisInitialize = _assertThisInitialized(_this),
+          chagngePage = _assertThisInitialize.chagngePage;
+
+      var pageColor = "rgb(".concat(Math.floor(Math.random() * 255), ",").concat(Math.floor(Math.random() * 255), ",").concat(Math.floor(Math.random() * 255), ")"); // 使用Axios打去後端要資料
+
+      axios__WEBPACK_IMPORTED_MODULE_2___default.a.post('/test').then(function (response) {
+        var test = response.data; // console.log(typeof test);
+        // 將要顯示的頁面用axios取得，整理成newObj
+        // 假資料
+
+        var newObj = {
+          id: Math.floor(Math.random() * 1000000),
+          name: '測試資料1',
+          oldFlag: false,
+          pageContent: pageColor
+        }; // 將資料塞回ReactContainer 中的state
+
+        chagngePage(newObj);
+      });
+    });
+
     _defineProperty(_assertThisInitialized(_this), "clearOldPage", function (newPage) {
       // 1000ms 後舊資料移除(覆蓋)
       setTimeout(function () {
@@ -30699,7 +30725,7 @@ var ReactContainer = /*#__PURE__*/function (_Component) {
         _this.setState({
           pages: [newPage]
         });
-      }, 1000);
+      }, 290);
     });
 
     _defineProperty(_assertThisInitialized(_this), "chagngePage", function (pageObj) {
@@ -30727,6 +30753,10 @@ var ReactContainer = /*#__PURE__*/function (_Component) {
   }
 
   _createClass(ReactContainer, [{
+    key: "componentDidUpdate",
+    value: function componentDidUpdate() {// console.log('componentDidUpdate');
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this2 = this;
@@ -30735,10 +30765,10 @@ var ReactContainer = /*#__PURE__*/function (_Component) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "react-container"
       }, pages.map(function (page) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Page__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Page__WEBPACK_IMPORTED_MODULE_3__["default"], {
           key: page.id,
           page: page,
-          chagngePage: _this2.chagngePage
+          newPage: _this2.newPage
         });
       }));
     }
@@ -30765,10 +30795,9 @@ if (document.getElementById('react-main')) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Page; });
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _PageContent__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../PageContent */ "./resources/js/components/PageContent/index.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -30791,8 +30820,6 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 
 
 
@@ -30802,39 +30829,79 @@ var Page = /*#__PURE__*/function (_Component) {
   var _super = _createSuper(Page);
 
   function Page() {
-    var _this;
-
     _classCallCheck(this, Page);
 
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    _this = _super.call.apply(_super, [this].concat(args));
-
-    _defineProperty(_assertThisInitialized(_this), "newPage", function (params) {
-      // 將資料塞回ReactContainer 中的state
-      var chagngePage = _this.props.chagngePage; // 使用Axios打去後端要資料
-
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/test').then(function (response) {
-        var test = response.data; // console.log(typeof test);
-        // 將要顯示的頁面用axios取得，整理成newObj
-        // 假資料
-
-        var newObj = {
-          id: Math.floor(Math.random() * 1000000),
-          name: '測試資料1',
-          oldFlag: false,
-          pageContent: test
-        };
-        chagngePage(newObj);
-      });
-    });
-
-    return _this;
+    return _super.apply(this, arguments);
   }
 
   _createClass(Page, [{
+    key: "render",
+    value: function render() {
+      var _this$props = this.props,
+          page = _this$props.page,
+          newPage = _this$props.newPage;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_PageContent__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        page: page,
+        newPage: newPage
+      });
+    }
+  }]);
+
+  return Page;
+}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/PageContent/index.jsx":
+/*!*******************************************************!*\
+  !*** ./resources/js/components/PageContent/index.jsx ***!
+  \*******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return PageContent; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+var PageContent = /*#__PURE__*/function (_Component) {
+  _inherits(PageContent, _Component);
+
+  var _super = _createSuper(PageContent);
+
+  function PageContent() {
+    _classCallCheck(this, PageContent);
+
+    return _super.apply(this, arguments);
+  }
+
+  _createClass(PageContent, [{
     key: "render",
     value: function render() {
       var _this$props$page = this.props.page,
@@ -30842,17 +30909,20 @@ var Page = /*#__PURE__*/function (_Component) {
           name = _this$props$page.name,
           oldFlag = _this$props$page.oldFlag,
           pageContent = _this$props$page.pageContent;
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-        className: oldFlag ? 'page up_to_disappear' : 'page'
-      }, pageContent, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: oldFlag ? 'page up_to_disappear' : 'page',
+        style: {
+          backgroundColor: pageContent
+        }
+      }, id, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "btn btn-primary",
-        onClick: this.newPage
+        onClick: this.props.newPage
       }, "\u65B0\u589E\u6E2C\u8A66\u7528\u8CC7\u6599"));
     }
   }]);
 
-  return Page;
-}(react__WEBPACK_IMPORTED_MODULE_1__["Component"]);
+  return PageContent;
+}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
 
 

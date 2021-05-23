@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
+import Axios from 'axios';
 import Page from './components/Page'
 
 export default class ReactContainer extends Component {
@@ -10,6 +11,31 @@ export default class ReactContainer extends Component {
         ]
     }
 
+    componentDidUpdate(){
+        // console.log('componentDidUpdate');
+    }
+
+    newPage = (params) => {
+        // 將資料塞回ReactContainer 中的state
+        const { chagngePage } = this
+
+        const pageColor = `rgb(${Math.floor(Math.random() * 255)},${Math.floor(Math.random() * 255)},${Math.floor(Math.random() * 255)})`
+
+        // 使用Axios打去後端要資料
+        Axios.post('/test')
+            .then(function (response) {
+                const test = response.data
+                // console.log(typeof test);
+
+                // 將要顯示的頁面用axios取得，整理成newObj
+                // 假資料
+                const newObj = { id: Math.floor(Math.random() * 1000000), name: '測試資料1', oldFlag: false, pageContent: pageColor }
+
+                // 將資料塞回ReactContainer 中的state
+                chagngePage(newObj)
+            });
+    }
+
     clearOldPage = (newPage) => {
         // 1000ms 後舊資料移除(覆蓋)
         setTimeout(() => {
@@ -17,7 +43,7 @@ export default class ReactContainer extends Component {
                 newPage.oldFlag = !newPage.oldFlag
             }
             this.setState({ pages: [newPage] })
-        }, 1000);
+        }, 290);
     }
 
     chagngePage = (pageObj) => {
@@ -45,7 +71,7 @@ export default class ReactContainer extends Component {
         return (
             <div id="react-container">
                 {pages.map((page) => {
-                    return <Page key={page.id} page={page} chagngePage={this.chagngePage} />
+                    return <Page key={page.id} page={page} newPage={this.newPage} />
                 })}
             </div>
         )

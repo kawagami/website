@@ -17,4 +17,8 @@
 - 20210523
     * 目前做到用取得的資料更新頁面這步，遇到react有擋外部資料成為html結構的樣子
         - 預計換成規則內的用法，每個頁面做個component，在state資料中多一欄判斷是哪個頁面的，用來render 相對應的component
-        
+    * 突然想到的功能
+        - 當下頁面可能連接的頁面在**componentDidMount()**抓取資料存入state(非this.state.pages)
+            - 好處是應該能避免點擊後才request 造成的delay 問題
+            - 測試了一下發現我的頁面只有一開始是**componentDidMount()**後面都是**componentDidUpdate()**
+                - 目前狀態下新增頁面跟移除舊頁面各會更新一次state，所以點擊一次其他頁面會執行兩次**componentDidUpdate()**

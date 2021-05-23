@@ -3,5 +3,6 @@
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
     "/css/ReactContainer.css": "/css/ReactContainer.css",
-    "/js/components/Page/index.js": "/js/components/Page/index.js"
+    "/js/components/Page/index.js": "/js/components/Page/index.js",
+    "/js/components/PageContent/index.js": "/js/components/PageContent/index.js"
 }

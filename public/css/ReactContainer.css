@@ -37,8 +37,8 @@
 .up_to_disappear {
   -webkit-animation-name: up_to_disappear;
           animation-name: up_to_disappear;
-  -webkit-animation-duration: 1s;
-          animation-duration: 1s;
+  -webkit-animation-duration: 0.3s;
+          animation-duration: 0.3s;
   -webkit-animation-timing-function: linear;
           animation-timing-function: linear;
 }
@@ -47,6 +47,15 @@ html,
 body {
   padding: 0;
   margin: 0;
+}
+
+#logo {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 50px;
+  height: 50px;
+  background-color: #000;
 }
 
 #react-main {
