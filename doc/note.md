@@ -27,6 +27,9 @@
             * 建立後台
                 - php artisan ui react --auth
                 - php artisan migrate
+            * 同時建立migration、model、controller
+                - php artisan make:model **ModelName** -mcr
+                    - **m**igration **c**ontroller **r**esource
 
     * 功能
         * 前台使用的member
