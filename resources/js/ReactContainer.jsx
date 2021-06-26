@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
+import bootstrap from './bootstrap'
 import Axios from 'axios';
 import Page from './components/Page'
 
