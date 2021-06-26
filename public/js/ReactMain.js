@@ -32821,7 +32821,7 @@ var Index = /*#__PURE__*/function (_Component) {
         className: "ca-main"
       }, "\u5C0F\u529F\u80FD", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "\u5C55\u793A\u9801\u9762"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
         className: "ca-sub"
-      }, "Across all major devices")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_MyNavLink__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      }, "Just Do It")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_MyNavLink__WEBPACK_IMPORTED_MODULE_1__["default"], {
         to: "/person"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "ca-icon"
@@ -32833,7 +32833,7 @@ var Index = /*#__PURE__*/function (_Component) {
         className: "ca-main"
       }, "\u500B\u4EBA\u8CC7\u6599", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "\u700F\u89BD\u9801"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
         className: "ca-sub"
-      }, "Full slider, boxed or none")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+      }, "Challenge Everything")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "ca-icon"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "fa fa-bullhorn"
@@ -32843,7 +32843,7 @@ var Index = /*#__PURE__*/function (_Component) {
         className: "ca-main"
       }, "Friendly", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "Documentation"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
         className: "ca-sub"
-      }, "Straight to the point"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+      }, "Live Better"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "ca-icon"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "fa fa-camera"
@@ -32853,7 +32853,7 @@ var Index = /*#__PURE__*/function (_Component) {
         className: "ca-main"
       }, "Filterable", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "Portofolio"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
         className: "ca-sub"
-      }, "Isotop & PrettyPhoto")))))));
+      }, "Think Different")))))));
     }
   }]);
 

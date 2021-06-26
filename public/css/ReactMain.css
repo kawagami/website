@@ -68,6 +68,7 @@ body {
 }
 
 #react-main .container .row .columns ul.ca-menu li {
+  width: 200px;
   display: flex;
   flex-direction: column;
   align-items: center;

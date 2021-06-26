@@ -19,7 +19,7 @@ export default class Index extends Component {
                                             <br />
                                             展示頁面
                                         </h2>
-                                        <h3 className="ca-sub">Across all major devices</h3>
+                                        <h3 className="ca-sub">Just Do It</h3>
                                     </div>
                                 </li>
                             </MyNavLink>
@@ -34,7 +34,7 @@ export default class Index extends Component {
                                             <br />
                                             瀏覽頁
                                         </h2>
-                                        <h3 className="ca-sub">Full slider, boxed or none</h3>
+                                        <h3 className="ca-sub">Challenge Everything</h3>
                                     </div>
                                 </li>
                             </MyNavLink>
@@ -48,7 +48,7 @@ export default class Index extends Component {
                                         <br />
                                         Documentation
                                     </h2>
-                                    <h3 className="ca-sub">Straight to the point</h3>
+                                    <h3 className="ca-sub">Live Better</h3>
                                 </div>
                             </li>
                             <li>
@@ -61,7 +61,7 @@ export default class Index extends Component {
                                         <br />
                                         Portofolio
                                     </h2>
-                                    <h3 className="ca-sub">Isotop &amp; PrettyPhoto</h3>
+                                    <h3 className="ca-sub">Think Different</h3>
                                 </div>
                             </li>
                         </ul>
