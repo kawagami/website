@@ -11,7 +11,7 @@ export default class Index extends Component {
                             <MyNavLink to="/function-list">
                                 <li>
                                     <span className="ca-icon">
-                                        <i class="fas fa-tools"></i>
+                                        <i className="fas fa-tools"></i>
                                     </span>
                                     <div className="ca-content">
                                         <h2 className="ca-main">
