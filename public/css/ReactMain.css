@@ -57,6 +57,12 @@ body {
   align-items: center;
 }
 
+#react-main nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
 #react-main .container .row .columns ul.ca-menu {
   display: flex;
 }
@@ -67,6 +73,19 @@ body {
   align-items: center;
   list-style: none;
   cursor: pointer;
+  color: black;
+  background-color: #fff;
+  padding: 50px;
+  transition: all 300ms linear;
+}
+
+#react-main .container .row .columns ul.ca-menu li:hover {
+  color: #fff;
+  background: #000;
+}
+
+#react-main .container .row .columns ul.ca-menu li:hover h2 {
+  color: #55a2a6;
 }
 
 #react-main .container .row .columns ul.ca-menu li i {
@@ -79,9 +98,7 @@ body {
   align-items: center;
 }
 
-#react-main .container .row .columns ul.ca-menu li div.ca-content h2 {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+#react-main .container .row .columns ul.ca-menu li div.ca-content > * {
+  text-align: center;
 }
 

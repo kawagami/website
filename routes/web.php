@@ -31,3 +31,5 @@ Route::post('/test', 'FrontendController@test')->name('test');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::view('/{path?}', 'frontend.index');
