@@ -8,21 +8,6 @@ export default class Index extends Component {
                 <div className="row">
                     <div className="twelve columns">
                         <ul className="ca-menu">
-                            <MyNavLink to="/function-list">
-                                <li>
-                                    <span className="ca-icon">
-                                        <i className="fas fa-tools"></i>
-                                    </span>
-                                    <div className="ca-content">
-                                        <h2 className="ca-main">
-                                            小功能
-                                            <br />
-                                            展示頁面
-                                        </h2>
-                                        <h3 className="ca-sub">Just Do It</h3>
-                                    </div>
-                                </li>
-                            </MyNavLink>
                             <MyNavLink to="/person">
                                 <li>
                                     <span className="ca-icon">
@@ -33,6 +18,21 @@ export default class Index extends Component {
                                             個人資料
                                             <br />
                                             瀏覽頁
+                                        </h2>
+                                        <h3 className="ca-sub">Survival of the fittest</h3>
+                                    </div>
+                                </li>
+                            </MyNavLink>
+                            <MyNavLink to="/function-list">
+                                <li>
+                                    <span className="ca-icon">
+                                        <i className="fas fa-tools"></i>
+                                    </span>
+                                    <div className="ca-content">
+                                        <h2 className="ca-main">
+                                            小功能
+                                            <br />
+                                            展示頁面
                                         </h2>
                                         <h3 className="ca-sub">Challenge Everything</h3>
                                     </div>
