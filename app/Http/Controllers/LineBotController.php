@@ -30,6 +30,7 @@ class LineBotController extends Controller
                     "text" => "hello"
                 ]
             ];
+            $this->ReplyMessage($replyToken,$message);
         }
         return response('success', 200);
     }
