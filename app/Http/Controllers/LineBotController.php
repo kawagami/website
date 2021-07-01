@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\LineBot;
 use Illuminate\Http\Request;
-use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Http;
 
 class LineBotController extends Controller
@@ -30,10 +29,11 @@ class LineBotController extends Controller
                 'Content-Type' => 'application/json',
                 'Authorization' => 'Bearer ' . env('LINE_ACCESS_TOKEN'),
             ];
-            Http::withHeaders($header)->post($url, [
+            $data = [
                 'replyToken' => $replyToken,
                 'messages' => $message,
-            ]);
+            ];
+            Http::withHeaders($header)->post($url, $data);
         }
         return response('success', 200);
     }
