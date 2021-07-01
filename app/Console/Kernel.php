@@ -28,7 +28,7 @@ class Kernel extends ConsoleKernel
         $schedule->call(function () {
             // Http::get('https://web-site-react.herokuapp.com');
             // Http::get(base_path());
-            error_log(base_path());
+            error_log(url('/'));
         })->everyMinute();
     }
 
