@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\LineBot;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Http;
 
 class LineBotController extends Controller
 {
@@ -16,48 +17,25 @@ class LineBotController extends Controller
     public function index(Request $request)
     {
         if (count($request->events) > 0) {
-            $message = $request->events[0];
-            $replyToken = $message->replyToken;
-            $userMessage = $message->message->text;
-
+            $replyToken = $request['events'][0]['replyToken'];
+            $userMessage = $request['events'][0]['message']['text'] ?? '';
             $message = [
                 [
                     "type" => "text",
                     "text" => $userMessage
-                ],
-                [
-                    "type" => "text",
-                    "text" => "hello"
                 ]
             ];
-            $this->ReplyMessage($replyToken,$message);
+            $url = 'https://api.line.me/v2/bot/message/reply';
+            $header = [
+                'Content-Type' => 'application/json',
+                'Authorization' => 'Bearer ' . env('LINE_ACCESS_TOKEN'),
+            ];
+            Http::withHeaders($header)->post($url, [
+                'replyToken' => $replyToken,
+                'messages' => $message,
+            ]);
         }
         return response('success', 200);
-    }
-    public function ReplyMessage($replyToken, $messages)
-    {
-        #請使用自己的token
-        $accessToken = "jTsJqNhKOTb4k8LzIMsTzW8zh4BgEJuC1+i3cyPxlYc1nQuwyn/xdIBSG7wPBvxYAuA0cOrkFGBMEZdhY9P3RShKjIiCZMILYonP8IiWeo0pinIQuDpGqhL1z8PGy1t5bXEw41dEM6DVf0Ikss3h9gdB04t89/1O/w1cDnyilFU=";
-
-        $headers = [
-            'Content-Type' => 'application/json',
-            'Authorization' => 'Bearer ' . $accessToken
-        ];
-
-        $data = [
-            "replyToken" => $replyToken,
-            "messages" => $messages
-        ];
-
-        $url = 'https://api.line.me/v2/bot/message/reply';
-
-        $client = new Client;
-        $res = $client->request('POST', $url, [
-            'headers' => $headers,
-            'data' => $data
-        ]);
-        // $r = $requests . post($url, headers = $headers, $data = json . dumps($data));
-        return $res;
     }
 
     /**
