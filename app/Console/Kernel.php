@@ -26,10 +26,14 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->call(function () {
-            // Http::get('https://web-site-react.herokuapp.com');
-            // Http::get(base_path());
-            error_log(url('/'));
-        })->everyMinute();
+            Http::get('https://web-site-react.herokuapp.com');
+        })->hourlyAt(5);
+        $schedule->call(function () {
+            Http::get('https://web-site-react.herokuapp.com');
+        })->hourlyAt(25);
+        $schedule->call(function () {
+            Http::get('https://web-site-react.herokuapp.com');
+        })->hourlyAt(45);
     }
 
     /**
