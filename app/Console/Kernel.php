@@ -27,13 +27,7 @@ class Kernel extends ConsoleKernel
     {
         $schedule->call(function () {
             Http::get('https://web-site-react.herokuapp.com');
-        })->hourlyAt(5);
-        $schedule->call(function () {
-            Http::get('https://web-site-react.herokuapp.com');
-        })->hourlyAt(25);
-        $schedule->call(function () {
-            Http::get('https://web-site-react.herokuapp.com');
-        })->hourlyAt(45);
+        });
     }
 
     /**
