@@ -1,2 +1,2 @@
 web: vendor/bin/heroku-php-apache2 public/
-worker: worker/clock.php
+worker: php worker/clock.php
