@@ -1,7 +1,6 @@
 <?php
-use Illuminate\Support\Facades\Http;
 
 while (true) {
-    Http::get('https://web-site-react.herokuapp.com');
+    file_get_contents('https://web-site-react.herokuapp.com');
     sleep(60);
 }
