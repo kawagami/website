@@ -17,6 +17,7 @@ class LineBotController extends Controller
     {
         if (count($request->events) > 0) {
             $replyToken = $request['events'][0]['replyToken'];
+            // 這裡要判斷進來的是什麼類型的資料
             $userMessage = $request['events'][0]['message']['text'] ?? '';
             $message = [
                 [
@@ -37,70 +38,16 @@ class LineBotController extends Controller
         }
         return response('success', 200);
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function handleMessageType($eventArray)
     {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\LineBot  $lineBot
-     * @return \Illuminate\Http\Response
-     */
-    public function show(LineBot $lineBot)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\LineBot  $lineBot
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(LineBot $lineBot)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\LineBot  $lineBot
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, LineBot $lineBot)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\LineBot  $lineBot
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(LineBot $lineBot)
-    {
-        //
+        // $TextMessage;
+        // $StickerMessage;
+        // $ImageMessage;
+        // $VideoMessage;
+        // $AudioMessage;
+        // $LocationMessage;
+        // $ImagemapMessage;
+        // $TemplateMessage;
+        // $FlexMessage;
     }
 }

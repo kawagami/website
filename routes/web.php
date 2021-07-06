@@ -15,21 +15,14 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::get('/', 'FrontendController@index')->name('index');
-Route::post('/test', 'FrontendController@test')->name('test');
-// Route::resource('index', 'FrontendController', [
-//     'name' => [
-//         'index' => 'index',
-//         'store' => 'index.store',
-//         'create' => 'index.create',
-//         'show' => 'index.show',
-//         'update' => 'index.update',
-//         'destroy' => 'index.destroy',
-//         'edit' => 'index.edit'
-//     ]
-// ]);
+Route::get('/api/test', 'FrontendController@test')->name('test');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::prefix('home')->middleware('auth')->group(function () {
+    Route::resources(['stocks' => 'StocksController']);
+});
 
 Route::view('/{path?}', 'frontend.index');
