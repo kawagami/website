@@ -110,27 +110,22 @@ class FrontendController extends Controller
         $timestampEnd = strtotime($dateEnd);
         $targetStock = '2609';
 
-        $apiUrl = "https://query1.finance.yahoo.com/v8/finance/chart/{$targetStock}.TW?period1={$timestampStart}&period2={$timestampEnd}&interval=1d&events=history&=hP2rOschxO0";
-        $response = Http::get($apiUrl);
+        // $apiUrl = "https://query1.finance.yahoo.com/v8/finance/chart/{$targetStock}.TW?period1={$timestampStart}&period2={$timestampEnd}&interval=1d&events=history&=hP2rOschxO0";
+        // $response = Http::get($apiUrl);
 
-        // // 應該是時間array
-        // $response['chart']['result'][0]['timestamp'];
-        // // 股價array
-        // $response['chart']['result'][0]['indicators']['quote'][0]['open'];
-        // $response['chart']['result'][0]['indicators']['quote'][0]['close'];
+        // $data = [];
+        // for ($i = 0; $i < count($response['chart']['result'][0]['timestamp']); $i++) {
+        //     $data[] = [
+        //         'timestamp' => Carbon::createFromTimestamp($response['chart']['result'][0]['timestamp'][$i], 'Asia/Taipei')->toDateString(),
+        //         'weekday' => $weekMap[Carbon::createFromTimestamp($response['chart']['result'][0]['timestamp'][$i], 'Asia/Taipei')->dayOfWeek],
+        //         'open' => number_format($response['chart']['result'][0]['indicators']['quote'][0]['open'][$i], 2),
+        //         'close' => number_format($response['chart']['result'][0]['indicators']['quote'][0]['close'][$i], 2),
+        //     ];
+        // }
 
-        $data = [];
-        for ($i = 0; $i < count($response['chart']['result'][0]['timestamp']); $i++) {
-            $data[] = [
-                'timestamp' => Carbon::createFromTimestamp($response['chart']['result'][0]['timestamp'][$i], 'Asia/Taipei')->toDateString(),
-                'weekday' => $weekMap[Carbon::createFromTimestamp($response['chart']['result'][0]['timestamp'][$i], 'Asia/Taipei')->dayOfWeek],
-                'open' => number_format($response['chart']['result'][0]['indicators']['quote'][0]['open'][$i], 2),
-                'close' => number_format($response['chart']['result'][0]['indicators']['quote'][0]['close'][$i], 2),
-            ];
-        }
-
+        $result = Carbon::parse('2021-05-20')->diffInDays(now());
         // return $data;
-        return $response;
-        // return $response['chart']['result'][0]['timestamp'];
+        // return $response;
+        return $result;
     }
 }

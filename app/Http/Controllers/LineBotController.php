@@ -171,7 +171,9 @@ class LineBotController extends Controller
                 // 單項明細
                 $replyContent .= "代碼 : {$stock->stock_code}\n";
                 $sumAfterTax = number_format($sumAfterTax);
-                $replyContent .= "支出 : {$sumAfterTax}\n\n";
+                $replyContent .= "支出 : {$sumAfterTax}\n";
+                $obtainDays = Carbon::parse($stock->purchase_date)->diffInDays(now());
+                $replyContent .= "持有 : {$obtainDays} 天\n\n";
             }
 
             $totalCost = number_format($totalCost);
