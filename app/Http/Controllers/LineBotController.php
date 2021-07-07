@@ -75,7 +75,10 @@ class LineBotController extends Controller
                 break;
 
             case 'location':
-                $message = 'location';
+                $latitude = $request['events'][0]['message']['latitude'];
+                $longitude = $request['events'][0]['message']['longitude'];
+                $zoomInRate = 17;
+                $message = "https://www.google.com/maps/search/food/@{$latitude},{$longitude},{$zoomInRate}z";
                 break;
 
             case 'imagemap':
