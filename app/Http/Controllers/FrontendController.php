@@ -88,7 +88,7 @@ class FrontendController extends Controller
     public function test()
     {
         // Carbon::parse();
-        $dateStart = '2021-06-01';
+        $dateStart = '2021-07-01';
         $dateEnd = now();
         $weekMap = [
             0 => 'Sunday',
@@ -108,7 +108,7 @@ class FrontendController extends Controller
         ];
         $timestampStart = strtotime($dateStart);
         $timestampEnd = strtotime($dateEnd);
-        $targetStock = '0050';
+        $targetStock = '2609';
 
         $apiUrl = "https://query1.finance.yahoo.com/v8/finance/chart/{$targetStock}.TW?period1={$timestampStart}&period2={$timestampEnd}&interval=1d&events=history&=hP2rOschxO0";
         $response = Http::get($apiUrl);
@@ -129,7 +129,8 @@ class FrontendController extends Controller
             ];
         }
 
-        return $data;
+        // return $data;
+        return $response;
         // return $response['chart']['result'][0]['timestamp'];
     }
 }

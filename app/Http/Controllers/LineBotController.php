@@ -154,11 +154,35 @@ class LineBotController extends Controller
         // 判斷該文字在stocks資料庫中存在與否
         // !!!!!!!!!!!!!這個邏輯有同代碼多筆的問題存在!!!!待解決
         // 目前先這樣測試功能
-        $stockData = Stocks::where('stock_code', '=', $string)->first();
-        if ($stockData !== null) {
-            $result = "購買價格 : {$stockData->purchase_price}\n購買日期 : {$stockData->purchase_date}\n數量 : {$stockData->amount}";
-        }else{
-            $result = '無資料';
+
+        if ($string === 'stocks') {
+            $allStocks = Stocks::get();
+            $totalCost = 0;
+            $tradeFeeRate = 0.001425;
+            $tradeDiscount = 0.28;
+            $replyContent = '';
+
+            foreach ($allStocks as $stock) {
+                // 未含交易手續費
+                $sum = $stock->purchase_price * $stock->amount;
+                // $sumAfterTax = round($sum * (1 + $tradeFeeRate * $tradeDiscount), 2);
+                $sumAfterTax = floor($sum * (1 + $tradeFeeRate * $tradeDiscount));
+                $totalCost += $sumAfterTax;
+                // 單項明細
+                $replyContent .= "代碼 : {$stock->stock_code}\n";
+                $sumAfterTax = number_format($sumAfterTax);
+                $replyContent .= "支出 : {$sumAfterTax}\n\n";
+            }
+
+            $totalCost = number_format($totalCost);
+            $result = "{$replyContent}總支出 : {$totalCost}";
+        } else {
+            $stockData = Stocks::where('stock_code', '=', $string)->first();
+            if ($stockData !== null) {
+                $result = "購買價格 : {$stockData->purchase_price}\n購買日期 : {$stockData->purchase_date}\n數量 : {$stockData->amount}";
+            } else {
+                $result = '無資料';
+            }
         }
 
         return $result;
