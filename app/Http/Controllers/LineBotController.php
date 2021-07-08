@@ -23,12 +23,214 @@ class LineBotController extends Controller
             // 22-30行 的邏輯應該要分開寫，主要是依照進來訊息的不同做不同的回應
             // 這裡要判斷進來的是什麼類型的資料
             // $userMessage = $request['events'][0]['message']['text'] ?? '';
-            $userMessage = $this->handleMessageType($request);
+            // $userMessage = $this->handleMessageType($request);
             // BOT要回覆的訊息
             $message = [
                 [
-                    "type" => "text",
-                    "text" => $userMessage
+                    "type" => "flex",
+                    "altText" => "This is a Flex Message",
+                    "contents" => [
+                        "type" => "bubble",
+                        "body" => [
+                            "type" => "box",
+                            "layout" => "vertical",
+                            "contents" => [
+                                [
+                                    "type" => "text",
+                                    "text" => "2609",
+                                    "weight" => "bold",
+                                    "size" => "3xl",
+                                    "align" => "center"
+                                ],
+                                [
+                                    "type" => "box",
+                                    "layout" => "vertical",
+                                    "margin" => "lg",
+                                    "spacing" => "sm",
+                                    "contents" => [
+                                        [
+                                            "type" => "box",
+                                            "layout" => "baseline",
+                                            "spacing" => "xs",
+                                            "contents" => [
+                                                [
+                                                    "type" => "text",
+                                                    "text" => "持有天數",
+                                                    "color" => "#aaaaaa",
+                                                    "size" => "sm",
+                                                    "flex" => 2,
+                                                    "offsetEnd" => "none"
+                                                ],
+                                                [
+                                                    "type" => "text",
+                                                    "text" => "這裡拉資料庫的天數跟NOW差距",
+                                                    "wrap" => true,
+                                                    "color" => "#0000ff",
+                                                    "size" => "xxl",
+                                                    "flex" => 5,
+                                                    "align" => "end"
+                                                ]
+                                            ]
+                                        ],
+                                        [
+                                            "type" => "box",
+                                            "layout" => "baseline",
+                                            "spacing" => "sm",
+                                            "contents" => [
+                                                [
+                                                    "type" => "text",
+                                                    "text" => "盈虧",
+                                                    "color" => "#aaaaaa",
+                                                    "size" => "sm",
+                                                    "flex" => 2
+                                                ],
+                                                [
+                                                    "type" => "text",
+                                                    "text" => "計算成本跟現值減掉手續費跟交易稅的數字",
+                                                    "wrap" => true,
+                                                    "color" => "#666666",
+                                                    "size" => "xxl",
+                                                    "flex" => 5,
+                                                    "align" => "end"
+                                                ]
+                                            ]
+                                        ]
+                                    ]
+                                ],
+                                [
+                                    "type" => "separator"
+                                ],
+                                [
+                                    "type" => "text",
+                                    "text" => "0050",
+                                    "weight" => "bold",
+                                    "size" => "3xl",
+                                    "align" => "center"
+                                ],
+                                [
+                                    "type" => "box",
+                                    "layout" => "vertical",
+                                    "margin" => "lg",
+                                    "spacing" => "sm",
+                                    "contents" => [
+                                        [
+                                            "type" => "box",
+                                            "layout" => "baseline",
+                                            "spacing" => "xs",
+                                            "contents" => [
+                                                [
+                                                    "type" => "text",
+                                                    "text" => "持有天數",
+                                                    "color" => "#aaaaaa",
+                                                    "size" => "sm",
+                                                    "flex" => 2,
+                                                    "offsetEnd" => "none"
+                                                ],
+                                                [
+                                                    "type" => "text",
+                                                    "text" => "這裡拉資料庫的天數跟NOW差距",
+                                                    "wrap" => true,
+                                                    "color" => "#0000ff",
+                                                    "size" => "xxl",
+                                                    "flex" => 5,
+                                                    "align" => "end"
+                                                ]
+                                            ]
+                                        ],
+                                        [
+                                            "type" => "box",
+                                            "layout" => "baseline",
+                                            "spacing" => "sm",
+                                            "contents" => [
+                                                [
+                                                    "type" => "text",
+                                                    "text" => "盈虧",
+                                                    "color" => "#aaaaaa",
+                                                    "size" => "sm",
+                                                    "flex" => 2
+                                                ],
+                                                [
+                                                    "type" => "text",
+                                                    "text" => "計算成本跟現值減掉手續費跟交易稅的數字",
+                                                    "wrap" => true,
+                                                    "color" => "#666666",
+                                                    "size" => "xxl",
+                                                    "flex" => 5,
+                                                    "align" => "end"
+                                                ]
+                                            ]
+                                        ]
+                                    ]
+                                ],
+                                [
+                                    "type" => "separator"
+                                ],
+                                [
+                                    "type" => "text",
+                                    "text" => "2887",
+                                    "weight" => "bold",
+                                    "size" => "3xl",
+                                    "align" => "center"
+                                ],
+                                [
+                                    "type" => "box",
+                                    "layout" => "vertical",
+                                    "margin" => "lg",
+                                    "spacing" => "sm",
+                                    "contents" => [
+                                        [
+                                            "type" => "box",
+                                            "layout" => "baseline",
+                                            "spacing" => "xs",
+                                            "contents" => [
+                                                [
+                                                    "type" => "text",
+                                                    "text" => "持有天數",
+                                                    "color" => "#aaaaaa",
+                                                    "size" => "sm",
+                                                    "flex" => 2,
+                                                    "offsetEnd" => "none"
+                                                ],
+                                                [
+                                                    "type" => "text",
+                                                    "text" => "這裡拉資料庫的天數跟NOW差距",
+                                                    "wrap" => true,
+                                                    "color" => "#0000ff",
+                                                    "size" => "xxl",
+                                                    "flex" => 5,
+                                                    "align" => "end"
+                                                ]
+                                            ]
+                                        ],
+                                        [
+                                            "type" => "box",
+                                            "layout" => "baseline",
+                                            "spacing" => "sm",
+                                            "contents" => [
+                                                [
+                                                    "type" => "text",
+                                                    "text" => "盈虧",
+                                                    "color" => "#aaaaaa",
+                                                    "size" => "sm",
+                                                    "flex" => 2
+                                                ],
+                                                [
+                                                    "type" => "text",
+                                                    "text" => "計算成本跟現值減掉手續費跟交易稅的數字",
+                                                    "wrap" => true,
+                                                    "color" => "#666666",
+                                                    "size" => "xxl",
+                                                    "flex" => 5,
+                                                    "align" => "end"
+                                                ]
+                                            ]
+                                        ]
+                                    ]
+                                ]
+                            ],
+                            "backgroundColor" => "#ffffaa"
+                        ]
+                    ]
                 ]
             ];
 
@@ -45,9 +247,19 @@ class LineBotController extends Controller
                 'messages' => $message,
             ];
             Http::withHeaders($header)->post($url, $data);
+            // $res = Http::withHeaders($header)->post($url, $data);
+            // error_log($res);
         }
         return response('success', 200);
     }
+
+    public function handleMessage($request)
+    {
+        
+        $return = '';
+        return $return;
+    }
+
     public function handleMessageType($request)
     {
         switch ($request['events'][0]['message']['type']) {
