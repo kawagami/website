@@ -25,214 +25,7 @@ class LineBotController extends Controller
             // $userMessage = $request['events'][0]['message']['text'] ?? '';
             // $userMessage = $this->handleMessageType($request);
             // BOT要回覆的訊息
-            $message = [
-                [
-                    "type" => "flex",
-                    "altText" => "This is a Flex Message",
-                    "contents" => [
-                        "type" => "bubble",
-                        "body" => [
-                            "type" => "box",
-                            "layout" => "vertical",
-                            "contents" => [
-                                [
-                                    "type" => "text",
-                                    "text" => "2609",
-                                    "weight" => "bold",
-                                    "size" => "3xl",
-                                    "align" => "center"
-                                ],
-                                [
-                                    "type" => "box",
-                                    "layout" => "vertical",
-                                    "margin" => "lg",
-                                    "spacing" => "sm",
-                                    "contents" => [
-                                        [
-                                            "type" => "box",
-                                            "layout" => "baseline",
-                                            "spacing" => "xs",
-                                            "contents" => [
-                                                [
-                                                    "type" => "text",
-                                                    "text" => "持有天數",
-                                                    "color" => "#aaaaaa",
-                                                    "size" => "sm",
-                                                    "flex" => 2,
-                                                    "offsetEnd" => "none"
-                                                ],
-                                                [
-                                                    "type" => "text",
-                                                    "text" => "這裡拉資料庫的天數跟NOW差距",
-                                                    "wrap" => true,
-                                                    "color" => "#0000ff",
-                                                    "size" => "xxl",
-                                                    "flex" => 5,
-                                                    "align" => "end"
-                                                ]
-                                            ]
-                                        ],
-                                        [
-                                            "type" => "box",
-                                            "layout" => "baseline",
-                                            "spacing" => "sm",
-                                            "contents" => [
-                                                [
-                                                    "type" => "text",
-                                                    "text" => "盈虧",
-                                                    "color" => "#aaaaaa",
-                                                    "size" => "sm",
-                                                    "flex" => 2
-                                                ],
-                                                [
-                                                    "type" => "text",
-                                                    "text" => "計算成本跟現值減掉手續費跟交易稅的數字",
-                                                    "wrap" => true,
-                                                    "color" => "#666666",
-                                                    "size" => "xxl",
-                                                    "flex" => 5,
-                                                    "align" => "end"
-                                                ]
-                                            ]
-                                        ]
-                                    ]
-                                ],
-                                [
-                                    "type" => "separator"
-                                ],
-                                [
-                                    "type" => "text",
-                                    "text" => "0050",
-                                    "weight" => "bold",
-                                    "size" => "3xl",
-                                    "align" => "center"
-                                ],
-                                [
-                                    "type" => "box",
-                                    "layout" => "vertical",
-                                    "margin" => "lg",
-                                    "spacing" => "sm",
-                                    "contents" => [
-                                        [
-                                            "type" => "box",
-                                            "layout" => "baseline",
-                                            "spacing" => "xs",
-                                            "contents" => [
-                                                [
-                                                    "type" => "text",
-                                                    "text" => "持有天數",
-                                                    "color" => "#aaaaaa",
-                                                    "size" => "sm",
-                                                    "flex" => 2,
-                                                    "offsetEnd" => "none"
-                                                ],
-                                                [
-                                                    "type" => "text",
-                                                    "text" => "這裡拉資料庫的天數跟NOW差距",
-                                                    "wrap" => true,
-                                                    "color" => "#0000ff",
-                                                    "size" => "xxl",
-                                                    "flex" => 5,
-                                                    "align" => "end"
-                                                ]
-                                            ]
-                                        ],
-                                        [
-                                            "type" => "box",
-                                            "layout" => "baseline",
-                                            "spacing" => "sm",
-                                            "contents" => [
-                                                [
-                                                    "type" => "text",
-                                                    "text" => "盈虧",
-                                                    "color" => "#aaaaaa",
-                                                    "size" => "sm",
-                                                    "flex" => 2
-                                                ],
-                                                [
-                                                    "type" => "text",
-                                                    "text" => "計算成本跟現值減掉手續費跟交易稅的數字",
-                                                    "wrap" => true,
-                                                    "color" => "#666666",
-                                                    "size" => "xxl",
-                                                    "flex" => 5,
-                                                    "align" => "end"
-                                                ]
-                                            ]
-                                        ]
-                                    ]
-                                ],
-                                [
-                                    "type" => "separator"
-                                ],
-                                [
-                                    "type" => "text",
-                                    "text" => "2887",
-                                    "weight" => "bold",
-                                    "size" => "3xl",
-                                    "align" => "center"
-                                ],
-                                [
-                                    "type" => "box",
-                                    "layout" => "vertical",
-                                    "margin" => "lg",
-                                    "spacing" => "sm",
-                                    "contents" => [
-                                        [
-                                            "type" => "box",
-                                            "layout" => "baseline",
-                                            "spacing" => "xs",
-                                            "contents" => [
-                                                [
-                                                    "type" => "text",
-                                                    "text" => "持有天數",
-                                                    "color" => "#aaaaaa",
-                                                    "size" => "sm",
-                                                    "flex" => 2,
-                                                    "offsetEnd" => "none"
-                                                ],
-                                                [
-                                                    "type" => "text",
-                                                    "text" => "這裡拉資料庫的天數跟NOW差距",
-                                                    "wrap" => true,
-                                                    "color" => "#0000ff",
-                                                    "size" => "xxl",
-                                                    "flex" => 5,
-                                                    "align" => "end"
-                                                ]
-                                            ]
-                                        ],
-                                        [
-                                            "type" => "box",
-                                            "layout" => "baseline",
-                                            "spacing" => "sm",
-                                            "contents" => [
-                                                [
-                                                    "type" => "text",
-                                                    "text" => "盈虧",
-                                                    "color" => "#aaaaaa",
-                                                    "size" => "sm",
-                                                    "flex" => 2
-                                                ],
-                                                [
-                                                    "type" => "text",
-                                                    "text" => "計算成本跟現值減掉手續費跟交易稅的數字",
-                                                    "wrap" => true,
-                                                    "color" => "#666666",
-                                                    "size" => "xxl",
-                                                    "flex" => 5,
-                                                    "align" => "end"
-                                                ]
-                                            ]
-                                        ]
-                                    ]
-                                ]
-                            ],
-                            "backgroundColor" => "#ffffaa"
-                        ]
-                    ]
-                ]
-            ];
+            $message = $this->handleMessageType($request);
 
             // LINE的reply API
             $url = 'https://api.line.me/v2/bot/message/reply';
@@ -255,7 +48,7 @@ class LineBotController extends Controller
 
     public function handleMessage($request)
     {
-        
+
         $return = '';
         return $return;
     }
@@ -312,10 +105,10 @@ class LineBotController extends Controller
         return $message;
     }
 
-    public function getStockPrice()
+    public function getStockPrice($stockCode)
     {
         // Carbon::parse();
-        $dateStart = '2021-06-01';
+        $dateStart = Carbon::now()->subDays(7);
         $dateEnd = now();
         $weekMap = [
             0 => 'Sunday',
@@ -335,7 +128,7 @@ class LineBotController extends Controller
         ];
         $timestampStart = strtotime($dateStart);
         $timestampEnd = strtotime($dateEnd);
-        $targetStock = '0050';
+        $targetStock = "{$stockCode}";
 
         $apiUrl = "https://query1.finance.yahoo.com/v8/finance/chart/{$targetStock}.TW?period1={$timestampStart}&period2={$timestampEnd}&interval=1d&events=history&=hP2rOschxO0";
         $response = Http::get($apiUrl);
@@ -346,17 +139,17 @@ class LineBotController extends Controller
         // $response['chart']['result'][0]['indicators']['quote'][0]['open'];
         // $response['chart']['result'][0]['indicators']['quote'][0]['close'];
 
-        $data = [];
-        for ($i = 0; $i < count($response['chart']['result'][0]['timestamp']); $i++) {
-            $data[] = [
-                'timestamp' => Carbon::createFromTimestamp($response['chart']['result'][0]['timestamp'][$i], 'Asia/Taipei')->toDateString(),
-                'weekday' => $weekMap[Carbon::createFromTimestamp($response['chart']['result'][0]['timestamp'][$i], 'Asia/Taipei')->dayOfWeek],
-                'open' => number_format($response['chart']['result'][0]['indicators']['quote'][0]['open'][$i], 2),
-                'close' => number_format($response['chart']['result'][0]['indicators']['quote'][0]['close'][$i], 2),
-            ];
-        }
-
-        return $data;
+        // $data = [];
+        // for ($i = 0; $i < count($response['chart']['result'][0]['timestamp']); $i++) {
+        //     $data[] = [
+        //         'timestamp' => Carbon::createFromTimestamp($response['chart']['result'][0]['timestamp'][$i], 'Asia/Taipei')->toDateString(),
+        //         'weekday' => $weekMap[Carbon::createFromTimestamp($response['chart']['result'][0]['timestamp'][$i], 'Asia/Taipei')->dayOfWeek],
+        //         'open' => number_format($response['chart']['result'][0]['indicators']['quote'][0]['open'][$i], 2),
+        //         'close' => number_format($response['chart']['result'][0]['indicators']['quote'][0]['close'][$i], 2),
+        //     ];
+        // }
+        $targetArray = $response['chart']['result'][0]['indicators']['quote'][0]['close'];
+        return end($targetArray);
         // return $response['chart']['result'][0]['timestamp'];
     }
 
@@ -370,25 +163,131 @@ class LineBotController extends Controller
         // !!!!!!!!!!!!!這個邏輯有同代碼多筆的問題存在!!!!待解決
         // 目前先這樣測試功能
 
+        $contents = [];
         if ($string === 'stocks') {
             $allStocks = Stocks::get();
             $totalCost = 0;
             $tradeFeeRate = 0.001425;
+            $tradeTaxRate = 0.003;
             $tradeDiscount = 0.28;
             $replyContent = '';
 
             foreach ($allStocks as $stock) {
                 // 未含交易手續費
                 $sum = $stock->purchase_price * $stock->amount;
-                // $sumAfterTax = round($sum * (1 + $tradeFeeRate * $tradeDiscount), 2);
+                // 含交易手續費
                 $sumAfterTax = floor($sum * (1 + $tradeFeeRate * $tradeDiscount));
-                $totalCost += $sumAfterTax;
-                // 單項明細
-                $replyContent .= "代碼 : {$stock->stock_code}\n";
+                // 取得現在股價
+                $nowStockPrice = round($this->getStockPrice($stock->stock_code), 2);
+                // $nowStockPrice = 20;
+                // 計算現在市價
+                $marketValue = $stock->amount * $nowStockPrice;
+                // 含交易手續費&交易稅
+                $marketValueSoldPrice = floor($marketValue * (1 - ($tradeFeeRate * $tradeDiscount) - ($tradeTaxRate)));
+                // 與購買時的差額
+                $profit = number_format($marketValueSoldPrice - $sumAfterTax);
+                // 賺:紅色 虧:綠色
+                $profitColor = $profit >= 0 ? "#ff0000" : "#00ff00";
+
+                // $totalCost += $sumAfterTax;
+                // // 單項明細
+                // $replyContent .= "代碼 : {$stock->stock_code}\n";
                 $sumAfterTax = number_format($sumAfterTax);
-                $replyContent .= "支出 : {$sumAfterTax}\n";
+                // $replyContent .= "支出 : {$sumAfterTax}\n";
                 $obtainDays = Carbon::parse($stock->purchase_date)->diffInDays(now());
-                $replyContent .= "持有 : {$obtainDays} 天\n\n";
+                // $replyContent .= "持有 : {$obtainDays} 天\n\n";
+
+                $contents[] =
+                    [
+                        "type" => "text",
+                        "text" => "{$stock->stock_code}",
+                        "weight" => "bold",
+                        "size" => "3xl",
+                        "align" => "center"
+                    ];
+                $contents[] =
+                    [
+                        "type" => "box",
+                        "layout" => "vertical",
+                        "margin" => "lg",
+                        "spacing" => "sm",
+                        "contents" => [
+                            [
+                                "type" => "box",
+                                "layout" => "baseline",
+                                "spacing" => "xs",
+                                "contents" => [
+                                    [
+                                        "type" => "text",
+                                        "text" => "持有天數",
+                                        "color" => "#aaaaaa",
+                                        "size" => "sm",
+                                        "flex" => 2,
+                                        "offsetEnd" => "none"
+                                    ],
+                                    [
+                                        "type" => "text",
+                                        "text" => "{$obtainDays}",
+                                        "wrap" => true,
+                                        "color" => "#0000ff",
+                                        "size" => "xxl",
+                                        "flex" => 5,
+                                        "align" => "end"
+                                    ]
+                                ]
+                            ],
+                            // [
+                            //     "type" => "box",
+                            //     "layout" => "baseline",
+                            //     "spacing" => "sm",
+                            //     "contents" => [
+                            //         [
+                            //             "type" => "text",
+                            //             "text" => "現時股價",
+                            //             "color" => "#aaaaaa",
+                            //             "size" => "sm",
+                            //             "flex" => 2
+                            //         ],
+                            //         [
+                            //             "type" => "text",
+                            //             "text" => "{$nowStockPrice}",
+                            //             "wrap" => true,
+                            //             "color" => "#000000",
+                            //             "size" => "xxl",
+                            //             "flex" => 5,
+                            //             "align" => "end"
+                            //         ]
+                            //     ]
+                            // ],
+                            [
+                                "type" => "box",
+                                "layout" => "baseline",
+                                "spacing" => "sm",
+                                "contents" => [
+                                    [
+                                        "type" => "text",
+                                        "text" => "現時盈虧",
+                                        "color" => "#aaaaaa",
+                                        "size" => "sm",
+                                        "flex" => 2
+                                    ],
+                                    [
+                                        "type" => "text",
+                                        "text" => "{$profit}",
+                                        "wrap" => true,
+                                        "color" => $profitColor,
+                                        "size" => "xxl",
+                                        "flex" => 5,
+                                        "align" => "end"
+                                    ]
+                                ]
+                            ]
+                        ]
+                    ];
+                $contents[] =
+                    [
+                        "type" => "separator"
+                    ];
             }
 
             $totalCost = number_format($totalCost);
@@ -402,6 +301,23 @@ class LineBotController extends Controller
             }
         }
 
-        return $result;
+        $lineResultContents = [
+            [
+                "type" => "flex",
+                "altText" => "This is a Flex Message",
+                "contents" => [
+                    "type" => "bubble",
+                    "body" => [
+                        "type" => "box",
+                        "layout" => "vertical",
+                        "contents" => $contents,
+                        "backgroundColor" => "#ffffaa"
+                    ]
+                ]
+            ]
+        ];
+
+        // return $result;
+        return $lineResultContents;
     }
 }

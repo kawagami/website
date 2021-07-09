@@ -88,7 +88,7 @@ class FrontendController extends Controller
     public function test()
     {
         // Carbon::parse();
-        $dateStart = '2021-06-01';
+        $dateStart = Carbon::now()->subDays(7);
         $dateEnd = now();
         $weekMap = [
             0 => 'Sunday',
@@ -124,8 +124,11 @@ class FrontendController extends Controller
         }
 
         // $result = Carbon::parse('2021-05-20')->diffInDays(now());
-        return $data;
+        // return $data;
         // return $response;
         // return $result;
+        // return end($response['chart']['result'][0]['indicators']['quote'][0]['close']);
+        $targetArray = $response['chart']['result'][0]['indicators']['quote'][0]['close'];
+        return end($response['chart']['result'][0]['indicators']['quote'][0]['close']);
     }
 }
