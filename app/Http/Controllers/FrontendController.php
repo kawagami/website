@@ -129,6 +129,6 @@ class FrontendController extends Controller
         // return $result;
         // return end($response['chart']['result'][0]['indicators']['quote'][0]['close']);
         $targetArray = $response['chart']['result'][0]['indicators']['quote'][0]['close'];
-        return end($response['chart']['result'][0]['indicators']['quote'][0]['close']);
+        return end($targetArray);
     }
 }

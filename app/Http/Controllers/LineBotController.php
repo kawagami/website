@@ -60,23 +60,51 @@ class LineBotController extends Controller
                 // 取得使用者對BOT輸入的文字
                 $inputText = $request['events'][0]['message']['text'];
                 // $message = 'text';
-                $message = $this->handleMessageText($inputText);
+                $contents = $this->handleMessageText($inputText);
                 break;
 
             case 'sticker':
-                $message = 'sticker';
+                $contents[] =
+                    [
+                        "type" => "text",
+                        "text" => "sticker",
+                        "weight" => "bold",
+                        "size" => "3xl",
+                        "align" => "center"
+                    ];
                 break;
 
             case 'image':
-                $message = 'image';
+                $contents[] =
+                    [
+                        "type" => "text",
+                        "text" => "image",
+                        "weight" => "bold",
+                        "size" => "3xl",
+                        "align" => "center"
+                    ];
                 break;
 
             case 'video':
-                $message = 'video';
+                $contents[] =
+                    [
+                        "type" => "text",
+                        "text" => "video",
+                        "weight" => "bold",
+                        "size" => "3xl",
+                        "align" => "center"
+                    ];
                 break;
 
             case 'audio':
-                $message = 'audio';
+                $contents[] =
+                    [
+                        "type" => "text",
+                        "text" => "audio",
+                        "weight" => "bold",
+                        "size" => "3xl",
+                        "align" => "center"
+                    ];
                 break;
 
             case 'location':
@@ -84,25 +112,80 @@ class LineBotController extends Controller
                 $longitude = $request['events'][0]['message']['longitude'];
                 $zoomInRate = 17;
                 $message = "https://www.google.com/maps/search/food/@{$latitude},{$longitude},{$zoomInRate}z";
+                $contents[] =
+                    [
+                        "type" => "button",
+                        "action" => [
+                            "type" => "uri",
+                            "label" => "按鈕",
+                            "uri" => $message
+                        ],
+                        "style" => "primary"
+                    ];
                 break;
 
             case 'imagemap':
-                $message = 'imagemap';
+                $contents[] =
+                    [
+                        "type" => "text",
+                        "text" => "imagemap",
+                        "weight" => "bold",
+                        "size" => "3xl",
+                        "align" => "center"
+                    ];
                 break;
 
             case 'template':
-                $message = 'template';
+                $contents[] =
+                    [
+                        "type" => "text",
+                        "text" => "template",
+                        "weight" => "bold",
+                        "size" => "3xl",
+                        "align" => "center"
+                    ];
                 break;
 
             case 'flex':
-                $message = 'flex';
+                $contents[] =
+                    [
+                        "type" => "text",
+                        "text" => "flex",
+                        "weight" => "bold",
+                        "size" => "3xl",
+                        "align" => "center"
+                    ];
                 break;
 
             default:
-                $message = '';
+                $contents[] =
+                    [
+                        "type" => "text",
+                        "text" => "none",
+                        "weight" => "bold",
+                        "size" => "3xl",
+                        "align" => "center"
+                    ];
                 break;
         }
-        return $message;
+
+        $retuenMessage = [
+            [
+                "type" => "flex",
+                "altText" => "This is a Flex Message",
+                "contents" => [
+                    "type" => "bubble",
+                    "body" => [
+                        "type" => "box",
+                        "layout" => "vertical",
+                        "contents" => $contents,
+                        "backgroundColor" => "#ffffaa"
+                    ]
+                ]
+            ]
+        ];
+
+        return $retuenMessage;
     }
 
     public function getStockPrice($stockCode)
@@ -164,19 +247,20 @@ class LineBotController extends Controller
         // 目前先這樣測試功能
 
         $contents = [];
+        $tradeFeeRate = 0.001425;
+        $tradeTaxRate = 0.003;
+        $tradeDiscount = 0.28;
         if ($string === 'stocks') {
             $allStocks = Stocks::get();
-            $totalCost = 0;
             $tradeFeeRate = 0.001425;
             $tradeTaxRate = 0.003;
             $tradeDiscount = 0.28;
-            $replyContent = '';
 
             foreach ($allStocks as $stock) {
                 // 未含交易手續費
                 $sum = $stock->purchase_price * $stock->amount;
                 // 含交易手續費
-                $sumAfterTax = floor($sum * (1 + $tradeFeeRate * $tradeDiscount));
+                $sumAfterFee = floor($sum * (1 + $tradeFeeRate * $tradeDiscount));
                 // 取得現在股價
                 $nowStockPrice = round($this->getStockPrice($stock->stock_code), 2);
                 // $nowStockPrice = 20;
@@ -185,17 +269,16 @@ class LineBotController extends Controller
                 // 含交易手續費&交易稅
                 $marketValueSoldPrice = floor($marketValue * (1 - ($tradeFeeRate * $tradeDiscount) - ($tradeTaxRate)));
                 // 與購買時的差額
-                $profit = number_format($marketValueSoldPrice - $sumAfterTax);
+                $profit = number_format($marketValueSoldPrice - $sumAfterFee);
                 // 賺:紅色 虧:綠色
                 $profitColor = $profit >= 0 ? "#ff0000" : "#00ff00";
 
-                // $totalCost += $sumAfterTax;
+                // $totalCost += $sumAfterFee;
                 // // 單項明細
-                // $replyContent .= "代碼 : {$stock->stock_code}\n";
-                $sumAfterTax = number_format($sumAfterTax);
-                // $replyContent .= "支出 : {$sumAfterTax}\n";
+                // 加手續費後取得金額
+                $sumAfterFee = number_format($sumAfterFee);
+                // 持有天數
                 $obtainDays = Carbon::parse($stock->purchase_date)->diffInDays(now());
-                // $replyContent .= "持有 : {$obtainDays} 天\n\n";
 
                 $contents[] =
                     [
@@ -289,35 +372,120 @@ class LineBotController extends Controller
                         "type" => "separator"
                     ];
             }
-
-            $totalCost = number_format($totalCost);
-            $result = "{$replyContent}總支出 : {$totalCost}";
         } else {
             $stockData = Stocks::where('stock_code', '=', $string)->first();
             if ($stockData !== null) {
-                $result = "購買價格 : {$stockData->purchase_price}\n購買日期 : {$stockData->purchase_date}\n數量 : {$stockData->amount}";
+                // 未含交易手續費
+                $sum = $stockData->purchase_price * $stockData->amount;
+                // 含交易手續費
+                $sumAfterFee = floor($sum * (1 + $tradeFeeRate * $tradeDiscount));
+                // 取得現在股價
+                $nowStockPrice = round($this->getStockPrice($stockData->stock_code), 2);
+                // $nowStockPrice = 20;
+                // 計算現在市價
+                $marketValue = $stockData->amount * $nowStockPrice;
+                // 含交易手續費&交易稅
+                $marketValueSoldPrice = floor($marketValue * (1 - ($tradeFeeRate * $tradeDiscount) - ($tradeTaxRate)));
+                // 與購買時的差額
+                $profit = number_format($marketValueSoldPrice - $sumAfterFee);
+                // 賺:紅色 虧:綠色
+                $profitColor = $profit >= 0 ? "#ff0000" : "#00ff00";
+                // 持有天數
+                $obtainDays = Carbon::parse($stockData->purchase_date)->diffInDays(now());
+
+                $contents[] =
+                    [
+                        "type" => "text",
+                        "text" => "{$stockData->stock_code}",
+                        "weight" => "bold",
+                        "size" => "3xl",
+                        "align" => "center"
+                    ];
+                $contents[] =
+                    [
+                        "type" => "box",
+                        "layout" => "vertical",
+                        "margin" => "lg",
+                        "spacing" => "sm",
+                        "contents" => [
+                            [
+                                "type" => "box",
+                                "layout" => "baseline",
+                                "spacing" => "xs",
+                                "contents" => [
+                                    [
+                                        "type" => "text",
+                                        "text" => "持有天數",
+                                        "color" => "#aaaaaa",
+                                        "size" => "sm",
+                                        "flex" => 2,
+                                        "offsetEnd" => "none"
+                                    ],
+                                    [
+                                        "type" => "text",
+                                        "text" => "{$obtainDays}",
+                                        "wrap" => true,
+                                        "color" => "#0000ff",
+                                        "size" => "xxl",
+                                        "flex" => 5,
+                                        "align" => "end"
+                                    ]
+                                ]
+                            ],
+                            [
+                                "type" => "box",
+                                "layout" => "baseline",
+                                "spacing" => "sm",
+                                "contents" => [
+                                    [
+                                        "type" => "text",
+                                        "text" => "現時盈虧",
+                                        "color" => "#aaaaaa",
+                                        "size" => "sm",
+                                        "flex" => 2
+                                    ],
+                                    [
+                                        "type" => "text",
+                                        "text" => "{$profit}",
+                                        "wrap" => true,
+                                        "color" => $profitColor,
+                                        "size" => "xxl",
+                                        "flex" => 5,
+                                        "align" => "end"
+                                    ]
+                                ]
+                            ]
+                        ]
+                    ];
             } else {
-                $result = '無資料';
+                $contents[] =
+                    [
+                        "type" => "text",
+                        "text" => "無資料",
+                        "weight" => "bold",
+                        "size" => "3xl",
+                        "align" => "center"
+                    ];
             }
         }
 
-        $lineResultContents = [
-            [
-                "type" => "flex",
-                "altText" => "This is a Flex Message",
-                "contents" => [
-                    "type" => "bubble",
-                    "body" => [
-                        "type" => "box",
-                        "layout" => "vertical",
-                        "contents" => $contents,
-                        "backgroundColor" => "#ffffaa"
-                    ]
-                ]
-            ]
-        ];
+        // $lineResultContents = [
+        //     [
+        //         "type" => "flex",
+        //         "altText" => "This is a Flex Message",
+        //         "contents" => [
+        //             "type" => "bubble",
+        //             "body" => [
+        //                 "type" => "box",
+        //                 "layout" => "vertical",
+        //                 "contents" => $contents,
+        //                 "backgroundColor" => "#ffffaa"
+        //             ]
+        //         ]
+        //     ]
+        // ];
 
         // return $result;
-        return $lineResultContents;
+        return $contents;
     }
 }
