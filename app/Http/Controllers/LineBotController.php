@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Stocks;
-use App\LineBot;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
@@ -20,12 +19,45 @@ class LineBotController extends Controller
         if (count($request->events) > 0) {
             $replyToken = $request['events'][0]['replyToken'];
 
-            // 22-30行 的邏輯應該要分開寫，主要是依照進來訊息的不同做不同的回應
-            // 這裡要判斷進來的是什麼類型的資料
-            // $userMessage = $request['events'][0]['message']['text'] ?? '';
-            // $userMessage = $this->handleMessageType($request);
             // BOT要回覆的訊息
             $message = $this->handleMessageType($request);
+            
+            // // 電腦版無法跟quick replies互動
+            // $message = [];
+            // $message[] = 
+            // [
+            //     "type" => "text",
+            //     "text" => "Select your favorite food category or send me your location!",
+            //     "quickReply" => [
+            //         "items" => [
+            //             [
+            //                 "type" => "action",
+            //                 "imageUrl" => "https://pht.qoo-static.com/NuyOBNU1CGmbWlUxjDZOfUMZ43qjtUro8w2FhFU6YRwAoT7rh-VdsYhuPCV_lbI-7j8=w300",
+            //                 "action" => [
+            //                     "type" => "message",
+            //                     "label" => "Sushi",
+            //                     "text" => "Sushi"
+            //                 ]
+            //             ],
+            //             [
+            //                 "type" => "action",
+            //                 "imageUrl" => "https://pht.qoo-static.com/NuyOBNU1CGmbWlUxjDZOfUMZ43qjtUro8w2FhFU6YRwAoT7rh-VdsYhuPCV_lbI-7j8=w300",
+            //                 "action" => [
+            //                     "type" => "message",
+            //                     "label" => "Tempura",
+            //                     "text" => "Tempura"
+            //                 ]
+            //             ],
+            //             [
+            //                 "type" => "action",
+            //                 "action" => [
+            //                     "type" => "location",
+            //                     "label" => "Send location"
+            //                 ]
+            //             ]
+            //         ]
+            //     ]
+            // ];
 
             // LINE的reply API
             $url = 'https://api.line.me/v2/bot/message/reply';
@@ -39,9 +71,9 @@ class LineBotController extends Controller
                 'replyToken' => $replyToken,
                 'messages' => $message,
             ];
-            Http::withHeaders($header)->post($url, $data);
-            // $res = Http::withHeaders($header)->post($url, $data);
-            // error_log($res);
+            // Http::withHeaders($header)->post($url, $data);
+            $res = Http::withHeaders($header)->post($url, $data);
+            error_log($res);
         }
         return response('success', 200);
     }
@@ -319,29 +351,6 @@ class LineBotController extends Controller
                                     ]
                                 ]
                             ],
-                            // [
-                            //     "type" => "box",
-                            //     "layout" => "baseline",
-                            //     "spacing" => "sm",
-                            //     "contents" => [
-                            //         [
-                            //             "type" => "text",
-                            //             "text" => "現時股價",
-                            //             "color" => "#aaaaaa",
-                            //             "size" => "sm",
-                            //             "flex" => 2
-                            //         ],
-                            //         [
-                            //             "type" => "text",
-                            //             "text" => "{$nowStockPrice}",
-                            //             "wrap" => true,
-                            //             "color" => "#000000",
-                            //             "size" => "xxl",
-                            //             "flex" => 5,
-                            //             "align" => "end"
-                            //         ]
-                            //     ]
-                            // ],
                             [
                                 "type" => "box",
                                 "layout" => "baseline",
@@ -469,23 +478,6 @@ class LineBotController extends Controller
             }
         }
 
-        // $lineResultContents = [
-        //     [
-        //         "type" => "flex",
-        //         "altText" => "This is a Flex Message",
-        //         "contents" => [
-        //             "type" => "bubble",
-        //             "body" => [
-        //                 "type" => "box",
-        //                 "layout" => "vertical",
-        //                 "contents" => $contents,
-        //                 "backgroundColor" => "#ffffaa"
-        //             ]
-        //         ]
-        //     ]
-        // ];
-
-        // return $result;
         return $contents;
     }
 }
