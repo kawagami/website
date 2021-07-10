@@ -1,4 +1,4 @@
-html,
+@import url(https://fonts.googleapis.com/earlyaccess/cwtexyen.css);html,
 body {
   padding: 0;
   margin: 0;
@@ -7,6 +7,7 @@ body {
 #react-main {
   width: 100%;
   height: 100vh;
+  background-image: url("https://images.pexels.com/photos/4245826/pexels-photo-4245826.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
 }
 
 #react-main > div {
@@ -47,14 +48,14 @@ body {
   justify-content: space-evenly;
   cursor: pointer;
   color: black;
-  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.5);
   padding: 0 25px;
   transition: all 300ms linear;
 }
 
 #react-main > div .container .row .columns ul.ca-menu li:hover {
   color: #fff;
-  background: #000;
+  background: rgba(0, 0, 0, 0.8);
 }
 
 #react-main > div .container .row .columns ul.ca-menu li:hover h2 {
@@ -77,11 +78,93 @@ body {
 
 #react-main > div .inner-container > ul {
   display: flex;
+  flex-wrap: wrap;
   padding: 0;
   list-style: none;
 }
 
 #react-main > div .inner-container > ul li {
   padding: 20px;
+}
+
+#react-main > div .inner-container > ul li section.display-block {
+  width: 400px;
+  height: 300px;
+  margin: 0;
+  padding: 0;
+  border: 1px solid #000;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  background-color: #b090e48e;
+  cursor: pointer;
+  box-shadow: 5px 5px 5px 1px rgba(0, 0, 0, 0.5);
+  color: #000000;
+}
+
+#react-main > div .inner-container > ul li section.display-block:hover {
+  transform: translate(5px, 5px);
+  transition-duration: 0.4s;
+  box-shadow: none;
+}
+
+#react-main > div .inner-container > ul li section.display-block h1 {
+  text-shadow: -1px 0 #fff, 0 1px #fff, 1px 0 #fff, 0 -1px #fff;
+  font-size: 72px;
+  font-family: "cwTeXYen";
+}
+
+#react-main > div .clock {
+  width: 30rem;
+  height: 30rem;
+  border: 20px solid white;
+  border-radius: 50%;
+  margin: 50px auto;
+  position: relative;
+  padding: 2rem;
+  background-color: rgba(255, 255, 170, 0.5);
+  box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.1), inset 0 0 0 3px #EFEFEF, inset 0 0 10px black, 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+#react-main > div .clock .clock-face {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform: translateY(-3px);
+}
+
+#react-main > div .clock .clock-face .hour-hand {
+  width: 50%;
+  height: 15px;
+  background: black;
+  position: absolute;
+  top: 50%;
+  transform: rotate(calc((90deg + 0deg)));
+  transform-origin: right;
+  border-radius: 15px;
+}
+
+#react-main > div .clock .clock-face .min-hand {
+  width: 50%;
+  height: 10px;
+  background: black;
+  position: absolute;
+  top: 50%;
+  transform: rotate(calc((90deg + 0deg)));
+  transform-origin: right;
+  border-radius: 10px;
+}
+
+#react-main > div .clock .clock-face .second-hand {
+  width: 50%;
+  height: 5px;
+  background: black;
+  position: absolute;
+  top: 50%;
+  transform: rotate(calc((90deg + 0deg)));
+  transform-origin: right;
+  border-radius: 5px;
 }
 

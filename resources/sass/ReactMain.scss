@@ -1,3 +1,7 @@
+@import 'variables';
+@import 'mixins';
+@import url('https://fonts.googleapis.com/earlyaccess/cwtexyen.css');
+
 html,
 body {
     padding: 0;
@@ -7,6 +11,7 @@ body {
 #react-main {
     width: 100%;
     height: 100vh;
+    background-image: url('https://images.pexels.com/photos/4245826/pexels-photo-4245826.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
 
     >div {
         width: 100%;
@@ -46,13 +51,13 @@ body {
                             justify-content: space-evenly;
                             cursor: pointer;
                             color: black;
-                            background-color: #fff;
+                            background-color: rgba(255, 255, 255, 0.5);
                             padding: 0 25px;
                             transition: all 300ms linear;
 
                             &:hover {
                                 color: #fff;
-                                background: #000;
+                                background: rgba(0, 0, 0, 0.8);
 
                                 h2 {
                                     color: #55a2a6;
@@ -86,17 +91,99 @@ body {
         }
 
         .inner-container {
+
             // inner page
             >ul {
                 display: flex;
+                flex-wrap: wrap;
                 padding: 0;
                 list-style: none;
 
-                li{
+                li {
                     padding: 20px;
+
+                    section.display-block {
+                        @include size(400px, 300px);
+                        border: 1px solid #000;
+                        border-radius: 15px;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        justify-content: space-around;
+                        background-color: $sectionBGC;
+                        // background-image: url('https://images.pexels.com/photos/1408221/pexels-photo-1408221.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
+                        // background-position: center;
+                        // background-size: cover;
+                        // background-repeat: no-repeat;
+                        cursor: pointer;
+                        @include shadowEffect;
+                        color: $sectionFontColor;
+
+                        h1 {
+                            @include textWhiteBorder;
+                            font-size: 72px;
+                            font-family: 'cwTeXYen';
+                        }
+                    }
                 }
             }
 
+        }
+
+        .clock {
+            width: 30rem;
+            height: 30rem;
+            border: 20px solid white;
+            border-radius: 50%;
+            margin: 50px auto;
+            position: relative;
+            padding: 2rem;
+            background-color: rgba(255, 255, 170, 0.5);
+            box-shadow:
+                0 0 0 4px rgba(0, 0, 0, 0.1),
+                inset 0 0 0 3px #EFEFEF,
+                inset 0 0 10px black,
+                0 0 10px rgba(0, 0, 0, 0.2);
+
+            .clock-face {
+                position: relative;
+                width: 100%;
+                height: 100%;
+                transform: translateY(-3px);
+
+                .hour-hand {
+                    width: 50%;
+                    height: 15px;
+                    background: black;
+                    position: absolute;
+                    top: 50%;
+                    transform: rotate(calc((90deg + 0deg)));
+                    transform-origin: right;
+                    border-radius: 15px;
+                }
+
+                .min-hand {
+                    width: 50%;
+                    height: 10px;
+                    background: black;
+                    position: absolute;
+                    top: 50%;
+                    transform: rotate(calc((90deg + 0deg)));
+                    transform-origin: right;
+                    border-radius: 10px;
+                }
+
+                .second-hand {
+                    width: 50%;
+                    height: 5px;
+                    background: black;
+                    position: absolute;
+                    top: 50%;
+                    transform: rotate(calc((90deg + 0deg)));
+                    transform-origin: right;
+                    border-radius: 5px;
+                }
+            }
         }
     }
 
