@@ -6,7 +6,7 @@ export default class NavBar extends Component {
         return (
             <nav>
                 <MyNavLink to="/">
-                    <img src="https://pbs.twimg.com/media/EbhO1dRXQAcyUGl.png" alt="" />
+                    <img src="https://i.imgur.com/epdARNq.png" alt="" />
                 </MyNavLink>
             </nav>
         )

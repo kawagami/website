@@ -27,6 +27,17 @@ export default class FunctionList extends Component {
                             <Section title="隨機英文單字" icon="fas fa-book-open" />
                         </li>
                     </MyNavLink>
+                    <MyNavLink to="/line-bot">
+                        <li>
+                            <Section title="Line Bot" icon="fas fa-robot" />
+                        </li>
+                    </MyNavLink>
+                    <li>
+                    </li>
+                    <li>
+                    </li>
+                    <li>
+                    </li>
                 </ul>
             </div>
         )

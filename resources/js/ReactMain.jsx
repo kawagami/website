@@ -9,6 +9,7 @@ import Pomodoro from './pages/Pomodoro'
 import Vocabulary from './pages/Vocabulary'
 import StockComputer from './pages/StockComputer'
 import WeatherCard from './pages/WeatherCard'
+import LineBot from './pages/LineBot'
 
 export default class ReactMain extends Component {
 
@@ -23,6 +24,7 @@ export default class ReactMain extends Component {
                     <Route path="/random-vocabulary" component={Vocabulary} />
                     <Route path="/stock-computer" component={StockComputer} />
                     <Route path="/weather-card" component={WeatherCard} />
+                    <Route path="/line-bot" component={LineBot} />
                     <Route path="/" component={Index} />
                     <Redirect to="/" />
                 </Switch>
