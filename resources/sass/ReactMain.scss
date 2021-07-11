@@ -65,11 +65,6 @@ body {
                                 }
                             }
 
-                            // &::selection{
-                            //     color: #fff;
-                            //     background: #55a2a6;
-                            // }
-
                             i {
                                 font-size: 72px;
                             }
@@ -93,9 +88,10 @@ body {
 
         .inner-container {
 
-            // inner page
+            // 功能頁
             >ul {
                 display: flex;
+                justify-content: space-evenly;
                 flex-wrap: wrap;
                 padding: 0;
                 list-style: none;
@@ -110,15 +106,14 @@ body {
                         display: flex;
                         flex-direction: column;
                         align-items: center;
-                        // justify-content: space-around;
                         background-color: $sectionBGC;
-                        // background-image: url('https://images.pexels.com/photos/1408221/pexels-photo-1408221.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
-                        // background-position: center;
-                        // background-size: cover;
-                        // background-repeat: no-repeat;
                         cursor: pointer;
                         @include shadowEffect;
                         color: $sectionFontColor;
+
+                        &:hover{
+                            background-color: $sectionBGCHover;
+                        }
 
                         h1 {
                             @include textWhiteBorder;
@@ -136,6 +131,7 @@ body {
         }
 
         .pomodoro {
+            // 番茄鐘
             width: 100%;
             display: flex;
             justify-content: space-evenly;
