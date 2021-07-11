@@ -2,11 +2,11 @@ import React, { Component } from 'react'
 
 export default class Section extends Component {
     render() {
-        const { title, content } = this.props
+        const { title, icon } = this.props
         return (
             <section className="display-block">
                 <h1>{title}</h1>
-                <span>{content}</span>
+                <i className={icon}></i>
             </section>
         )
     }

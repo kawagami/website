@@ -23,6 +23,7 @@ body {
 #react-main > div nav img {
   max-width: 100%;
   max-height: 100%;
+  border-radius: 50%;
 }
 
 #react-main > div .container {
@@ -97,7 +98,6 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
   background-color: #b090e48e;
   cursor: pointer;
   box-shadow: 5px 5px 5px 1px rgba(0, 0, 0, 0.5);
@@ -116,26 +116,36 @@ body {
   font-family: "cwTeXYen";
 }
 
-#react-main > div .clock {
+#react-main > div .inner-container > ul li section.display-block i {
+  font-size: 36px;
+}
+
+#react-main > div .pomodoro {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+#react-main > div .pomodoro .clock {
   width: 30rem;
   height: 30rem;
   border: 20px solid white;
   border-radius: 50%;
-  margin: 50px auto;
   position: relative;
   padding: 2rem;
   background-color: rgba(255, 255, 170, 0.5);
   box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.1), inset 0 0 0 3px #EFEFEF, inset 0 0 10px black, 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
-#react-main > div .clock .clock-face {
+#react-main > div .pomodoro .clock .clock-face {
   position: relative;
   width: 100%;
   height: 100%;
   transform: translateY(-3px);
 }
 
-#react-main > div .clock .clock-face .hour-hand {
+#react-main > div .pomodoro .clock .clock-face .hour-hand {
   width: 50%;
   height: 15px;
   background: black;
@@ -146,7 +156,7 @@ body {
   border-radius: 15px;
 }
 
-#react-main > div .clock .clock-face .min-hand {
+#react-main > div .pomodoro .clock .clock-face .min-hand {
   width: 50%;
   height: 10px;
   background: black;
@@ -157,7 +167,7 @@ body {
   border-radius: 10px;
 }
 
-#react-main > div .clock .clock-face .second-hand {
+#react-main > div .pomodoro .clock .clock-face .second-hand {
   width: 50%;
   height: 5px;
   background: black;
@@ -166,5 +176,18 @@ body {
   transform: rotate(calc((90deg + 0deg)));
   transform-origin: right;
   border-radius: 5px;
+}
+
+#react-main > div .pomodoro .number-clock {
+  border-radius: 10px;
+  border: 10px solid #fff;
+}
+
+#react-main > div .pomodoro .number-clock .number-clock-face {
+  text-shadow: -1px 0 #fff, 0 1px #fff, 1px 0 #fff, 0 -1px #fff;
+  padding: 10px;
+  display: flex;
+  background-color: rgba(84, 0, 110, 0.5);
+  font-size: 72px;
 }
 

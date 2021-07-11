@@ -33081,22 +33081,22 @@ var FunctionList = /*#__PURE__*/function (_Component) {
         to: "/pomodoro"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Section__WEBPACK_IMPORTED_MODULE_1__["default"], {
         title: "\u756A\u8304\u9418",
-        content: "\u5167\u5BB9\u6587\u5B57"
+        icon: "far fa-clock"
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_MyNavLink__WEBPACK_IMPORTED_MODULE_2__["default"], {
         to: "/stock-computer"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Section__WEBPACK_IMPORTED_MODULE_1__["default"], {
         title: "\u80A1\u7968\u8A08\u7B97\u6A5F",
-        content: "\u5167\u5BB9\u6587\u5B57"
+        icon: "fas fa-chart-line"
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_MyNavLink__WEBPACK_IMPORTED_MODULE_2__["default"], {
         to: "/weather-card"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Section__WEBPACK_IMPORTED_MODULE_1__["default"], {
         title: "\u5929\u6C23\u5361\u7247",
-        content: "\u5167\u5BB9\u6587\u5B57"
+        icon: "fas fa-cloud-sun-rain"
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_MyNavLink__WEBPACK_IMPORTED_MODULE_2__["default"], {
         to: "/random-vocabulary"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Section__WEBPACK_IMPORTED_MODULE_1__["default"], {
         title: "\u96A8\u6A5F\u82F1\u6587\u55AE\u5B57",
-        content: "\u5167\u5BB9\u6587\u5B57"
+        icon: "fas fa-book-open"
       })))));
     }
   }]);
@@ -33223,22 +33223,31 @@ var Pomodoro = /*#__PURE__*/function (_Component) {
     value: function componentDidMount() {
       var hourHand = document.querySelector('.hour-hand');
       var minHand = document.querySelector('.min-hand');
-      var secondHand = document.querySelector('.second-hand'); // 將時、分、秒針擺到對應時間的位置
+      var secondHand = document.querySelector('.second-hand');
+      var numberHourHand = document.querySelector('.number-hour-hand');
+      var numberMinHand = document.querySelector('.number-min-hand');
+      var numberSecondHand = document.querySelector('.number-second-hand'); // 將時、分、秒針擺到對應時間的位置
 
       var date = new Date();
       secondHand.style.transform = "rotate(calc((90deg + ".concat(date.getSeconds() * 6, "deg)))");
       minHand.style.transform = "rotate(calc((90deg + ".concat(date.getMinutes() * 6, "deg)))");
-      hourHand.style.transform = "rotate(calc((90deg + ".concat(date.getHours() * 30, "deg)))"); // 建立一個移動1/60圈的function
+      hourHand.style.transform = "rotate(calc((90deg + ".concat(date.getHours() * 30, "deg + ").concat(date.getMinutes() / 2, "deg)))");
+      numberHourHand.innerText = date.getHours().toString().padStart(2, '0');
+      numberMinHand.innerText = date.getMinutes().toString().padStart(2, '0');
+      numberSecondHand.innerText = date.getSeconds().toString().padStart(2, '0'); // 建立一個移動1/60圈的function
 
-      function handleTimeChange(event) {
+      function handleTimeChange() {
         var innerTime = new Date();
-        event.style.transform = "rotate(calc((90deg + ".concat(innerTime.getSeconds() * 6, "deg)))");
+        secondHand.style.transform = "rotate(calc((90deg + ".concat(innerTime.getSeconds() * 6, "deg)))");
         minHand.style.transform = "rotate(calc((90deg + ".concat(innerTime.getMinutes() * 6, "deg)))");
-        hourHand.style.transform = "rotate(calc((90deg + ".concat(innerTime.getHours() * 30, "deg)))");
+        hourHand.style.transform = "rotate(calc((90deg + ".concat(innerTime.getHours() * 30, "deg + ").concat(innerTime.getMinutes() / 2, "deg)))");
+        numberHourHand.innerText = innerTime.getHours().toString().padStart(2, '0');
+        numberMinHand.innerText = innerTime.getMinutes().toString().padStart(2, '0');
+        numberSecondHand.innerText = innerTime.getSeconds().toString().padStart(2, '0');
       }
 
       this.timer = setInterval(function () {
-        handleTimeChange(secondHand);
+        handleTimeChange();
       }, 1000);
     }
   }, {
@@ -33250,6 +33259,8 @@ var Pomodoro = /*#__PURE__*/function (_Component) {
     key: "render",
     value: function render() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "pomodoro"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "clock"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "clock-face"
@@ -33259,7 +33270,21 @@ var Pomodoro = /*#__PURE__*/function (_Component) {
         className: "hand min-hand"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "hand second-hand"
-      })));
+      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "number-clock"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "number-clock-face"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "number-hand number-hour-hand"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "colon"
+      }, "\xA0:\xA0"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "number-hand number-min-hand"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "colon"
+      }, "\xA0:\xA0"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "number-hand number-second-hand"
+      }))));
     }
   }]);
 
@@ -33322,10 +33347,12 @@ var Section = /*#__PURE__*/function (_Component) {
     value: function render() {
       var _this$props = this.props,
           title = _this$props.title,
-          content = _this$props.content;
+          icon = _this$props.icon;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
         className: "display-block"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, content));
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        className: icon
+      }));
     }
   }]);
 
