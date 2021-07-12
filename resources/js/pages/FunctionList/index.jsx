@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Section from '../Section'
+import Section from '../../components/Section'
 import MyNavLink from '../../components/MyNavLink'
 
 export default class FunctionList extends Component {
@@ -32,12 +32,6 @@ export default class FunctionList extends Component {
                             <Section title="Line Bot" icon="fas fa-robot" />
                         </li>
                     </MyNavLink>
-                    <li>
-                    </li>
-                    <li>
-                    </li>
-                    <li>
-                    </li>
                 </ul>
             </div>
         )
