@@ -17,6 +17,7 @@ import Vocabulary from './pages/Vocabulary'
 import StockComputer from './pages/StockComputer'
 import WeatherCard from './pages/WeatherCard'
 import LineBot from './pages/LineBot'
+import EmailMe from './pages/EmailMe'
 
 export default class ReactMain extends Component {
 
@@ -39,6 +40,7 @@ export default class ReactMain extends Component {
                     <Route path="/proj-choco" component={ProjChoco} />
                     <Route path="/proj-parking" component={ProjParking} />
                     <Route path="/proj-payment" component={ProjPayment} />
+                    <Route path="/email-me" component={EmailMe} />
                     <Route path="/" component={Index} />
                     <Redirect to="/" />
                 </Switch>

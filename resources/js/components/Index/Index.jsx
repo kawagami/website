@@ -41,7 +41,7 @@ export default class Index extends Component {
                             <MyNavLink to="/project-list">
                                 <li>
                                     <span className="ca-icon">
-                                        <i class="fas fa-briefcase"></i>
+                                        <i className="fas fa-briefcase"></i>
                                     </span>
                                     <div className="ca-content">
                                         <h2 className="ca-main">
@@ -53,19 +53,21 @@ export default class Index extends Component {
                                     </div>
                                 </li>
                             </MyNavLink>
-                            <li>
-                                <span className="ca-icon">
-                                    <i class="fas fa-envelope"></i>
-                                </span>
-                                <div className="ca-content">
-                                    <h2 className="ca-main">
-                                        電子郵件
-                                        <br />
-                                        連絡我
-                                    </h2>
-                                    <h3 className="ca-sub">Live Better</h3>
-                                </div>
-                            </li>
+                            <MyNavLink to="/email-me">
+                                <li>
+                                    <span className="ca-icon">
+                                        <i className="fas fa-envelope"></i>
+                                    </span>
+                                    <div className="ca-content">
+                                        <h2 className="ca-main">
+                                            電子郵件
+                                            <br />
+                                            連絡我
+                                        </h2>
+                                        <h3 className="ca-sub">Live Better</h3>
+                                    </div>
+                                </li>
+                            </MyNavLink>
                         </ul>
                     </div>
                 </div>
