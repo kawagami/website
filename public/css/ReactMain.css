@@ -39,64 +39,6 @@ body {
   font-size: 72px;
 }
 
-#react-main > div .person-container {
-  width: calc(100% - 40px);
-  height: calc(100vh - 120px - 40px);
-  background-color: rgba(255, 255, 255, 0.7);
-  margin: 20px;
-  overflow-y: scroll;
-}
-
-#react-main > div .person-container .main-content {
-  display: flex;
-  justify-content: center;
-}
-
-#react-main > div .person-container .main-content .img-face {
-  width: 50%;
-  height: 100%;
-  display: flex;
-  justify-content: flex-end;
-}
-
-#react-main > div .person-container .main-content .img-face img {
-  max-width: 100%;
-  max-height: 100%;
-}
-
-#react-main > div .person-container .main-content .person-desc-face {
-  width: 50%;
-}
-
-#react-main > div .person-container .main-content .person-desc-face .person-desc {
-  font-size: 28px;
-}
-
-#react-main > div .person-container .sub-content {
-  display: flex;
-  justify-content: center;
-}
-
-#react-main > div .person-container .sub-content .img-face {
-  width: 50%;
-  height: 100%;
-  display: flex;
-  justify-content: flex-start;
-}
-
-#react-main > div .person-container .sub-content .img-face img {
-  max-width: 100%;
-  max-height: 100%;
-}
-
-#react-main > div .person-container .sub-content .person-desc-face {
-  width: 50%;
-}
-
-#react-main > div .person-container .sub-content .person-desc-face .person-desc {
-  font-size: 28px;
-}
-
 #react-main > div .container {
   display: flex;
   justify-content: center;
@@ -148,6 +90,66 @@ body {
   text-align: center;
 }
 
+#react-main > div .person-container {
+  width: calc(100% - 40px);
+  height: calc(100vh - 120px - 40px);
+  background-color: rgba(255, 255, 255, 0.7);
+  margin: 20px;
+  overflow-y: scroll;
+}
+
+#react-main > div .person-container .main-content {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+#react-main > div .person-container .main-content .img-face {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+#react-main > div .person-container .main-content .img-face img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+#react-main > div .person-container .main-content .person-desc-face {
+  width: 50%;
+}
+
+#react-main > div .person-container .main-content .person-desc-face .person-desc {
+  font-size: 28px;
+}
+
+#react-main > div .person-container .sub-content {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+#react-main > div .person-container .sub-content .img-face {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+}
+
+#react-main > div .person-container .sub-content .img-face img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+#react-main > div .person-container .sub-content .person-desc-face {
+  width: 50%;
+}
+
+#react-main > div .person-container .sub-content .person-desc-face .person-desc {
+  font-size: 28px;
+}
+
 #react-main > div .inner-container > ul {
   display: flex;
   justify-content: space-evenly;
@@ -161,7 +163,7 @@ body {
 }
 
 #react-main > div .inner-container > ul li section.display-block {
-  width: 400px;
+  width: 500px;
   height: 300px;
   margin: 0;
   padding: 0;

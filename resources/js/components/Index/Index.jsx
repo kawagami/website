@@ -38,30 +38,32 @@ export default class Index extends Component {
                                     </div>
                                 </li>
                             </MyNavLink>
+                            <MyNavLink to="/project-list">
+                                <li>
+                                    <span className="ca-icon">
+                                        <i class="fas fa-briefcase"></i>
+                                    </span>
+                                    <div className="ca-content">
+                                        <h2 className="ca-main">
+                                            經歷專案
+                                            <br />
+                                            列表
+                                        </h2>
+                                        <h3 className="ca-sub">Think Different</h3>
+                                    </div>
+                                </li>
+                            </MyNavLink>
                             <li>
                                 <span className="ca-icon">
-                                    <i className="fa fa-bullhorn"></i>
+                                    <i class="fas fa-envelope"></i>
                                 </span>
                                 <div className="ca-content">
                                     <h2 className="ca-main">
-                                        Friendly
+                                        電子郵件
                                         <br />
-                                        Documentation
+                                        連絡我
                                     </h2>
                                     <h3 className="ca-sub">Live Better</h3>
-                                </div>
-                            </li>
-                            <li>
-                                <span className="ca-icon">
-                                    <i className="fa fa-camera"></i>
-                                </span>
-                                <div className="ca-content">
-                                    <h2 className="ca-main">
-                                        Filterable
-                                        <br />
-                                        Portofolio
-                                    </h2>
-                                    <h3 className="ca-sub">Think Different</h3>
                                 </div>
                             </li>
                         </ul>
