@@ -10,9 +10,13 @@ export default class EmailMe extends Component {
         return (
             <div className="email-container">
                 <div className="email-mid">
-                    <label htmlFor="title">
-                        <span>標題</span>
-                        <input name="title" type="text" />
+                    <label htmlFor="type">
+                        <span>主題類型</span>
+                        <select name="type" id="type">
+                            <option value="job">工作</option>
+                            <option value="suggest">建議</option>
+                            <option value="other">其他</option>
+                        </select>
                     </label>
                     <label htmlFor="content">
                         <span>內文</span>

@@ -57,6 +57,7 @@ body {
   width: 250px;
   height: 400px;
   display: flex;
+  border-radius: 10px;
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
@@ -104,6 +105,10 @@ body {
   padding: 20px;
 }
 
+#react-main > div .person-container .main-content > * {
+  padding: 10px;
+}
+
 #react-main > div .person-container .main-content .img-face {
   width: 50%;
   height: 100%;
@@ -128,6 +133,10 @@ body {
   display: flex;
   justify-content: center;
   padding: 20px;
+}
+
+#react-main > div .person-container .sub-content > * {
+  padding: 10px;
 }
 
 #react-main > div .person-container .sub-content .img-face {
@@ -299,7 +308,8 @@ body {
   font-size: 48px;
 }
 
-#react-main > div .email-container .email-mid label input {
+#react-main > div .email-container .email-mid label select {
+  text-align: center;
   width: 80%;
   height: 2.5rem;
   font-size: 2rem;
@@ -307,6 +317,7 @@ body {
 
 #react-main > div .email-container .email-mid label textarea {
   width: 80%;
+  font-size: 1.5rem;
 }
 
 #react-main > div .email-container .email-mid .action {

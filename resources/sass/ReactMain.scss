@@ -63,6 +63,7 @@ body {
                             width: 250px;
                             height: 400px;
                             display: flex;
+                            border-radius: 10px;
                             flex-direction: column;
                             align-items: center;
                             justify-content: space-evenly;
@@ -115,6 +116,10 @@ body {
                 justify-content: center;
                 padding: 20px;
 
+                >*{
+                    padding: 10px;
+                }
+
                 // flex-direction: column;
                 .img-face {
                     width: 50%;
@@ -143,6 +148,10 @@ body {
                 display: flex;
                 justify-content: center;
                 padding: 20px;
+
+                >*{
+                    padding: 10px;
+                }
 
                 // flex-direction: column;
                 .img-face {
@@ -314,7 +323,7 @@ body {
                 flex-direction: column;
                 flex-wrap: wrap;
 
-                >*{
+                >* {
                     padding: 10px;
                 }
 
@@ -325,22 +334,30 @@ body {
                     width: 100%;
                     font-size: 48px;
 
-                    input {
+                    select {
+                        text-align: center;
                         width: 80%;
                         height: 2.5rem;
                         font-size: 2rem;
                     }
 
+                    // input {
+                    //     width: 80%;
+                    //     height: 2.5rem;
+                    //     font-size: 2rem;
+                    // }
+
                     textarea {
                         width: 80%;
+                        font-size: 1.5rem;
                     }
                 }
 
-                .action{
+                .action {
                     display: flex;
                     justify-content: space-evenly;
 
-                    button{
+                    button {
                         font-size: 28px;
                     }
                 }
