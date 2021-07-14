@@ -20,9 +20,9 @@ export default class FunctionList extends Component {
             <div className="inner-container">
                 <ul>
                     {
-                        functionPages.map((page) => {
+                        functionPages.map((page, index) => {
                             return (
-                                <li>
+                                <li key={index}>
                                     <MyNavLink to={page.to}>
                                         <Section title={page.title} icon={page.icon} />
                                     </MyNavLink>
