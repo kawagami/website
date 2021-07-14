@@ -19,3 +19,23 @@
 @mixin textWhiteBorder {
     text-shadow: -1px 0 #fff, 0 1px #fff, 1px 0 #fff, 0 -1px #fff;
 }
+
+@mixin sectionMedia {
+    display: grid;
+    width: 100%;
+    height: 100%;
+    grid-template-columns: 33.33% 33.33% 33.33%;
+    grid-template-rows: 50% 50%;
+
+    @media (max-width:1600px) {
+        grid-template-columns: 50% 50%;
+        grid-template-rows: 50% 50%;
+        overflow-y: scroll;
+    }
+
+    @media (max-width:1070px) {
+        grid-template-columns: 100%;
+        grid-template-rows: 50% 50%;
+        overflow-y: scroll;
+    }
+}

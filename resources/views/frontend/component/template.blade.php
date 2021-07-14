@@ -7,6 +7,9 @@
 
     <meta name="referrer" content="no-referrer">
 
+    <link rel="icon" href="https://i.imgur.com/0zV9Src.png" type="image/x-icon" />
+    <link rel="icon" href="https://i.imgur.com/0zV9Src.png" type="image/x-icon" />    
+
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 

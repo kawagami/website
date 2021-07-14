@@ -159,15 +159,41 @@ body {
   font-size: 28px;
 }
 
+#react-main > div .inner-container {
+  width: 100%;
+  height: calc(100vh - 140px);
+}
+
 #react-main > div .inner-container > ul {
-  display: flex;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
+  display: grid;
+  width: 100%;
+  height: 100%;
+  grid-template-columns: 33.33% 33.33% 33.33%;
+  grid-template-rows: 50% 50%;
   padding: 0;
   list-style: none;
 }
 
+@media (max-width: 1600px) {
+  #react-main > div .inner-container > ul {
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 50% 50%;
+    overflow-y: scroll;
+  }
+}
+
+@media (max-width: 1070px) {
+  #react-main > div .inner-container > ul {
+    grid-template-columns: 100%;
+    grid-template-rows: 50% 50%;
+    overflow-y: scroll;
+  }
+}
+
 #react-main > div .inner-container > ul li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 20px;
 }
 
@@ -294,6 +320,7 @@ body {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
+  border-radius: 10px;
 }
 
 #react-main > div .email-container .email-mid > * {

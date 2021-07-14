@@ -116,7 +116,7 @@ body {
                 justify-content: center;
                 padding: 20px;
 
-                >*{
+                >* {
                     padding: 10px;
                 }
 
@@ -149,7 +149,7 @@ body {
                 justify-content: center;
                 padding: 20px;
 
-                >*{
+                >* {
                     padding: 10px;
                 }
 
@@ -179,16 +179,19 @@ body {
         }
 
         .inner-container {
+            width: 100%;
+            height: calc(100vh - 140px);
 
             // 功能頁
             >ul {
-                display: flex;
-                justify-content: space-evenly;
-                flex-wrap: wrap;
+                @include sectionMedia;
                 padding: 0;
                 list-style: none;
 
                 li {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
                     padding: 20px;
 
                     section.display-block {
@@ -322,6 +325,7 @@ body {
                 display: flex;
                 flex-direction: column;
                 flex-wrap: wrap;
+                border-radius: 10px;
 
                 >* {
                     padding: 10px;

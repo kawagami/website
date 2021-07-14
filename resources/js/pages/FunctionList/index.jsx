@@ -3,35 +3,33 @@ import Section from '../../components/Section'
 import MyNavLink from '../../components/MyNavLink'
 
 export default class FunctionList extends Component {
+
+    state = {
+        functionPages: [
+            { to: "/pomodoro", title: "番茄鐘", icon: "far fa-clock" },
+            { to: "/stock-computer", title: "股票計算機", icon: "fas fa-chart-line" },
+            { to: "/weather-card", title: "天氣卡片", icon: "fas fa-cloud-sun-rain" },
+            { to: "/random-vocabulary", title: "隨機英文單字", icon: "fas fa-book-open" },
+            { to: "/line-bot", title: "Line Bot", icon: "fas fa-robot" }
+        ]
+    }
+
     render() {
+        const { functionPages } = this.state
         return (
             <div className="inner-container">
                 <ul>
-                    <MyNavLink to="/pomodoro">
-                        <li>
-                            <Section title="番茄鐘" icon="far fa-clock" />
-                        </li>
-                    </MyNavLink>
-                    <MyNavLink to="/stock-computer">
-                        <li>
-                            <Section title="股票計算機" icon="fas fa-chart-line" />
-                        </li>
-                    </MyNavLink>
-                    <MyNavLink to="/weather-card">
-                        <li>
-                            <Section title="天氣卡片" icon="fas fa-cloud-sun-rain" />
-                        </li>
-                    </MyNavLink>
-                    <MyNavLink to="/random-vocabulary">
-                        <li>
-                            <Section title="隨機英文單字" icon="fas fa-book-open" />
-                        </li>
-                    </MyNavLink>
-                    <MyNavLink to="/line-bot">
-                        <li>
-                            <Section title="Line Bot" icon="fas fa-robot" />
-                        </li>
-                    </MyNavLink>
+                    {
+                        functionPages.map((page) => {
+                            return (
+                                <li>
+                                    <MyNavLink to={page.to}>
+                                        <Section title={page.title} icon={page.icon} />
+                                    </MyNavLink>
+                                </li>
+                            )
+                        })
+                    }
                 </ul>
             </div>
         )

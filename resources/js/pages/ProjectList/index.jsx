@@ -7,36 +7,36 @@ export default class ProjectList extends Component {
         return (
             <div className="inner-container">
                 <ul>
-                    <MyNavLink to="/proj-vote">
-                        <li>
+                    <li>
+                        <MyNavLink to="/proj-vote">
                             <Section title="投票網站" icon="fas fa-vote-yea" />
-                        </li>
-                    </MyNavLink>
-                    <MyNavLink to="/proj-hardware">
-                        <li>
+                        </MyNavLink>
+                    </li>
+                    <li>
+                        <MyNavLink to="/proj-hardware">
                             <Section title="五金銷售網站" icon="fas fa-screwdriver" />
-                        </li>
-                    </MyNavLink>
-                    <MyNavLink to="/proj-investment">
-                        <li>
+                        </MyNavLink>
+                    </li>
+                    <li>
+                        <MyNavLink to="/proj-investment">
                             <Section title="投資商品網站" icon="fas fa-hand-holding-usd" />
-                        </li>
-                    </MyNavLink>
-                    <MyNavLink to="/proj-choco">
-                        <li>
+                        </MyNavLink>
+                    </li>
+                    <li>
+                        <MyNavLink to="/proj-choco">
                             <Section title="購物網站" icon="fas fa-shopping-cart" />
-                        </li>
-                    </MyNavLink>
-                    <MyNavLink to="/proj-parking">
-                        <li>
+                        </MyNavLink>
+                    </li>
+                    <li>
+                        <MyNavLink to="/proj-parking">
                             <Section title="停車場後台" icon="fas fa-car" />
-                        </li>
-                    </MyNavLink>
-                    <MyNavLink to="/proj-payment">
-                        <li>
+                        </MyNavLink>
+                    </li>
+                    <li>
+                        <MyNavLink to="/proj-payment">
                             <Section title="金流功能" icon="fas fa-coins" />
-                        </li>
-                    </MyNavLink>
+                        </MyNavLink>
+                    </li>
                 </ul>
             </div>
         )
