@@ -2,72 +2,44 @@ import React, { Component } from 'react'
 import MyNavLink from '../MyNavLink'
 
 export default class Index extends Component {
+
+    state = {
+        categories: [
+            { to: "/person", icon: "fa fa-user", mainTitle: "個人資料", subTitle: "瀏覽頁", slogan: "Survival of the fittest" },
+            { to: "/function-list", icon: "fas fa-tools", mainTitle: "小功能", subTitle: "展示頁面", slogan: "Challenge Everything" },
+            { to: "/project-list", icon: "fas fa-briefcase", mainTitle: "經歷專案", subTitle: "列表", slogan: "Think Different" },
+            { to: "/email-me", icon: "fas fa-envelope", mainTitle: "電子郵件", subTitle: "連絡我", slogan: "Live Better" },
+        ]
+    }
+
     render() {
+        const { categories } = this.state
         return (
             <div className="container">
                 <div className="row">
                     <div className="twelve columns">
                         <ul className="ca-menu">
-                            <MyNavLink to="/person">
-                                <li>
-                                    <span className="ca-icon">
-                                        <i className="fa fa-user"></i>
-                                    </span>
-                                    <div className="ca-content">
-                                        <h2 className="ca-main">
-                                            個人資料
-                                            <br />
-                                            瀏覽頁
-                                        </h2>
-                                        <h3 className="ca-sub">Survival of the fittest</h3>
-                                    </div>
-                                </li>
-                            </MyNavLink>
-                            <MyNavLink to="/function-list">
-                                <li>
-                                    <span className="ca-icon">
-                                        <i className="fas fa-tools"></i>
-                                    </span>
-                                    <div className="ca-content">
-                                        <h2 className="ca-main">
-                                            小功能
-                                            <br />
-                                            展示頁面
-                                        </h2>
-                                        <h3 className="ca-sub">Challenge Everything</h3>
-                                    </div>
-                                </li>
-                            </MyNavLink>
-                            <MyNavLink to="/project-list">
-                                <li>
-                                    <span className="ca-icon">
-                                        <i className="fas fa-briefcase"></i>
-                                    </span>
-                                    <div className="ca-content">
-                                        <h2 className="ca-main">
-                                            經歷專案
-                                            <br />
-                                            列表
-                                        </h2>
-                                        <h3 className="ca-sub">Think Different</h3>
-                                    </div>
-                                </li>
-                            </MyNavLink>
-                            <MyNavLink to="/email-me">
-                                <li>
-                                    <span className="ca-icon">
-                                        <i className="fas fa-envelope"></i>
-                                    </span>
-                                    <div className="ca-content">
-                                        <h2 className="ca-main">
-                                            電子郵件
-                                            <br />
-                                            連絡我
-                                        </h2>
-                                        <h3 className="ca-sub">Live Better</h3>
-                                    </div>
-                                </li>
-                            </MyNavLink>
+                            {
+                                categories.map((category, index) => {
+                                    return (
+                                        <li key={index}>
+                                            <MyNavLink to={category.to}>
+                                                <span className="ca-icon">
+                                                    <i className={category.icon}></i>
+                                                </span>
+                                                <div className="ca-content">
+                                                    <h2 className="ca-main">
+                                                        {category.mainTitle}
+                                                        <br />
+                                                        {category.subTitle}
+                                                    </h2>
+                                                    <h3 className="ca-sub">{category.slogan}</h3>
+                                                </div>
+                                            </MyNavLink>
+                                        </li>
+                                    )
+                                })
+                            }
                         </ul>
                     </div>
                 </div>

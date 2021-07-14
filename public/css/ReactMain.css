@@ -7,6 +7,8 @@ body {
 #react-main {
   width: 100%;
   height: 100vh;
+  margin: 0;
+  padding: 0;
 }
 
 #react-main > div {
@@ -14,6 +16,75 @@ body {
   background-attachment: fixed;
   min-height: 100vh;
   overflow: hidden;
+}
+
+#react-main > div .loading-effect {
+  width: 100%;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#react-main > div .loading-effect h1.loader {
+  text-align: center;
+  text-transform: uppercase;
+  font-family: "Nunito", sans-serif;
+  font-size: 4.6875em;
+  color: transparent;
+  letter-spacing: 0.01em;
+}
+
+#react-main > div .loading-effect .loader span {
+  text-shadow: 0 0 2px rgba(204, 208, 212, 0.9), 0 15px 25px rgba(0, 0, 0, 0.3), 0 -2px 3px rgba(0, 0, 0, 0.1), 0 -5px 10px rgba(255, 255, 255, 0.5), 0 5px 10px rgba(0, 0, 0, 0.3), 0 3px 4px rgba(255, 255, 255, 0.2), 0 0 20px rgba(255, 255, 255, 0.45);
+  -webkit-animation: loading 0.85s ease-in-out infinite alternate;
+          animation: loading 0.85s ease-in-out infinite alternate;
+}
+
+@-webkit-keyframes loading {
+  to {
+    text-shadow: 0 0 2px rgba(204, 208, 212, 0.2), 0 0 3px rgba(0, 0, 0, 0.02), 0 0 0 rgba(0, 0, 0, 0), 0 0 0 rgba(255, 255, 255, 0), 0 0 0 rgba(0, 0, 0, 0), 0 0 0 rgba(255, 255, 255, 0), 0 0 0 rgba(255, 255, 255, 0);
+  }
+}
+
+@keyframes loading {
+  to {
+    text-shadow: 0 0 2px rgba(204, 208, 212, 0.2), 0 0 3px rgba(0, 0, 0, 0.02), 0 0 0 rgba(0, 0, 0, 0), 0 0 0 rgba(255, 255, 255, 0), 0 0 0 rgba(0, 0, 0, 0), 0 0 0 rgba(255, 255, 255, 0), 0 0 0 rgba(255, 255, 255, 0);
+  }
+}
+
+#react-main > div .loading-effect .loader span:nth-child(2) {
+  -webkit-animation-delay: 0.15s;
+          animation-delay: 0.15s;
+}
+
+#react-main > div .loading-effect .loader span:nth-child(3) {
+  -webkit-animation-delay: 0.3s;
+          animation-delay: 0.3s;
+}
+
+#react-main > div .loading-effect .loader span:nth-child(4) {
+  -webkit-animation-delay: 0.45s;
+          animation-delay: 0.45s;
+}
+
+#react-main > div .loading-effect .loader span:nth-child(5) {
+  -webkit-animation-delay: 0.6s;
+          animation-delay: 0.6s;
+}
+
+#react-main > div .loading-effect .loader span:nth-child(6) {
+  -webkit-animation-delay: 0.75s;
+          animation-delay: 0.75s;
+}
+
+#react-main > div .loading-effect .loader span:nth-child(7) {
+  -webkit-animation-delay: 0.9s;
+          animation-delay: 0.9s;
 }
 
 #react-main > div nav {
@@ -30,32 +101,39 @@ body {
 #react-main > div .undone-page {
   width: 100%;
   height: calc(100vh - 120px);
-  bottom: 0;
+  margin: 0;
+  padding: 0;
+  text-shadow: -1px 0 #fff, 0 1px #fff, 1px 0 #fff, 0 -1px #fff;
   background-color: rgba(255, 255, 255, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
-  text-shadow: -1px 0 #fff, 0 1px #fff, 1px 0 #fff, 0 -1px #fff;
   font-size: 72px;
 }
 
 #react-main > div .container {
+  width: 100%;
+  height: calc(100vh - 120px);
+  margin: 0;
+  padding: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  height: calc(100vh - 120px);
 }
 
 #react-main > div .container .row .columns ul.ca-menu {
+  width: 100%;
+  height: 100%;
   display: flex;
   padding: 0;
   list-style: none;
 }
 
-#react-main > div .container .row .columns ul.ca-menu li {
+#react-main > div .container .row .columns ul.ca-menu li a {
   width: 250px;
   height: 400px;
+  margin: 0;
+  padding: 0 25px;
   display: flex;
   border-radius: 10px;
   flex-direction: column;
@@ -64,30 +142,29 @@ body {
   cursor: pointer;
   color: black;
   background-color: rgba(255, 255, 255, 0.5);
-  padding: 0 25px;
   transition: all 300ms linear;
 }
 
-#react-main > div .container .row .columns ul.ca-menu li:hover {
+#react-main > div .container .row .columns ul.ca-menu li a:hover {
   color: #fff;
   background: rgba(0, 0, 0, 0.8);
 }
 
-#react-main > div .container .row .columns ul.ca-menu li:hover h2 {
+#react-main > div .container .row .columns ul.ca-menu li a:hover h2 {
   color: #55a2a6;
 }
 
-#react-main > div .container .row .columns ul.ca-menu li i {
+#react-main > div .container .row .columns ul.ca-menu li a i {
   font-size: 72px;
 }
 
-#react-main > div .container .row .columns ul.ca-menu li div.ca-content {
+#react-main > div .container .row .columns ul.ca-menu li a div.ca-content {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-#react-main > div .container .row .columns ul.ca-menu li div.ca-content > * {
+#react-main > div .container .row .columns ul.ca-menu li a div.ca-content > * {
   text-align: center;
 }
 
@@ -161,31 +238,34 @@ body {
 
 #react-main > div .inner-container {
   width: 100%;
-  height: calc(100vh - 140px);
+  height: calc(100vh - 120px);
 }
 
 #react-main > div .inner-container > ul {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
   display: grid;
   width: 100%;
   height: 100%;
-  grid-template-columns: 33.33% 33.33% 33.33%;
-  grid-template-rows: 50% 50%;
-  padding: 0;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
   list-style: none;
 }
 
 @media (max-width: 1600px) {
   #react-main > div .inner-container > ul {
-    grid-template-columns: 50% 50%;
-    grid-template-rows: 50% 50%;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
     overflow-y: scroll;
   }
 }
 
 @media (max-width: 1070px) {
   #react-main > div .inner-container > ul {
-    grid-template-columns: 100%;
-    grid-template-rows: 50% 50%;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
     overflow-y: scroll;
   }
 }
@@ -194,10 +274,17 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px;
 }
 
-#react-main > div .inner-container > ul li section.display-block {
+#react-main > div .inner-container > ul li > a {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#react-main > div .inner-container > ul li > a section.display-block {
   width: 500px;
   height: 300px;
   margin: 0;
@@ -206,6 +293,7 @@ body {
   border-radius: 15px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   background-color: #b090e48e;
   cursor: pointer;
@@ -213,23 +301,23 @@ body {
   color: #000000;
 }
 
-#react-main > div .inner-container > ul li section.display-block:hover {
+#react-main > div .inner-container > ul li > a section.display-block:hover {
   transform: translate(5px, 5px);
   transition-duration: 0.4s;
   box-shadow: none;
 }
 
-#react-main > div .inner-container > ul li section.display-block:hover {
+#react-main > div .inner-container > ul li > a section.display-block:hover {
   background-color: #5c2da78e;
 }
 
-#react-main > div .inner-container > ul li section.display-block h1 {
+#react-main > div .inner-container > ul li > a section.display-block h1 {
   text-shadow: -1px 0 #fff, 0 1px #fff, 1px 0 #fff, 0 -1px #fff;
   font-size: 72px;
   font-family: "cwTeXYen";
 }
 
-#react-main > div .inner-container > ul li section.display-block i {
+#react-main > div .inner-container > ul li > a section.display-block i {
   font-size: 36px;
 }
 

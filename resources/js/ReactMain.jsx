@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 import { Route, BrowserRouter, Switch, Redirect } from 'react-router-dom'
 import Index from './components/Index'
 import NavBar from './components/NavBar'
+import LoadingEffect from './components/LoadingEffect'
 import FunctionList from './pages/FunctionList'
 import ProjectList from './pages/ProjectList'
 import ProjVote from './pages/ProjVote'
@@ -21,9 +22,15 @@ import EmailMe from './pages/EmailMe'
 
 export default class ReactMain extends Component {
 
+    state = {
+        lodingFlag: false
+    }
+
     render() {
+        const { lodingFlag } = this.state
         return (
             <div>
+                {lodingFlag && <LoadingEffect />}
                 <NavBar />
                 <Switch>
                     <Route path="/person" component={Person} />

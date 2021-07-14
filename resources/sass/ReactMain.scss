@@ -9,8 +9,7 @@ body {
 }
 
 #react-main {
-    width: 100%;
-    height: 100vh;
+    @include size(100%, 100vh);
 
     >div {
         background-image: url('https://images.pexels.com/photos/4245826/pexels-photo-4245826.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
@@ -18,6 +17,17 @@ body {
         // width: 100%;
         min-height: 100vh;
         overflow: hidden;
+
+        .loading-effect {
+            @include size(100%, 100vh);
+            position: fixed;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            @include loadingEffect;
+        }
 
         nav {
             width: 100%;
@@ -31,70 +41,68 @@ body {
         }
 
         .undone-page {
-            width: 100%;
-            height: calc(100vh - 120px);
-            // position: fixed;
-            bottom: 0;
-            // padding: 20px;
+            @include size($pageWidth, $pageHeightMinusNav);
+            @include textWhiteBorder;
             background-color: rgba(255, 255, 255, 0.5);
             display: flex;
             justify-content: center;
             align-items: center;
-            @include textWhiteBorder;
             font-size: 72px;
         }
 
         .container {
             // index
+            @include size($pageWidth, $pageHeightMinusNav);
             display: flex;
             justify-content: center;
             align-items: center;
-            width: 100%;
-            height: calc(100vh - 120px);
 
             .row {
                 .columns {
                     ul.ca-menu {
+                        width: 100%;
+                        height: 100%;
                         display: flex;
                         padding: 0;
                         list-style: none;
 
                         li {
-                            width: 250px;
-                            height: 400px;
-                            display: flex;
-                            border-radius: 10px;
-                            flex-direction: column;
-                            align-items: center;
-                            justify-content: space-evenly;
-                            cursor: pointer;
-                            color: black;
-                            background-color: rgba(255, 255, 255, 0.5);
-                            padding: 0 25px;
-                            transition: all 300ms linear;
+                            a {
 
-                            &:hover {
-                                color: #fff;
-                                background: rgba(0, 0, 0, 0.8);
-
-                                h2 {
-                                    color: #55a2a6;
-                                }
-                            }
-
-                            i {
-                                font-size: 72px;
-                            }
-
-                            div.ca-content {
+                                @include size(250px, 400px, 0, 0 25px);
                                 display: flex;
+                                border-radius: 10px;
                                 flex-direction: column;
                                 align-items: center;
+                                justify-content: space-evenly;
+                                cursor: pointer;
+                                color: black;
+                                background-color: rgba(255, 255, 255, 0.5);
+                                transition: all 300ms linear;
 
-                                >* {
-                                    text-align: center;
+                                &:hover {
+                                    color: #fff;
+                                    background: rgba(0, 0, 0, 0.8);
+
+                                    h2 {
+                                        color: #55a2a6;
+                                    }
                                 }
 
+                                i {
+                                    font-size: 72px;
+                                }
+
+                                div.ca-content {
+                                    display: flex;
+                                    flex-direction: column;
+                                    align-items: center;
+
+                                    >* {
+                                        text-align: center;
+                                    }
+
+                                }
                             }
                         }
                     }
@@ -180,44 +188,53 @@ body {
 
         .inner-container {
             width: 100%;
-            height: calc(100vh - 140px);
+            height: $pageHeightMinusNav;
 
             // 功能頁
             >ul {
+                @include size(100%, 100%);
                 @include sectionMedia;
-                padding: 0;
                 list-style: none;
 
                 li {
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                    padding: 20px;
 
-                    section.display-block {
-                        @include size(500px, 300px);
-                        border: 1px solid #000;
-                        border-radius: 15px;
+                    >a {
+                        // react route 增加的一層a
+                        width: 100%;
+                        height: 100%;
                         display: flex;
-                        flex-direction: column;
+                        justify-content: center;
                         align-items: center;
-                        background-color: $sectionBGC;
-                        cursor: pointer;
-                        @include shadowEffect;
-                        color: $sectionFontColor;
 
-                        &:hover {
-                            background-color: $sectionBGCHover;
-                        }
+                        section.display-block {
+                            @include size(500px, 300px);
+                            border: 1px solid #000;
+                            border-radius: 15px;
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: center;
+                            align-items: center;
+                            background-color: $sectionBGC;
+                            cursor: pointer;
+                            @include shadowEffect;
+                            color: $sectionFontColor;
 
-                        h1 {
-                            @include textWhiteBorder;
-                            font-size: 72px;
-                            font-family: 'cwTeXYen';
-                        }
+                            &:hover {
+                                background-color: $sectionBGCHover;
+                            }
 
-                        i {
-                            font-size: 36px;
+                            h1 {
+                                @include textWhiteBorder;
+                                font-size: 72px;
+                                font-family: 'cwTeXYen';
+                            }
+
+                            i {
+                                font-size: 36px;
+                            }
                         }
                     }
                 }
