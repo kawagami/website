@@ -124,6 +124,6 @@ class VocabularyController extends Controller
             ];
         }
 
-        return $result;
+        return $result ?? [];
     }
 }

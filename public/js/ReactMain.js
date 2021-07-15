@@ -36421,45 +36421,74 @@ var Vocabulary = /*#__PURE__*/function (_Component) {
         "class": "vocabulary10",
         vocabulary: "",
         explain: ""
+      }],
+      emptyVocabulariesArray: [{
+        "class": "vocabulary1",
+        vocabulary: "",
+        explain: ""
+      }, {
+        "class": "vocabulary2",
+        vocabulary: "",
+        explain: ""
+      }, {
+        "class": "vocabulary3",
+        vocabulary: "",
+        explain: ""
+      }, {
+        "class": "vocabulary4",
+        vocabulary: "",
+        explain: ""
+      }, {
+        "class": "vocabulary5",
+        vocabulary: "",
+        explain: ""
+      }, {
+        "class": "vocabulary6",
+        vocabulary: "",
+        explain: ""
+      }, {
+        "class": "vocabulary7",
+        vocabulary: "",
+        explain: ""
+      }, {
+        "class": "vocabulary8",
+        vocabulary: "API秀逗",
+        explain: ""
+      }, {
+        "class": "vocabulary9",
+        vocabulary: "",
+        explain: ""
+      }, {
+        "class": "vocabulary10",
+        vocabulary: "",
+        explain: ""
       }]
     });
 
     _defineProperty(_assertThisInitialized(_this), "getNewVocabularies", function () {
       var url = "/api/random-vocabulary";
-      var vocabulariesArray = _this.state.vocabulariesArray;
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.post(url).then(function (response) {
-        var _ref, _response$data;
+        if (response.data.length && response.data.length > 0) {
+          var vocabulariesArray = _this.state.vocabulariesArray;
+          var newArray = vocabulariesArray;
 
-        return (_ref = (_response$data = response.data) !== null && _response$data !== void 0 ? _response$data : response.result) !== null && _ref !== void 0 ? _ref : []; // console.log(response.result);
-        // const crawlerArray = response.json()
-        // console.log(crawlerArray);
-        // //获取状态中的todos
-        // const { vocabulariesArray } = this.state
-        // //匹配处理数据
-        // // console.log(response.data);
-        // const newVocabulariesArray = vocabulariesArray.map((item) => {
-        //     return { ...item, vocabulary, explain }
-        // })
-        // this.setState({ vocabulariesArray: newVocabulariesArray })
+          for (var times = 0; times < response.data.length; times++) {
+            newArray[times]['vocabulary'] = response.data[times]['vocabulary'];
+            newArray[times]['explain'] = response.data[times]['explain'];
+          }
+
+          _this.setState({
+            vocabulariesArray: newArray
+          });
+        } else {
+          var emptyVocabulariesArray = _this.state.emptyVocabulariesArray;
+
+          _this.setState({
+            vocabulariesArray: emptyVocabulariesArray
+          });
+        }
       }, function (error) {
         console.log(error);
-      }).then(function (second) {
-        var vocabulariesArray = _this.state.vocabulariesArray;
-        var newArray = vocabulariesArray;
-
-        for (var times = 0; times < second.length; times++) {
-          newArray[times]['vocabulary'] = second[times]['vocabulary'];
-          newArray[times]['explain'] = second[times]['explain']; // console.log(newArray[times]['vocabulary'])
-          // console.log(second[times]['vocabulary'])
-          // console.log('');
-          // console.log(newArray[times]['explain'])
-          // console.log(second[times]['explain'])
-          // console.log('');
-        }
-
-        _this.setState({
-          vocabulariesArray: newArray
-        });
       });
     });
 

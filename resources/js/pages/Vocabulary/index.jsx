@@ -16,46 +16,42 @@ export default class Vocabulary extends Component {
             { class: "vocabulary8", vocabulary: "", explain: "" },
             { class: "vocabulary9", vocabulary: "", explain: "" },
             { class: "vocabulary10", vocabulary: "", explain: "" },
-        ]
+        ],
+        emptyVocabulariesArray: [
+            { class: "vocabulary1", vocabulary: "", explain: "" },
+            { class: "vocabulary2", vocabulary: "", explain: "" },
+            { class: "vocabulary3", vocabulary: "", explain: "" },
+            { class: "vocabulary4", vocabulary: "", explain: "" },
+            { class: "vocabulary5", vocabulary: "", explain: "" },
+            { class: "vocabulary6", vocabulary: "", explain: "" },
+            { class: "vocabulary7", vocabulary: "", explain: "" },
+            { class: "vocabulary8", vocabulary: "API秀逗", explain: "" },
+            { class: "vocabulary9", vocabulary: "", explain: "" },
+            { class: "vocabulary10", vocabulary: "", explain: "" },
+        ],
     }
 
     getNewVocabularies = () => {
         const url = "/api/random-vocabulary"
-        const { vocabulariesArray } = this.state
-
         Axios.post(url).then(
             response => {
-                return response.data ?? response.result ?? []
-                // console.log(response.result);
-                // const crawlerArray = response.json()
-                // console.log(crawlerArray);
-                // //获取状态中的todos
-                // const { vocabulariesArray } = this.state
-                // //匹配处理数据
-                // // console.log(response.data);
-                // const newVocabulariesArray = vocabulariesArray.map((item) => {
-                //     return { ...item, vocabulary, explain }
-                // })
-                // this.setState({ vocabulariesArray: newVocabulariesArray })
+                if (response.data.length && response.data.length > 0) {
+                    const { vocabulariesArray } = this.state
+                    let newArray = vocabulariesArray;
+                    for (let times = 0; times < response.data.length; times++) {
+                        newArray[times]['vocabulary'] = response.data[times]['vocabulary']
+                        newArray[times]['explain'] = response.data[times]['explain']
+                    }
+                    this.setState({ vocabulariesArray: newArray })
+                } else {
+                    const { emptyVocabulariesArray } = this.state
+                    this.setState({ vocabulariesArray: emptyVocabulariesArray })
+                }
             },
             error => {
                 console.log(error)
             }
-        ).then(second => {
-            const { vocabulariesArray } = this.state
-            let newArray = vocabulariesArray;
-            for (let times = 0; times < second.length; times++) {
-                newArray[times]['vocabulary'] = second[times]['vocabulary']
-                newArray[times]['explain'] = second[times]['explain']
-                // console.log(newArray[times]['vocabulary'])
-                // console.log(second[times]['vocabulary'])
-                // console.log('');
-                // console.log(newArray[times]['explain'])
-                // console.log(second[times]['explain'])
-                // console.log('');
-            }
-            this.setState({ vocabulariesArray: newArray })
-        })
+        )
     }
 
     render() {
