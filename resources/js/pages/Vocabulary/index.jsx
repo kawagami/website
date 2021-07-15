@@ -1,6 +1,6 @@
 import Axios from 'axios'
 import React, { Component } from 'react'
-import UndonePage from '../UndonePage'
+import store from '../../redux/store'
 
 export default class Vocabulary extends Component {
 
@@ -31,7 +31,16 @@ export default class Vocabulary extends Component {
         ],
     }
 
+    loadingUp = () => {
+        store.dispatch({ type: 'up', data: '' })
+    }
+
+    loadingDown = () => {
+        store.dispatch({ type: 'down', data: '' })
+    }
+
     getNewVocabularies = () => {
+        this.loadingUp()
         const url = "/api/random-vocabulary"
         Axios.post(url).then(
             response => {
@@ -43,13 +52,16 @@ export default class Vocabulary extends Component {
                         newArray[times]['explain'] = response.data[times]['explain']
                     }
                     this.setState({ vocabulariesArray: newArray })
+                    this.loadingDown()
                 } else {
                     const { emptyVocabulariesArray } = this.state
                     this.setState({ vocabulariesArray: emptyVocabulariesArray })
+                    this.loadingDown()
                 }
             },
             error => {
                 console.log(error)
+                this.loadingDown()
             }
         )
     }

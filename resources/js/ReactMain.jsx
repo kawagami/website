@@ -19,18 +19,19 @@ import StockComputer from './pages/StockComputer'
 import WeatherCard from './pages/WeatherCard'
 import LineBot from './pages/LineBot'
 import EmailMe from './pages/EmailMe'
+import store from './redux/store'
 
 export default class ReactMain extends Component {
 
-    state = {
-        lodingFlag: false
-    }
+    // state = {
+    //     lodingFlag: false
+    // }
 
     render() {
-        const { lodingFlag } = this.state
+        // const { lodingFlag } = this.state
         return (
             <div>
-                {lodingFlag && <LoadingEffect />}
+                {store.getState() && <LoadingEffect />}
                 <NavBar />
                 <Switch>
                     <Route path="/person" component={Person} />
@@ -56,10 +57,16 @@ export default class ReactMain extends Component {
     }
 }
 
-if (document.getElementById('react-main')) {
+ReactDOM.render(
+    <BrowserRouter>
+        <ReactMain />
+    </BrowserRouter>
+    , document.getElementById('react-main'))
+
+store.subscribe(() => {
     ReactDOM.render(
         <BrowserRouter>
             <ReactMain />
         </BrowserRouter>
         , document.getElementById('react-main'))
-}
+})
