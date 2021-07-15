@@ -36383,44 +36383,44 @@ var Vocabulary = /*#__PURE__*/function (_Component) {
     _defineProperty(_assertThisInitialized(_this), "state", {
       vocabulariesArray: [{
         "class": "vocabulary1",
-        vocabulary: "vocabulary1 vocabulary",
-        explain: "vocabulary1 explain"
+        vocabulary: "",
+        explain: ""
       }, {
         "class": "vocabulary2",
-        vocabulary: "vocabulary2 vocabulary",
-        explain: "vocabulary2 explain"
+        vocabulary: "",
+        explain: ""
       }, {
         "class": "vocabulary3",
-        vocabulary: "vocabulary3 vocabulary",
-        explain: "vocabulary3 explain"
+        vocabulary: "",
+        explain: ""
       }, {
         "class": "vocabulary4",
-        vocabulary: "vocabulary4 vocabulary",
-        explain: "vocabulary4 explain"
+        vocabulary: "",
+        explain: ""
       }, {
         "class": "vocabulary5",
-        vocabulary: "vocabulary5 vocabulary",
-        explain: "vocabulary5 explain"
+        vocabulary: "",
+        explain: ""
       }, {
         "class": "vocabulary6",
-        vocabulary: "vocabulary6 vocabulary",
-        explain: "vocabulary6 explain"
+        vocabulary: "",
+        explain: ""
       }, {
         "class": "vocabulary7",
-        vocabulary: "vocabulary7 vocabulary",
-        explain: "vocabulary7 explain"
+        vocabulary: "",
+        explain: ""
       }, {
         "class": "vocabulary8",
-        vocabulary: "vocabulary8 vocabulary",
-        explain: "vocabulary8 explain"
+        vocabulary: "",
+        explain: ""
       }, {
         "class": "vocabulary9",
-        vocabulary: "vocabulary9 vocabulary",
-        explain: "vocabulary9 explain"
+        vocabulary: "",
+        explain: ""
       }, {
         "class": "vocabulary10",
-        vocabulary: "vocabulary10 vocabulary",
-        explain: "vocabulary10 explain"
+        vocabulary: "",
+        explain: ""
       }]
     });
 
@@ -36428,7 +36428,9 @@ var Vocabulary = /*#__PURE__*/function (_Component) {
       var url = "/api/random-vocabulary";
       var vocabulariesArray = _this.state.vocabulariesArray;
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.post(url).then(function (response) {
-        return response.data; // console.log(response.result);
+        var _ref, _response$data;
+
+        return (_ref = (_response$data = response.data) !== null && _response$data !== void 0 ? _response$data : response.result) !== null && _ref !== void 0 ? _ref : []; // console.log(response.result);
         // const crawlerArray = response.json()
         // console.log(crawlerArray);
         // //获取状态中的todos

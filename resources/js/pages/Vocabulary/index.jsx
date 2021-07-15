@@ -6,16 +6,16 @@ export default class Vocabulary extends Component {
 
     state = {
         vocabulariesArray: [
-            { class: "vocabulary1", vocabulary: "vocabulary1 vocabulary", explain: "vocabulary1 explain" },
-            { class: "vocabulary2", vocabulary: "vocabulary2 vocabulary", explain: "vocabulary2 explain" },
-            { class: "vocabulary3", vocabulary: "vocabulary3 vocabulary", explain: "vocabulary3 explain" },
-            { class: "vocabulary4", vocabulary: "vocabulary4 vocabulary", explain: "vocabulary4 explain" },
-            { class: "vocabulary5", vocabulary: "vocabulary5 vocabulary", explain: "vocabulary5 explain" },
-            { class: "vocabulary6", vocabulary: "vocabulary6 vocabulary", explain: "vocabulary6 explain" },
-            { class: "vocabulary7", vocabulary: "vocabulary7 vocabulary", explain: "vocabulary7 explain" },
-            { class: "vocabulary8", vocabulary: "vocabulary8 vocabulary", explain: "vocabulary8 explain" },
-            { class: "vocabulary9", vocabulary: "vocabulary9 vocabulary", explain: "vocabulary9 explain" },
-            { class: "vocabulary10", vocabulary: "vocabulary10 vocabulary", explain: "vocabulary10 explain" },
+            { class: "vocabulary1", vocabulary: "", explain: "" },
+            { class: "vocabulary2", vocabulary: "", explain: "" },
+            { class: "vocabulary3", vocabulary: "", explain: "" },
+            { class: "vocabulary4", vocabulary: "", explain: "" },
+            { class: "vocabulary5", vocabulary: "", explain: "" },
+            { class: "vocabulary6", vocabulary: "", explain: "" },
+            { class: "vocabulary7", vocabulary: "", explain: "" },
+            { class: "vocabulary8", vocabulary: "", explain: "" },
+            { class: "vocabulary9", vocabulary: "", explain: "" },
+            { class: "vocabulary10", vocabulary: "", explain: "" },
         ]
     }
 
@@ -25,7 +25,7 @@ export default class Vocabulary extends Component {
 
         Axios.post(url).then(
             response => {
-                return response.data
+                return response.data ?? response.result ?? []
                 // console.log(response.result);
                 // const crawlerArray = response.json()
                 // console.log(crawlerArray);
