@@ -36480,7 +36480,7 @@ var Vocabulary = /*#__PURE__*/function (_Component) {
           className: "vocabulary-section"
         }, vocabulary.vocabulary), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
           className: "explain-section"
-        }, vocabulary.explain));
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, vocabulary.explain)));
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "new-vocabulary"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {

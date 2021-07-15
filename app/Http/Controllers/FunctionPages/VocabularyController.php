@@ -96,7 +96,10 @@ class VocabularyController extends Controller
         ];
 
         $url = "https://www.etymonline.com/search?page={$randomBase[array_rand($randomBase)][1]}&q={$randomBase[array_rand($randomBase)][0]}";
-        $client = new Client();
+        $headers = [
+            'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36',
+        ];
+        $client = new Client(['headers' => $headers]);
         $response = $client->request('GET', $url);
 
         $latestNewsString = (string) $response->getBody();

@@ -355,14 +355,16 @@ body {
                         "ES"
                         "ES"
                     ;
+                    overflow: auto;
 
                     .vocabulary-section {
                         grid-area: VS;
                         font-size: 30px;
                         background-color: rgba(255, 0, 0, 0.3);
                         padding: 0 10px;
+                        text-align: center;
                     }
-                    
+
                     .explain-section {
                         grid-area: ES;
                         font-size: 18px;

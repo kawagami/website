@@ -67,7 +67,11 @@ export default class Vocabulary extends Component {
                         return (
                             <div key={index} className={vocabulary.class}>
                                 <div className="vocabulary-section">{vocabulary.vocabulary}</div>
-                                <div className="explain-section">{vocabulary.explain}</div>
+                                <div className="explain-section">
+                                    <span>
+                                        {vocabulary.explain}
+                                    </span>
+                                </div>
                             </div>
                         )
                     })
