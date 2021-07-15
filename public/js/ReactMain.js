@@ -33389,6 +33389,14 @@ var FunctionList = /*#__PURE__*/function (_Component) {
 
     _defineProperty(_assertThisInitialized(_this), "state", {
       functionPages: [{
+        to: "/random-vocabulary",
+        title: "隨機英文單字",
+        icon: "fas fa-book-open"
+      }, {
+        to: "/line-bot",
+        title: "Line Bot",
+        icon: "fas fa-robot"
+      }, {
         to: "/pomodoro",
         title: "番茄鐘",
         icon: "far fa-clock"
@@ -33400,14 +33408,6 @@ var FunctionList = /*#__PURE__*/function (_Component) {
         to: "/weather-card",
         title: "天氣卡片",
         icon: "fas fa-cloud-sun-rain"
-      }, {
-        to: "/random-vocabulary",
-        title: "隨機英文單字",
-        icon: "fas fa-book-open"
-      }, {
-        to: "/line-bot",
-        title: "Line Bot",
-        icon: "fas fa-robot"
       }]
     });
 

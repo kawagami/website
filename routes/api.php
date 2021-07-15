@@ -19,3 +19,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::post('/line-bot', 'LineBotController@index');
+Route::get('/random-vocabulary', 'FunctionPages\VocabularyController@getTenWords');
