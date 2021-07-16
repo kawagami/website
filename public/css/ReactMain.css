@@ -423,7 +423,7 @@ body {
 
 #react-main > div .vocabulary-container .vocabulary1 .vocabulary-section {
   grid-area: VS;
-  font-size: 30px;
+  font-size: 36px;
   background-color: rgba(255, 0, 0, 0.3);
   padding: 0 10px;
   text-align: center;
@@ -431,7 +431,7 @@ body {
 
 #react-main > div .vocabulary-container .vocabulary1 .explain-section {
   grid-area: ES;
-  font-size: 18px;
+  font-size: 22px;
   padding: 0 10px;
 }
 
@@ -452,7 +452,7 @@ body {
 
 #react-main > div .vocabulary-container .vocabulary2 .vocabulary-section {
   grid-area: VS;
-  font-size: 30px;
+  font-size: 36px;
   background-color: rgba(255, 0, 0, 0.3);
   padding: 0 10px;
   text-align: center;
@@ -460,7 +460,7 @@ body {
 
 #react-main > div .vocabulary-container .vocabulary2 .explain-section {
   grid-area: ES;
-  font-size: 18px;
+  font-size: 22px;
   padding: 0 10px;
 }
 
@@ -481,7 +481,7 @@ body {
 
 #react-main > div .vocabulary-container .vocabulary3 .vocabulary-section {
   grid-area: VS;
-  font-size: 30px;
+  font-size: 36px;
   background-color: rgba(255, 0, 0, 0.3);
   padding: 0 10px;
   text-align: center;
@@ -489,7 +489,7 @@ body {
 
 #react-main > div .vocabulary-container .vocabulary3 .explain-section {
   grid-area: ES;
-  font-size: 18px;
+  font-size: 22px;
   padding: 0 10px;
 }
 
@@ -510,7 +510,7 @@ body {
 
 #react-main > div .vocabulary-container .vocabulary4 .vocabulary-section {
   grid-area: VS;
-  font-size: 30px;
+  font-size: 36px;
   background-color: rgba(255, 0, 0, 0.3);
   padding: 0 10px;
   text-align: center;
@@ -518,7 +518,7 @@ body {
 
 #react-main > div .vocabulary-container .vocabulary4 .explain-section {
   grid-area: ES;
-  font-size: 18px;
+  font-size: 22px;
   padding: 0 10px;
 }
 
@@ -539,7 +539,7 @@ body {
 
 #react-main > div .vocabulary-container .vocabulary5 .vocabulary-section {
   grid-area: VS;
-  font-size: 30px;
+  font-size: 36px;
   background-color: rgba(255, 0, 0, 0.3);
   padding: 0 10px;
   text-align: center;
@@ -547,7 +547,7 @@ body {
 
 #react-main > div .vocabulary-container .vocabulary5 .explain-section {
   grid-area: ES;
-  font-size: 18px;
+  font-size: 22px;
   padding: 0 10px;
 }
 
@@ -568,7 +568,7 @@ body {
 
 #react-main > div .vocabulary-container .vocabulary6 .vocabulary-section {
   grid-area: VS;
-  font-size: 30px;
+  font-size: 36px;
   background-color: rgba(255, 0, 0, 0.3);
   padding: 0 10px;
   text-align: center;
@@ -576,7 +576,7 @@ body {
 
 #react-main > div .vocabulary-container .vocabulary6 .explain-section {
   grid-area: ES;
-  font-size: 18px;
+  font-size: 22px;
   padding: 0 10px;
 }
 
@@ -597,7 +597,7 @@ body {
 
 #react-main > div .vocabulary-container .vocabulary7 .vocabulary-section {
   grid-area: VS;
-  font-size: 30px;
+  font-size: 36px;
   background-color: rgba(255, 0, 0, 0.3);
   padding: 0 10px;
   text-align: center;
@@ -605,7 +605,7 @@ body {
 
 #react-main > div .vocabulary-container .vocabulary7 .explain-section {
   grid-area: ES;
-  font-size: 18px;
+  font-size: 22px;
   padding: 0 10px;
 }
 
@@ -626,7 +626,7 @@ body {
 
 #react-main > div .vocabulary-container .vocabulary8 .vocabulary-section {
   grid-area: VS;
-  font-size: 30px;
+  font-size: 36px;
   background-color: rgba(255, 0, 0, 0.3);
   padding: 0 10px;
   text-align: center;
@@ -634,7 +634,7 @@ body {
 
 #react-main > div .vocabulary-container .vocabulary8 .explain-section {
   grid-area: ES;
-  font-size: 18px;
+  font-size: 22px;
   padding: 0 10px;
 }
 
@@ -655,7 +655,7 @@ body {
 
 #react-main > div .vocabulary-container .vocabulary9 .vocabulary-section {
   grid-area: VS;
-  font-size: 30px;
+  font-size: 36px;
   background-color: rgba(255, 0, 0, 0.3);
   padding: 0 10px;
   text-align: center;
@@ -663,7 +663,7 @@ body {
 
 #react-main > div .vocabulary-container .vocabulary9 .explain-section {
   grid-area: ES;
-  font-size: 18px;
+  font-size: 22px;
   padding: 0 10px;
 }
 
@@ -684,7 +684,7 @@ body {
 
 #react-main > div .vocabulary-container .vocabulary10 .vocabulary-section {
   grid-area: VS;
-  font-size: 30px;
+  font-size: 36px;
   background-color: rgba(255, 0, 0, 0.3);
   padding: 0 10px;
   text-align: center;
@@ -692,7 +692,7 @@ body {
 
 #react-main > div .vocabulary-container .vocabulary10 .explain-section {
   grid-area: ES;
-  font-size: 18px;
+  font-size: 22px;
   padding: 0 10px;
 }
 
