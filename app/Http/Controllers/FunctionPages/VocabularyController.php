@@ -95,7 +95,9 @@ class VocabularyController extends Controller
             ['z', rand(1, 14)],
         ];
 
-        $url = "https://www.etymonline.com/search?page={$randomBase[array_rand($randomBase)][1]}&q={$randomBase[array_rand($randomBase)][0]}";
+        $targetWord = $randomBase[array_rand($randomBase)];
+
+        $url = "https://www.etymonline.com/search?page={$targetWord[1]}&q={$targetWord[0]}";
         $headers = [
             'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36',
         ];
@@ -124,6 +126,7 @@ class VocabularyController extends Controller
             ];
         }
 
-        return $result ?? [];
+        // return $result ?? [];
+        dd($url, $result ?? [], $latestNewsString);
     }
 }
