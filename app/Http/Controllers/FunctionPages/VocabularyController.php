@@ -126,7 +126,7 @@ class VocabularyController extends Controller
             ];
         }
 
-        // return $result ?? [];
-        dd($url, $result ?? [], $latestNewsString);
+        return $result ?? [];
+        // dd($url, $result ?? [], $latestNewsString);
     }
 }
