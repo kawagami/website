@@ -37293,6 +37293,11 @@ var Vocabulary = /*#__PURE__*/function (_Component) {
   }
 
   _createClass(Vocabulary, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.getNewVocabularies();
+    }
+  }, {
     key: "render",
     value: function render() {
       var vocabulariesArray = this.state.vocabulariesArray;

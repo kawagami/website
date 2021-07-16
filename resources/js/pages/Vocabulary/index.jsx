@@ -66,6 +66,10 @@ export default class Vocabulary extends Component {
         )
     }
 
+    componentDidMount() {
+        this.getNewVocabularies()
+    }
+
     render() {
         const { vocabulariesArray } = this.state
         return (
