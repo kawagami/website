@@ -86,14 +86,16 @@ body {
 
                         @media (max-width:1400px) {
                             @include size(100%, 100%);
-                            grid-template-rows: repeat(4, 1fr);
-                            grid-template-columns: repeat(4, 1fr);
+                            grid-template-rows: repeat(6, 1fr);
+                            grid-template-columns: repeat(6, 1fr);
                             gap: 10px;
                             grid-template-areas:
-                                "L1 L1 L2 L2"
-                                "L1 L1 L2 L2"
-                                "L3 L3 L4 L4"
-                                "L3 L3 L4 L4"
+                                ". L1 L1 L2 L2 ."
+                                ". L1 L1 L2 L2 ."
+                                ". L1 L1 L2 L2 ."
+                                ". L3 L3 L4 L4 ."
+                                ". L3 L3 L4 L4 ."
+                                ". L3 L3 L4 L4 ."
                             ;
                         }
 
