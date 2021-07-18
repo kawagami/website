@@ -30,13 +30,11 @@
     @media (max-width:1600px) {
         grid-template-columns: 1fr 1fr;
         grid-template-rows: 1fr 1fr;
-        overflow-y: scroll;
     }
 
     @media (max-width:1070px) {
         grid-template-columns: 1fr;
         grid-template-rows: 1fr 1fr;
-        overflow-y: scroll;
     }
 }
 

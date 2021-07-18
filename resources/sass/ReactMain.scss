@@ -248,24 +248,34 @@ body {
             // 功能頁
             >ul {
                 @include size(100%, 100%);
-                @include sectionMedia;
                 list-style: none;
+                display: grid;
+                grid-template-columns: repeat(auto-fit,minmax(500px, 1fr));
+                // gap: 10px;
+                
+                @media (max-width:1500px) {
+                    @include size($pageWidth, 150vh);
+                }
+                
+                @media (max-width:1000px) {
+                    @include size($pageWidth, 300vh);
+                }
 
                 li {
+                    @include size(calc(100% - 40px), calc(100% - 40px), 0,20px);
                     display: flex;
                     justify-content: center;
                     align-items: center;
-
+                    
                     >a {
+                        @include size(90%, 90%);
                         // react route 增加的一層a
-                        // width: 100%;
-                        // height: 100%;
                         display: flex;
                         justify-content: center;
                         align-items: center;
-
+                        
                         section.display-block {
-                            @include size(500px, 300px);
+                            @include size(100%, 100%);
                             border: 1px solid #000;
                             border-radius: 15px;
                             display: flex;
