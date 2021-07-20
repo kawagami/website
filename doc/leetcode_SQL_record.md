@@ -9,3 +9,14 @@
     * ORDER BY 欄位 DESC
     * DISTINCT 整理重複數值
     * LIMIT 要幾筆 OFFSET 跳過幾筆
+* 181
+    * 取得employee比manager高薪水的name as Employee
+    * SQL92自連結
+    * where條件要搞懂連結的欄位為什麼是這個、做了什麼
+* 182
+    * 取得有重複名稱的Email
+    * group by & having & count() 的應用
+* 183 
+    * 取得沒點任何東西的顧客
+    * SQL99 LEFT JOIN 
+    * WHERE Orders.CustomerId IS NULL 即為所求
