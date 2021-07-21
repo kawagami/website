@@ -36173,7 +36173,7 @@ var FunctionList = /*#__PURE__*/function (_Component) {
     _defineProperty(_assertThisInitialized(_this), "state", {
       functionPages: [{
         to: "/random-vocabulary",
-        title: "隨機英文單字",
+        title: "爬蟲隨機單字",
         icon: "fas fa-book-open"
       }, {
         to: "/line-bot",

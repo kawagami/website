@@ -25,8 +25,11 @@
 ## 20210721
 * 196
     * 刪除在資料庫內重複的Email，留下ID最小的EMAIL
-    * DELETE (TableName) FROM TableName WHERE 條件
-
-
+    * DELETE (ALIAS) FROM TableName (AS ALIAS) WHERE 條件
+* 197
+    * 取得比昨天(前一天)溫度還高的日期ID
+    * DATEDIFF(拿這個, 減這個) = 差值
+* 595
+    * 
 
 

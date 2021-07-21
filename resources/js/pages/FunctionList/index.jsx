@@ -6,7 +6,7 @@ export default class FunctionList extends Component {
 
     state = {
         functionPages: [
-            { to: "/random-vocabulary", title: "隨機英文單字", icon: "fas fa-book-open" },
+            { to: "/random-vocabulary", title: "爬蟲隨機單字", icon: "fas fa-book-open" },
             { to: "/line-bot", title: "Line Bot", icon: "fas fa-robot" },
             { to: "/pomodoro", title: "番茄鐘", icon: "far fa-clock" },
             { to: "/stock-computer", title: "股票計算機", icon: "fas fa-chart-line" },
