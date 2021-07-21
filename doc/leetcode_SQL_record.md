@@ -25,7 +25,7 @@
 ## 20210721
 * 196
     * 刪除在資料庫內重複的Email，留下ID最小的EMAIL
-    
+    * DELETE (TableName) FROM TableName WHERE 條件
 
 
 
