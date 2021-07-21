@@ -1,4 +1,6 @@
 # 紀錄leetcode SQL 練習紀錄
+##
+* ![hackMD筆記](https://hackmd.io/@kawagami/B1x1IjF3O)
 ## 20210720開始
 * 175
     * 合併兩表
@@ -20,3 +22,11 @@
     * 取得沒點任何東西的顧客
     * SQL99 LEFT JOIN 
     * WHERE Orders.CustomerId IS NULL 即為所求
+## 20210721
+* 196
+    * 刪除在資料庫內重複的Email，留下ID最小的EMAIL
+    
+
+
+
+
