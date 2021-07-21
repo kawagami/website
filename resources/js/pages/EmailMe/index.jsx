@@ -5,7 +5,7 @@ import store from '../../redux/store'
 export default class EmailMe extends Component {
 
     state = {
-        type: '',
+        type: 'job',
         content: '',
     }
 
@@ -29,7 +29,10 @@ export default class EmailMe extends Component {
         const { type, content } = this.state
         const data = { type: type, content: content }
         Axios.post(url, data).then(
-            response => this.loadingDown()
+            response => {                
+                this.loadingDown()
+                this.back()
+            }
         )
     }
 
@@ -38,6 +41,7 @@ export default class EmailMe extends Component {
     }
 
     render() {
+        const { content } = this.state
         return (
             <div className="email-container">
                 <div className="email-mid">
@@ -51,7 +55,7 @@ export default class EmailMe extends Component {
                     </label>
                     <label htmlFor="content">
                         <span>內文</span>
-                        <textarea name="content" id="content" cols="30" rows="10" onChange={this.handleInput}></textarea>
+                        <textarea name="content" id="content" cols="30" rows="10" onChange={this.handleInput}>{content}</textarea>
                     </label>
                     <div className="action">
                         <button onClick={this.back}>取消</button>

@@ -36071,7 +36071,7 @@ var EmailMe = /*#__PURE__*/function (_Component) {
     _this = _super.call.apply(_super, [this].concat(args));
 
     _defineProperty(_assertThisInitialized(_this), "state", {
-      type: '',
+      type: 'job',
       content: ''
     });
 
@@ -36107,7 +36107,9 @@ var EmailMe = /*#__PURE__*/function (_Component) {
         content: content
       };
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.post(url, data).then(function (response) {
-        return _this.loadingDown();
+        _this.loadingDown();
+
+        _this.back();
       });
     });
 
@@ -36121,6 +36123,7 @@ var EmailMe = /*#__PURE__*/function (_Component) {
   _createClass(EmailMe, [{
     key: "render",
     value: function render() {
+      var content = this.state.content;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "email-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
@@ -36145,7 +36148,7 @@ var EmailMe = /*#__PURE__*/function (_Component) {
         cols: "30",
         rows: "10",
         onChange: this.handleInput
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      }, content)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "action"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
         onClick: this.back
