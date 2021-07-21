@@ -1,8 +1,39 @@
+import Axios from 'axios'
 import React, { Component } from 'react'
+import store from '../../redux/store'
 
 export default class EmailMe extends Component {
 
-    back=() => {
+    state = {
+        type: '',
+        content: '',
+    }
+
+    loadingUp = () => {
+        store.dispatch({ type: 'up', data: '' })
+    }
+
+    loadingDown = () => {
+        store.dispatch({ type: 'down', data: '' })
+    }
+
+    handleInput = (e) => {
+        // console.log(e.target.value);
+        // console.log(e.target.id);
+        this.setState({ [e.target.id]: e.target.value })
+    }
+
+    handleSendMail = () => {
+        this.loadingUp()
+        const url = "/api/contact-me"
+        const { type, content } = this.state
+        const data = { type: type, content: content }
+        Axios.post(url, data).then(
+            response => this.loadingDown()
+        )
+    }
+
+    back = () => {
         this.props.history.goBack()
     }
 
@@ -12,7 +43,7 @@ export default class EmailMe extends Component {
                 <div className="email-mid">
                     <label htmlFor="type">
                         <span>主題類型</span>
-                        <select name="type" id="type">
+                        <select name="type" id="type" onChange={this.handleInput}>
                             <option value="job">工作</option>
                             <option value="suggest">建議</option>
                             <option value="other">其他</option>
@@ -20,11 +51,11 @@ export default class EmailMe extends Component {
                     </label>
                     <label htmlFor="content">
                         <span>內文</span>
-                        <textarea name="content" id="content" cols="30" rows="10"></textarea>
+                        <textarea name="content" id="content" cols="30" rows="10" onChange={this.handleInput}></textarea>
                     </label>
                     <div className="action">
                         <button onClick={this.back}>取消</button>
-                        <button>寄出</button>
+                        <button onClick={this.handleSendMail}>寄出</button>
                     </div>
                 </div>
             </div>

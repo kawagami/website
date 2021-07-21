@@ -30,6 +30,9 @@
     * 取得比昨天(前一天)溫度還高的日期ID
     * DATEDIFF(拿這個, 減這個) = 差值
 * 595
-    * 
-
+    * WHERE
+* 596
+    * 取得學生大於等於五的課程名稱
+    * GROUP BY & HAVING
+    * DISTINCT
 

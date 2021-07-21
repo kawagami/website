@@ -4,7 +4,7 @@ export default class LoadingEffect extends Component {
     render() {
         return (
             <div className="loading-effect">
-                <h1 class="loader">
+                <h1 className="loader">
                     <span>L</span>
                     <span>O</span>
                     <span>A</span>

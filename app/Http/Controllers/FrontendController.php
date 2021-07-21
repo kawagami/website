@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Frontend;
 use Carbon\Carbon;
+use App\Mail\OrderShipped;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Mail;
 
 class FrontendController extends Controller
 {
@@ -130,5 +132,12 @@ class FrontendController extends Controller
         // return end($response['chart']['result'][0]['indicators']['quote'][0]['close']);
         $targetArray = $response['chart']['result'][0]['indicators']['quote'][0]['close'];
         return end($targetArray);
+    }
+
+    public function ContactMe(Request $request)
+    {
+        $data = $request->all();
+        Mail::to('joelai1988@gmail.com')->send(new OrderShipped($data));
+        return 'success';
     }
 }

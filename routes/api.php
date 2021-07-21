@@ -20,3 +20,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('/line-bot', 'LineBotController@index');
 Route::post('/random-vocabulary', 'FunctionPages\VocabularyController@getTenWords');
+Route::post('/contact-me', 'FrontendController@ContactMe');
