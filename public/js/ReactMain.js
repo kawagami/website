@@ -36147,8 +36147,9 @@ var EmailMe = /*#__PURE__*/function (_Component) {
         id: "content",
         cols: "30",
         rows: "10",
-        onChange: this.handleInput
-      }, content)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        onChange: this.handleInput,
+        value: content
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "action"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
         onClick: this.back

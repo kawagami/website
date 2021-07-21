@@ -29,7 +29,7 @@ export default class EmailMe extends Component {
         const { type, content } = this.state
         const data = { type: type, content: content }
         Axios.post(url, data).then(
-            response => {                
+            response => {
                 this.loadingDown()
                 this.back()
             }
@@ -55,7 +55,7 @@ export default class EmailMe extends Component {
                     </label>
                     <label htmlFor="content">
                         <span>內文</span>
-                        <textarea name="content" id="content" cols="30" rows="10" onChange={this.handleInput}>{content}</textarea>
+                        <textarea name="content" id="content" cols="30" rows="10" onChange={this.handleInput} value={content}></textarea>
                     </label>
                     <div className="action">
                         <button onClick={this.back}>取消</button>
