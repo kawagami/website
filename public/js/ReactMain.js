@@ -36329,7 +36329,29 @@ var LineBot = /*#__PURE__*/function (_Component) {
   _createClass(LineBot, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UndonePage__WEBPACK_IMPORTED_MODULE_1__["default"], null);
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "line-bot"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("article", {
+        className: "map"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: "https://i.imgur.com/aa9Onpd.png",
+        alt: ""
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: "https://i.imgur.com/JY9yK6b.png",
+        alt: ""
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "content"
+      }, "\u4F7F\u7528LINE\u7684\u7D66\u4E88\u5730\u9EDE\u8CC7\u8A0A\u5F8C\u53EF\u5F97\u5230\u4E00\u500B\u53D6\u5F97\u9644\u8FD1\u6709\u4EC0\u9EBC\u5403\u7684\u5730\u9EDE\u7684\u6309\u9215")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("article", {
+        className: "stock"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: "https://i.imgur.com/2r6ii9c.png",
+        alt: ""
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: "https://i.imgur.com/4p8w7fH.png",
+        alt: ""
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "content"
+      }, "\u53EF\u4F7F\u7528\u8A2D\u5B9A\u597D\u7684\u8A5E\u8A9E\u67E5\u8A62\u76EE\u524D\u80A1\u50F9\u640D\u76CA")));
     }
   }]);
 

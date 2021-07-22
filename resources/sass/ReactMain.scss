@@ -250,30 +250,30 @@ body {
                 @include size(100%, 100%);
                 list-style: none;
                 display: grid;
-                grid-template-columns: repeat(auto-fit,minmax(500px, 1fr));
+                grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
                 // gap: 10px;
-                
+
                 @media (max-width:1500px) {
                     @include size($pageWidth, 150vh);
                 }
-                
+
                 @media (max-width:1000px) {
                     @include size($pageWidth, 300vh);
                 }
 
                 li {
-                    @include size(calc(100% - 40px), calc(100% - 40px), 0,20px);
+                    @include size(calc(100% - 40px), calc(100% - 40px), 0, 20px);
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                    
+
                     >a {
                         @include size(90%, 90%);
                         // react route 增加的一層a
                         display: flex;
                         justify-content: center;
                         align-items: center;
-                        
+
                         section.display-block {
                             @include size(100%, 100%);
                             border: 1px solid #000;
@@ -543,6 +543,41 @@ body {
                     button {
                         font-size: 28px;
                     }
+                }
+            }
+        }
+
+        .line-bot {
+            @include size($pageWidth, auto);
+            background-color: rgba(255, 255, 255, 0.5);
+
+            article.map {
+                @include size(calc(100% - 40px), calc(100% - 40px));
+                padding: 20px;
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 10px;
+
+                img {
+                    width: 100%;
+                }
+                .content{
+                    font-size: 36px;
+                }
+            }
+
+            article.stock {
+                @include size(calc(100% - 40px), calc(100% - 40px));
+                padding: 20px;
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 10px;
+
+                img {
+                    width: 100%;
+                }
+                .content{
+                    font-size: 36px;
                 }
             }
         }
