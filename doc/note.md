@@ -1,3 +1,8 @@
+- 待解決問題
+    * 寄信功能 : Gmail有過一陣子就會被擋，需要手動放行可信任裝置的問題
+        - https://stackoverflow.com/questions/33939393/failed-to-authenticate-on-smtp-server-error-using-gmail
+        - 先試試 port=587 & ENCRYPTION=tls 是否能解決需要手動放行問題
+
 - laravel
     * 環境建立
         1. 基本程式安裝
