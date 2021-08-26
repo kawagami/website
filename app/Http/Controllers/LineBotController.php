@@ -22,42 +22,42 @@ class LineBotController extends Controller
             // BOT要回覆的訊息
             $message = $this->handleMessageType($request);
             
-            // // 電腦版無法跟quick replies互動
+            // 電腦版無法跟quick replies互動
             // $message = [];
-            // $message[] = 
-            // [
-            //     "type" => "text",
-            //     "text" => "Select your favorite food category or send me your location!",
-            //     "quickReply" => [
-            //         "items" => [
-            //             [
-            //                 "type" => "action",
-            //                 "imageUrl" => "https://pht.qoo-static.com/NuyOBNU1CGmbWlUxjDZOfUMZ43qjtUro8w2FhFU6YRwAoT7rh-VdsYhuPCV_lbI-7j8=w300",
-            //                 "action" => [
-            //                     "type" => "message",
-            //                     "label" => "Sushi",
-            //                     "text" => "Sushi"
-            //                 ]
-            //             ],
-            //             [
-            //                 "type" => "action",
-            //                 "imageUrl" => "https://pht.qoo-static.com/NuyOBNU1CGmbWlUxjDZOfUMZ43qjtUro8w2FhFU6YRwAoT7rh-VdsYhuPCV_lbI-7j8=w300",
-            //                 "action" => [
-            //                     "type" => "message",
-            //                     "label" => "Tempura",
-            //                     "text" => "Tempura"
-            //                 ]
-            //             ],
-            //             [
-            //                 "type" => "action",
-            //                 "action" => [
-            //                     "type" => "location",
-            //                     "label" => "Send location"
-            //                 ]
-            //             ]
-            //         ]
-            //     ]
-            // ];
+            $message[] = 
+            [
+                "type" => "text",
+                "text" => "快速回復功能測試中\n請從下列中選擇關鍵詞",
+                "quickReply" => [
+                    "items" => [
+                        [
+                            "type" => "action",
+                            "imageUrl" => "https://pht.qoo-static.com/NuyOBNU1CGmbWlUxjDZOfUMZ43qjtUro8w2FhFU6YRwAoT7rh-VdsYhuPCV_lbI-7j8=w300",
+                            "action" => [
+                                "type" => "message",
+                                "label" => "stocks",
+                                "text" => "stocks"
+                            ]
+                        ],
+                        [
+                            "type" => "action",
+                            "imageUrl" => "https://pht.qoo-static.com/NuyOBNU1CGmbWlUxjDZOfUMZ43qjtUro8w2FhFU6YRwAoT7rh-VdsYhuPCV_lbI-7j8=w300",
+                            "action" => [
+                                "type" => "message",
+                                "label" => "Todo",
+                                "text" => "Todo"
+                            ]
+                        ],
+                        [
+                            "type" => "action",
+                            "action" => [
+                                "type" => "location",
+                                "label" => "Send location"
+                            ]
+                        ]
+                    ]
+                ]
+            ];
 
             // LINE的reply API
             $url = 'https://api.line.me/v2/bot/message/reply';
@@ -73,7 +73,7 @@ class LineBotController extends Controller
             ];
             // Http::withHeaders($header)->post($url, $data);
             $res = Http::withHeaders($header)->post($url, $data);
-            error_log($res);
+            // error_log($res);
         }
         return response('success', 200);
     }
