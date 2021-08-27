@@ -21,43 +21,43 @@ class LineBotController extends Controller
 
             // BOT要回覆的訊息
             $message = $this->handleMessageType($request);
-            
+
             // 電腦版無法跟quick replies互動
             // $message = [];
-            $message[] = 
-            [
-                "type" => "text",
-                "text" => "快速回復功能測試中\n請從下列中選擇關鍵詞",
-                "quickReply" => [
-                    "items" => [
-                        [
-                            "type" => "action",
-                            "imageUrl" => "https://pht.qoo-static.com/NuyOBNU1CGmbWlUxjDZOfUMZ43qjtUro8w2FhFU6YRwAoT7rh-VdsYhuPCV_lbI-7j8=w300",
-                            "action" => [
-                                "type" => "message",
-                                "label" => "stocks",
-                                "text" => "stocks"
-                            ]
-                        ],
-                        [
-                            "type" => "action",
-                            "imageUrl" => "https://pht.qoo-static.com/NuyOBNU1CGmbWlUxjDZOfUMZ43qjtUro8w2FhFU6YRwAoT7rh-VdsYhuPCV_lbI-7j8=w300",
-                            "action" => [
-                                "type" => "message",
-                                "label" => "Todo",
-                                "text" => "Todo"
-                            ]
-                        ],
-                        [
-                            "type" => "action",
-                            "action" => [
-                                "type" => "location",
-                                "label" => "Send location"
+            $message[] =
+                [
+                    "type" => "text",
+                    "text" => "快速回復功能測試中\n請從下列中選擇關鍵詞",
+                    "quickReply" => [
+                        "items" => [
+                            [
+                                "type" => "action",
+                                "imageUrl" => "https://pht.qoo-static.com/NuyOBNU1CGmbWlUxjDZOfUMZ43qjtUro8w2FhFU6YRwAoT7rh-VdsYhuPCV_lbI-7j8=w300",
+                                "action" => [
+                                    "type" => "message",
+                                    "label" => "Stocks",
+                                    "text" => "Stocks"
+                                ]
+                            ],
+                            [
+                                "type" => "action",
+                                "imageUrl" => "https://pht.qoo-static.com/NuyOBNU1CGmbWlUxjDZOfUMZ43qjtUro8w2FhFU6YRwAoT7rh-VdsYhuPCV_lbI-7j8=w300",
+                                "action" => [
+                                    "type" => "message",
+                                    "label" => "Percent",
+                                    "text" => "Percent"
+                                ]
+                            ],
+                            [
+                                "type" => "action",
+                                "action" => [
+                                    "type" => "location",
+                                    "label" => "Send location"
+                                ]
                             ]
                         ]
                     ]
-                ]
-            ];
+                ];
 
             // LINE的reply API
             $url = 'https://api.line.me/v2/bot/message/reply';
@@ -276,7 +276,7 @@ class LineBotController extends Controller
         $string = strtolower($string);
         // 判斷該文字在stocks資料庫中存在與否
         // !!!!!!!!!!!!!這個邏輯有同代碼多筆的問題存在!!!!待解決
-        // 目前先這樣測試功能
+        // 目前先這樣測試功能;
 
         $contents = [];
         $tradeFeeRate = 0.001425;
@@ -284,9 +284,6 @@ class LineBotController extends Controller
         $tradeDiscount = 0.28;
         if ($string === 'stocks') {
             $allStocks = Stocks::get();
-            $tradeFeeRate = 0.001425;
-            $tradeTaxRate = 0.003;
-            $tradeDiscount = 0.28;
 
             foreach ($allStocks as $stock) {
                 // 未含交易手續費
@@ -366,6 +363,108 @@ class LineBotController extends Controller
                                     [
                                         "type" => "text",
                                         "text" => "{$profit}",
+                                        "wrap" => true,
+                                        "color" => $profitColor,
+                                        "size" => "xxl",
+                                        "flex" => 5,
+                                        "align" => "end"
+                                    ]
+                                ]
+                            ]
+                        ]
+                    ];
+                $contents[] =
+                    [
+                        "type" => "separator"
+                    ];
+            }
+        } elseif ($string === 'percent') {
+            $allStocks = Stocks::get();
+
+            foreach ($allStocks as $stock) {
+                // 未含交易手續費
+                $sum = $stock->purchase_price * $stock->amount;
+                // 含交易手續費
+                $sumAfterFee = floor($sum * (1 + $tradeFeeRate * $tradeDiscount));
+                // 取得現在股價
+                $nowStockPrice = round($this->getStockPrice($stock->stock_code), 2);
+                // $nowStockPrice = 20;
+                // 計算現在市價
+                $marketValue = $stock->amount * $nowStockPrice;
+                // 含交易手續費&交易稅
+                $marketValueSoldPrice = floor($marketValue * (1 - ($tradeFeeRate * $tradeDiscount) - ($tradeTaxRate)));
+                // 與購買時的差額
+                $profit = number_format($marketValueSoldPrice - $sumAfterFee);
+                // 賺:紅色 虧:綠色
+                $profitColor = $profit >= 0 ? "#ff0000" : "#00ff00";
+
+                // $totalCost += $sumAfterFee;
+                // // 單項明細
+                // 加手續費後取得金額
+                $sumAfterFee = number_format($sumAfterFee);
+                // 持有天數
+                $obtainDays = Carbon::parse($stock->purchase_date)->diffInDays(now());
+                // 收益%數
+                str_replace(',', '', $profit);
+                str_replace(',', '', $sumAfterFee);
+                $profitPercent = (intval($profit) / intval($sumAfterFee)) * 100;
+                $profitPercent = number_format($profitPercent, 2);
+                // $test = typeOf($profit);;
+
+                $contents[] =
+                    [
+                        "type" => "text",
+                        "text" => "{$stock->stock_code}",
+                        "weight" => "bold",
+                        "size" => "3xl",
+                        "align" => "center"
+                    ];
+                $contents[] =
+                    [
+                        "type" => "box",
+                        "layout" => "vertical",
+                        "margin" => "lg",
+                        "spacing" => "sm",
+                        "contents" => [
+                            [
+                                "type" => "box",
+                                "layout" => "baseline",
+                                "spacing" => "xs",
+                                "contents" => [
+                                    [
+                                        "type" => "text",
+                                        "text" => "持有天數",
+                                        "color" => "#aaaaaa",
+                                        "size" => "sm",
+                                        "flex" => 2,
+                                        "offsetEnd" => "none"
+                                    ],
+                                    [
+                                        "type" => "text",
+                                        "text" => "{$obtainDays}",
+                                        "wrap" => true,
+                                        "color" => "#0000ff",
+                                        "size" => "xxl",
+                                        "flex" => 5,
+                                        "align" => "end"
+                                    ]
+                                ]
+                            ],
+                            [
+                                "type" => "box",
+                                "layout" => "baseline",
+                                "spacing" => "sm",
+                                "contents" => [
+                                    [
+                                        "type" => "text",
+                                        "text" => "收益%數",
+                                        "color" => "#aaaaaa",
+                                        "size" => "sm",
+                                        "flex" => 2
+                                    ],
+                                    [
+                                        "type" => "text",
+                                        "text" => "{$profitPercent} %",
                                         "wrap" => true,
                                         "color" => $profitColor,
                                         "size" => "xxl",
