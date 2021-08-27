@@ -27,7 +27,7 @@ class LineBotController extends Controller
             $message[] =
                 [
                     "type" => "text",
-                    "text" => "快速回復功能測試中\n請從下列中選擇關鍵詞",
+                    "text" => "請從下列中選擇關鍵詞",
                     "quickReply" => [
                         "items" => [
                             [
@@ -279,302 +279,327 @@ class LineBotController extends Controller
         // 目前先這樣測試功能;
 
         $contents = [];
-        $tradeFeeRate = 0.001425;
-        $tradeTaxRate = 0.003;
-        $tradeDiscount = 0.28;
-        if ($string === 'stocks') {
-            $allStocks = Stocks::get();
+        $this->tradeFeeRate = 0.001425;
+        $this->tradeTaxRate = 0.003;
+        $this->tradeDiscount = 0.28;
 
-            foreach ($allStocks as $stock) {
-                // 未含交易手續費
-                $sum = $stock->purchase_price * $stock->amount;
-                // 含交易手續費
-                $sumAfterFee = floor($sum * (1 + $tradeFeeRate * $tradeDiscount));
-                // 取得現在股價
-                $nowStockPrice = round($this->getStockPrice($stock->stock_code), 2);
-                // $nowStockPrice = 20;
-                // 計算現在市價
-                $marketValue = $stock->amount * $nowStockPrice;
-                // 含交易手續費&交易稅
-                $marketValueSoldPrice = floor($marketValue * (1 - ($tradeFeeRate * $tradeDiscount) - ($tradeTaxRate)));
-                // 與購買時的差額
-                $profit = number_format($marketValueSoldPrice - $sumAfterFee);
-                // 賺:紅色 虧:綠色
-                $profitColor = $profit >= 0 ? "#ff0000" : "#00ff00";
+        switch ($string) {
+            case 'stocks':
+                $contents = $this->handleStocks($contents);
+                break;
+            case 'percent':
+                $contents = $this->handlePercent($contents);
+                break;
+            default:
+                $contents = $this->handleDefault($contents, $string);
+                break;
+        }
 
-                // $totalCost += $sumAfterFee;
-                // // 單項明細
-                // 加手續費後取得金額
-                $sumAfterFee = number_format($sumAfterFee);
-                // 持有天數
-                $obtainDays = Carbon::parse($stock->purchase_date)->diffInDays(now());
+        return $contents;
+    }
 
-                $contents[] =
-                    [
-                        "type" => "text",
-                        "text" => "{$stock->stock_code}",
-                        "weight" => "bold",
-                        "size" => "3xl",
-                        "align" => "center"
-                    ];
-                $contents[] =
-                    [
-                        "type" => "box",
-                        "layout" => "vertical",
-                        "margin" => "lg",
-                        "spacing" => "sm",
-                        "contents" => [
-                            [
-                                "type" => "box",
-                                "layout" => "baseline",
-                                "spacing" => "xs",
-                                "contents" => [
-                                    [
-                                        "type" => "text",
-                                        "text" => "持有天數",
-                                        "color" => "#aaaaaa",
-                                        "size" => "sm",
-                                        "flex" => 2,
-                                        "offsetEnd" => "none"
-                                    ],
-                                    [
-                                        "type" => "text",
-                                        "text" => "{$obtainDays}",
-                                        "wrap" => true,
-                                        "color" => "#0000ff",
-                                        "size" => "xxl",
-                                        "flex" => 5,
-                                        "align" => "end"
-                                    ]
+    private function handleStocks($contents)
+    {
+        $allStocks = Stocks::get();
+
+        foreach ($allStocks as $stock) {
+            // 未含交易手續費
+            $sum = $stock->purchase_price * $stock->amount;
+            // 含交易手續費
+            $sumAfterFee = floor($sum * (1 + $this->tradeFeeRate * $this->tradeDiscount));
+            // 取得現在股價
+            $nowStockPrice = round($this->getStockPrice($stock->stock_code), 2);
+            // $nowStockPrice = 20;
+            // 計算現在市價
+            $marketValue = $stock->amount * $nowStockPrice;
+            // 含交易手續費&交易稅
+            $marketValueSoldPrice = floor($marketValue * (1 - ($this->tradeFeeRate * $this->tradeDiscount) - ($this->tradeTaxRate)));
+            // 與購買時的差額
+            $profit = number_format($marketValueSoldPrice - $sumAfterFee);
+            // 賺:紅色 虧:綠色
+            $profitColor = $profit >= 0 ? "#ff0000" : "#00ff00";
+
+            // $totalCost += $sumAfterFee;
+            // // 單項明細
+            // 加手續費後取得金額
+            $sumAfterFee = number_format($sumAfterFee);
+            // 持有天數
+            $obtainDays = Carbon::parse($stock->purchase_date)->diffInDays(now());
+
+            $contents[] =
+                [
+                    "type" => "text",
+                    "text" => "{$stock->stock_code}",
+                    "weight" => "bold",
+                    "size" => "3xl",
+                    "align" => "center"
+                ];
+            $contents[] =
+                [
+                    "type" => "box",
+                    "layout" => "vertical",
+                    "margin" => "lg",
+                    "spacing" => "sm",
+                    "contents" => [
+                        [
+                            "type" => "box",
+                            "layout" => "baseline",
+                            "spacing" => "xs",
+                            "contents" => [
+                                [
+                                    "type" => "text",
+                                    "text" => "持有天數",
+                                    "color" => "#aaaaaa",
+                                    "size" => "sm",
+                                    "flex" => 2,
+                                    "offsetEnd" => "none"
+                                ],
+                                [
+                                    "type" => "text",
+                                    "text" => "{$obtainDays}",
+                                    "wrap" => true,
+                                    "color" => "#0000ff",
+                                    "size" => "xxl",
+                                    "flex" => 5,
+                                    "align" => "end"
                                 ]
-                            ],
-                            [
-                                "type" => "box",
-                                "layout" => "baseline",
-                                "spacing" => "sm",
-                                "contents" => [
-                                    [
-                                        "type" => "text",
-                                        "text" => "現時盈虧",
-                                        "color" => "#aaaaaa",
-                                        "size" => "sm",
-                                        "flex" => 2
-                                    ],
-                                    [
-                                        "type" => "text",
-                                        "text" => "{$profit}",
-                                        "wrap" => true,
-                                        "color" => $profitColor,
-                                        "size" => "xxl",
-                                        "flex" => 5,
-                                        "align" => "end"
-                                    ]
+                            ]
+                        ],
+                        [
+                            "type" => "box",
+                            "layout" => "baseline",
+                            "spacing" => "sm",
+                            "contents" => [
+                                [
+                                    "type" => "text",
+                                    "text" => "現時盈虧",
+                                    "color" => "#aaaaaa",
+                                    "size" => "sm",
+                                    "flex" => 2
+                                ],
+                                [
+                                    "type" => "text",
+                                    "text" => "{$profit}",
+                                    "wrap" => true,
+                                    "color" => $profitColor,
+                                    "size" => "xxl",
+                                    "flex" => 5,
+                                    "align" => "end"
                                 ]
                             ]
                         ]
-                    ];
-                $contents[] =
-                    [
-                        "type" => "separator"
-                    ];
-            }
-        } elseif ($string === 'percent') {
-            $allStocks = Stocks::get();
+                    ]
+                ];
+            $contents[] =
+                [
+                    "type" => "separator"
+                ];
+        }
 
-            foreach ($allStocks as $stock) {
-                // 未含交易手續費
-                $sum = $stock->purchase_price * $stock->amount;
-                // 含交易手續費
-                $sumAfterFee = floor($sum * (1 + $tradeFeeRate * $tradeDiscount));
-                // 取得現在股價
-                $nowStockPrice = round($this->getStockPrice($stock->stock_code), 2);
-                // $nowStockPrice = 20;
-                // 計算現在市價
-                $marketValue = $stock->amount * $nowStockPrice;
-                // 含交易手續費&交易稅
-                $marketValueSoldPrice = floor($marketValue * (1 - ($tradeFeeRate * $tradeDiscount) - ($tradeTaxRate)));
-                // 與購買時的差額
-                $profit = number_format($marketValueSoldPrice - $sumAfterFee);
-                // 賺:紅色 虧:綠色
-                $profitColor = $profit >= 0 ? "#ff0000" : "#00ff00";
+        return $contents;
+    }
 
-                // $totalCost += $sumAfterFee;
-                // // 單項明細
-                // 加手續費後取得金額
-                $sumAfterFee = number_format($sumAfterFee);
-                // 持有天數
-                $obtainDays = Carbon::parse($stock->purchase_date)->diffInDays(now());
-                // 收益%數
-                str_replace(',', '', $profit);
-                str_replace(',', '', $sumAfterFee);
-                $profitPercent = (intval($profit) / intval($sumAfterFee)) * 100;
-                $profitPercent = number_format($profitPercent, 2);
-                // $test = typeOf($profit);;
+    private function handlePercent($contents)
+    {
+        $allStocks = Stocks::get();
 
-                $contents[] =
-                    [
-                        "type" => "text",
-                        "text" => "{$stock->stock_code}",
-                        "weight" => "bold",
-                        "size" => "3xl",
-                        "align" => "center"
-                    ];
-                $contents[] =
-                    [
-                        "type" => "box",
-                        "layout" => "vertical",
-                        "margin" => "lg",
-                        "spacing" => "sm",
-                        "contents" => [
-                            [
-                                "type" => "box",
-                                "layout" => "baseline",
-                                "spacing" => "xs",
-                                "contents" => [
-                                    [
-                                        "type" => "text",
-                                        "text" => "持有天數",
-                                        "color" => "#aaaaaa",
-                                        "size" => "sm",
-                                        "flex" => 2,
-                                        "offsetEnd" => "none"
-                                    ],
-                                    [
-                                        "type" => "text",
-                                        "text" => "{$obtainDays}",
-                                        "wrap" => true,
-                                        "color" => "#0000ff",
-                                        "size" => "xxl",
-                                        "flex" => 5,
-                                        "align" => "end"
-                                    ]
+        foreach ($allStocks as $stock) {
+            // 未含交易手續費
+            $sum = $stock->purchase_price * $stock->amount;
+            // 含交易手續費
+            $sumAfterFee = floor($sum * (1 + $this->tradeFeeRate * $this->tradeDiscount));
+            // 取得現在股價
+            $nowStockPrice = round($this->getStockPrice($stock->stock_code), 2);
+            // $nowStockPrice = 20;
+            // 計算現在市價
+            $marketValue = $stock->amount * $nowStockPrice;
+            // 含交易手續費&交易稅
+            $marketValueSoldPrice = floor($marketValue * (1 - ($this->tradeFeeRate * $this->tradeDiscount) - ($this->tradeTaxRate)));
+            // 與購買時的差額
+            $profit = number_format($marketValueSoldPrice - $sumAfterFee);
+            // 賺:紅色 虧:綠色
+            $profitColor = $profit >= 0 ? "#ff0000" : "#00ff00";
+
+            // $totalCost += $sumAfterFee;
+            // // 單項明細
+            // 加手續費後取得金額
+            $sumAfterFee = number_format($sumAfterFee);
+            // 持有天數
+            $obtainDays = Carbon::parse($stock->purchase_date)->diffInDays(now());
+            // 收益%數
+            str_replace(',', '', $profit);
+            str_replace(',', '', $sumAfterFee);
+            $profitPercent = (intval($profit) / intval($sumAfterFee)) * 100;
+            $profitPercent = number_format($profitPercent, 2);
+
+            $contents[] =
+                [
+                    "type" => "text",
+                    "text" => "{$stock->stock_code}",
+                    "weight" => "bold",
+                    "size" => "3xl",
+                    "align" => "center"
+                ];
+            $contents[] =
+                [
+                    "type" => "box",
+                    "layout" => "vertical",
+                    "margin" => "lg",
+                    "spacing" => "sm",
+                    "contents" => [
+                        [
+                            "type" => "box",
+                            "layout" => "baseline",
+                            "spacing" => "xs",
+                            "contents" => [
+                                [
+                                    "type" => "text",
+                                    "text" => "持有天數",
+                                    "color" => "#aaaaaa",
+                                    "size" => "sm",
+                                    "flex" => 2,
+                                    "offsetEnd" => "none"
+                                ],
+                                [
+                                    "type" => "text",
+                                    "text" => "{$obtainDays}",
+                                    "wrap" => true,
+                                    "color" => "#0000ff",
+                                    "size" => "xxl",
+                                    "flex" => 5,
+                                    "align" => "end"
                                 ]
-                            ],
-                            [
-                                "type" => "box",
-                                "layout" => "baseline",
-                                "spacing" => "sm",
-                                "contents" => [
-                                    [
-                                        "type" => "text",
-                                        "text" => "收益%數",
-                                        "color" => "#aaaaaa",
-                                        "size" => "sm",
-                                        "flex" => 2
-                                    ],
-                                    [
-                                        "type" => "text",
-                                        "text" => "{$profitPercent} %",
-                                        "wrap" => true,
-                                        "color" => $profitColor,
-                                        "size" => "xxl",
-                                        "flex" => 5,
-                                        "align" => "end"
-                                    ]
+                            ]
+                        ],
+                        [
+                            "type" => "box",
+                            "layout" => "baseline",
+                            "spacing" => "sm",
+                            "contents" => [
+                                [
+                                    "type" => "text",
+                                    "text" => "收益%數",
+                                    "color" => "#aaaaaa",
+                                    "size" => "sm",
+                                    "flex" => 2
+                                ],
+                                [
+                                    "type" => "text",
+                                    "text" => "{$profitPercent} %",
+                                    "wrap" => true,
+                                    "color" => $profitColor,
+                                    "size" => "xxl",
+                                    "flex" => 5,
+                                    "align" => "end"
                                 ]
                             ]
                         ]
-                    ];
-                $contents[] =
-                    [
-                        "type" => "separator"
-                    ];
-            }
+                    ]
+                ];
+            $contents[] =
+                [
+                    "type" => "separator"
+                ];
+        }
+
+        return $contents;
+    }
+
+    private function handleDefault($contents, $string)
+    {
+        $stockData = Stocks::where('stock_code', '=', $string)->first();
+        if ($stockData !== null) {
+            // 未含交易手續費
+            $sum = $stockData->purchase_price * $stockData->amount;
+            // 含交易手續費
+            $sumAfterFee = floor($sum * (1 + $this->tradeFeeRate * $this->tradeDiscount));
+            // 取得現在股價
+            $nowStockPrice = round($this->getStockPrice($stockData->stock_code), 2);
+            // $nowStockPrice = 20;
+            // 計算現在市價
+            $marketValue = $stockData->amount * $nowStockPrice;
+            // 含交易手續費&交易稅
+            $marketValueSoldPrice = floor($marketValue * (1 - ($this->tradeFeeRate * $this->tradeDiscount) - ($this->tradeTaxRate)));
+            // 與購買時的差額
+            $profit = number_format($marketValueSoldPrice - $sumAfterFee);
+            // 賺:紅色 虧:綠色
+            $profitColor = $profit >= 0 ? "#ff0000" : "#00ff00";
+            // 持有天數
+            $obtainDays = Carbon::parse($stockData->purchase_date)->diffInDays(now());
+
+            $contents[] =
+                [
+                    "type" => "text",
+                    "text" => "{$stockData->stock_code}",
+                    "weight" => "bold",
+                    "size" => "3xl",
+                    "align" => "center"
+                ];
+            $contents[] =
+                [
+                    "type" => "box",
+                    "layout" => "vertical",
+                    "margin" => "lg",
+                    "spacing" => "sm",
+                    "contents" => [
+                        [
+                            "type" => "box",
+                            "layout" => "baseline",
+                            "spacing" => "xs",
+                            "contents" => [
+                                [
+                                    "type" => "text",
+                                    "text" => "持有天數",
+                                    "color" => "#aaaaaa",
+                                    "size" => "sm",
+                                    "flex" => 2,
+                                    "offsetEnd" => "none"
+                                ],
+                                [
+                                    "type" => "text",
+                                    "text" => "{$obtainDays}",
+                                    "wrap" => true,
+                                    "color" => "#0000ff",
+                                    "size" => "xxl",
+                                    "flex" => 5,
+                                    "align" => "end"
+                                ]
+                            ]
+                        ],
+                        [
+                            "type" => "box",
+                            "layout" => "baseline",
+                            "spacing" => "sm",
+                            "contents" => [
+                                [
+                                    "type" => "text",
+                                    "text" => "現時盈虧",
+                                    "color" => "#aaaaaa",
+                                    "size" => "sm",
+                                    "flex" => 2
+                                ],
+                                [
+                                    "type" => "text",
+                                    "text" => "{$profit}",
+                                    "wrap" => true,
+                                    "color" => $profitColor,
+                                    "size" => "xxl",
+                                    "flex" => 5,
+                                    "align" => "end"
+                                ]
+                            ]
+                        ]
+                    ]
+                ];
         } else {
-            $stockData = Stocks::where('stock_code', '=', $string)->first();
-            if ($stockData !== null) {
-                // 未含交易手續費
-                $sum = $stockData->purchase_price * $stockData->amount;
-                // 含交易手續費
-                $sumAfterFee = floor($sum * (1 + $tradeFeeRate * $tradeDiscount));
-                // 取得現在股價
-                $nowStockPrice = round($this->getStockPrice($stockData->stock_code), 2);
-                // $nowStockPrice = 20;
-                // 計算現在市價
-                $marketValue = $stockData->amount * $nowStockPrice;
-                // 含交易手續費&交易稅
-                $marketValueSoldPrice = floor($marketValue * (1 - ($tradeFeeRate * $tradeDiscount) - ($tradeTaxRate)));
-                // 與購買時的差額
-                $profit = number_format($marketValueSoldPrice - $sumAfterFee);
-                // 賺:紅色 虧:綠色
-                $profitColor = $profit >= 0 ? "#ff0000" : "#00ff00";
-                // 持有天數
-                $obtainDays = Carbon::parse($stockData->purchase_date)->diffInDays(now());
-
-                $contents[] =
-                    [
-                        "type" => "text",
-                        "text" => "{$stockData->stock_code}",
-                        "weight" => "bold",
-                        "size" => "3xl",
-                        "align" => "center"
-                    ];
-                $contents[] =
-                    [
-                        "type" => "box",
-                        "layout" => "vertical",
-                        "margin" => "lg",
-                        "spacing" => "sm",
-                        "contents" => [
-                            [
-                                "type" => "box",
-                                "layout" => "baseline",
-                                "spacing" => "xs",
-                                "contents" => [
-                                    [
-                                        "type" => "text",
-                                        "text" => "持有天數",
-                                        "color" => "#aaaaaa",
-                                        "size" => "sm",
-                                        "flex" => 2,
-                                        "offsetEnd" => "none"
-                                    ],
-                                    [
-                                        "type" => "text",
-                                        "text" => "{$obtainDays}",
-                                        "wrap" => true,
-                                        "color" => "#0000ff",
-                                        "size" => "xxl",
-                                        "flex" => 5,
-                                        "align" => "end"
-                                    ]
-                                ]
-                            ],
-                            [
-                                "type" => "box",
-                                "layout" => "baseline",
-                                "spacing" => "sm",
-                                "contents" => [
-                                    [
-                                        "type" => "text",
-                                        "text" => "現時盈虧",
-                                        "color" => "#aaaaaa",
-                                        "size" => "sm",
-                                        "flex" => 2
-                                    ],
-                                    [
-                                        "type" => "text",
-                                        "text" => "{$profit}",
-                                        "wrap" => true,
-                                        "color" => $profitColor,
-                                        "size" => "xxl",
-                                        "flex" => 5,
-                                        "align" => "end"
-                                    ]
-                                ]
-                            ]
-                        ]
-                    ];
-            } else {
-                $contents[] =
-                    [
-                        "type" => "text",
-                        "text" => "無資料",
-                        "weight" => "bold",
-                        "size" => "3xl",
-                        "align" => "center"
-                    ];
-            }
+            $contents[] =
+                [
+                    "type" => "text",
+                    "text" => "無資料",
+                    "weight" => "bold",
+                    "size" => "3xl",
+                    "align" => "center"
+                ];
         }
 
         return $contents;
