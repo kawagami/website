@@ -11,6 +11,8 @@ class OrderShipped extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $frontendForm;
+
     /**
      * Create a new message instance.
      *
