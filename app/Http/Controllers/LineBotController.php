@@ -300,7 +300,9 @@ class LineBotController extends Controller
 
     private function handleStocks($contents)
     {
-        $allStocks = Stocks::get();
+        // 目前還沒想到line bot request這個controller的時候怎麼辨識是哪個user
+        // 先綁定特定會員
+        $allStocks = Stocks::where('user_id', 1)->get();
 
         foreach ($allStocks as $stock) {
             // 未含交易手續費
