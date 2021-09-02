@@ -92,7 +92,7 @@ class StocksController extends Controller
             return 'No permission';
         }
 
-        Stocks::destroy($id);
+        $stocks->delete();
         return 'success';
     }
 }
