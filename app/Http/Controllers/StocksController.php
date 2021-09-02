@@ -86,6 +86,12 @@ class StocksController extends Controller
      */
     public function destroy($id)
     {
+        $stocks = Stocks::find($id);
+
+        if ($stocks->user_id !== auth()->id()) {
+            return 'No permission';
+        }
+
         Stocks::destroy($id);
         return 'success';
     }

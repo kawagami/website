@@ -7,6 +7,8 @@ function handleStockDel() {
             response => {
                 if (response.data == 'success') {
                     rootNode.remove()
+                } else {
+                    alert('No permission!');
                 }
             }
         )
