@@ -14,7 +14,8 @@ class StocksController extends Controller
      */
     public function index()
     {
-        $data = Stocks::get();
+        $userId = auth()->id();
+        $data = Stocks::where('user_id', $userId)->with('user')->get();
         return view('backend.stocks.list', compact('data'));
     }
 
@@ -36,7 +37,10 @@ class StocksController extends Controller
      */
     public function store(Request $request)
     {
-        Stocks::create($request->all());
+        $formInput = $request->all();
+        $formInput['user_id'] = auth()->id();
+        $formDataAddUserId = $formInput;
+        Stocks::create($formDataAddUserId);
         return redirect()->route('stocks.index');
     }
 
