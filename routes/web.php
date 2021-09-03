@@ -26,3 +26,8 @@ Route::prefix('home')->middleware('auth')->group(function () {
 });
 
 Route::view('/{path?}', 'frontend.index');
+
+Auth::routes(['verify' => true]);
+Route::get('profile', function () {
+    return "my email";
+})->middleware('verified');
