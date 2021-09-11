@@ -16,7 +16,7 @@ class EchoTest
     public function handle($request, Closure $next)
     {
         // echo auth()->id();
-        // abort_if(true, 403, '訊息');
+        abort_if(auth()->id() !== 1, 403, '無權限');
         // if (auth()->id() !== 1) {
         //     echo '不是1';
         // }
