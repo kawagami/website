@@ -21,8 +21,10 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::prefix('home')->middleware('auth')->group(function () {
+Route::prefix('home')->middleware(['auth', 'echo.test'])->group(function () {
     Route::resources(['stocks' => 'StocksController']);
+
+    Route::resources(['failedemails' => 'manage\FailedEmailsController']);
 });
 
 Route::view('/{path?}', 'frontend.index');
