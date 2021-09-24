@@ -10942,3 +10942,11 @@ a.text-dark:focus {
   }
 }
 
+td {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  display: inline-block;
+  width: 300px;
+}
+
