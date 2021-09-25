@@ -6,8 +6,9 @@ use App\Stocks;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use App\Http\Controllers\Abstracts\Stocks as AbsStocks;
 
-class LineBotController extends Controller
+class LineBotController extends AbsStocks
 {
     /**
      * Display a listing of the resource.
@@ -71,7 +72,7 @@ class LineBotController extends Controller
                 'replyToken' => $replyToken,
                 'messages' => $message,
             ];
-            // Http::withHeaders($header)->post($url, $data);
+            // error_log(json_encode($data));
             $res = Http::withHeaders($header)->post($url, $data);
             // error_log($res);
         }
@@ -87,7 +88,7 @@ class LineBotController extends Controller
 
     public function handleMessageType($request)
     {
-        switch ($request['events'][0]['message']['type']) {
+        switch ($this->inputType) {
             case 'text':
                 // 取得使用者對BOT輸入的文字
                 $inputText = $request['events'][0]['message']['text'];
@@ -396,8 +397,10 @@ class LineBotController extends Controller
                 [
                     "type" => "separator"
                 ];
+            // error_log(json_encode($contents));
         }
 
+        // error_log('for outside');
         return $contents;
     }
 

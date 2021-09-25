@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Stocks;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\StockProcessRequest;
 
 class StocksController extends Controller
 {
@@ -35,9 +37,9 @@ class StocksController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StockProcessRequest $request)
     {
-        $formInput = $request->all();
+        $formInput = $request->validated();
         $formInput['user_id'] = auth()->id();
         $formDataAddUserId = $formInput;
         Stocks::create($formDataAddUserId);

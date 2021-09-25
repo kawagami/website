@@ -4,5 +4,12 @@
 // Variables
 @import 'variables';
 
+// Mixins
+@import 'mixins';
+
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+td {
+    @include seperateLine(300px);
+}
