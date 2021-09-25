@@ -25,19 +25,19 @@
             <tr>
                 <th scope="row">{{$failedmail->id}}</th>
                 <td>
-                    <div>{{$failedmail->connection}}</div>
+                    {{$failedmail->connection}}
                 </td>
                 <td>
-                    <div>{{$failedmail->queue}}</div>
+                    {{$failedmail->queue}}
                 </td>
                 <td>
-                    <div>{{$failedmail->payload}}</div>
+                    {{$failedmail->payload}}
                 </td>
                 <td>
-                    <div>{{$failedmail->exception}}</div>
+                    {{$failedmail->exception}}
                 </td>
                 <td>
-                    <div>{{$failedmail->failed_at}}</div>
+                    {{$failedmail->failed_at}}
                 </td>
                 <td><button class="btn btn-danger stock-del" data-id="{{$failedmail->id}}">刪除</button></td>
             </tr>
