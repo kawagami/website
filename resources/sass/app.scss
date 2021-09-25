@@ -11,5 +11,7 @@
 @import '~bootstrap/scss/bootstrap';
 
 td {
-    @include seperateLine(300px);
+    div {
+        @include seperateLine(100%);
+    }
 }

@@ -24,11 +24,21 @@
             @foreach ($data as $failedmail)
             <tr>
                 <th scope="row">{{$failedmail->id}}</th>
-                <td>{{$failedmail->connection}}</td>
-                <td>{{$failedmail->queue}}</td>
-                <td>{{$failedmail->payload}}</td>
-                <td>{{$failedmail->exception}}</td>
-                <td>{{$failedmail->failed_at}}</td>
+                <td>
+                    <div>{{$failedmail->connection}}</div>
+                </td>
+                <td>
+                    <div>{{$failedmail->queue}}</div>
+                </td>
+                <td>
+                    <div>{{$failedmail->payload}}</div>
+                </td>
+                <td>
+                    <div>{{$failedmail->exception}}</div>
+                </td>
+                <td>
+                    <div>{{$failedmail->failed_at}}</div>
+                </td>
                 <td><button class="btn btn-danger stock-del" data-id="{{$failedmail->id}}">刪除</button></td>
             </tr>
             @endforeach
