@@ -3,23 +3,23 @@
 namespace App\Http\Controllers\Abstracts;
 
 use App\Stocks as StocksModel;
-use Carbon\Carbon;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Http;
-// use Illuminate\Http\Request;
+use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 abstract class Stocks extends Controller
 {
-    protected $rawRequest; // 原始request 資料
-    protected $inputType;  // 訊息的類型
-    protected $replyToken; // API 回覆用token
-    protected $inputText;  // 訊息的內文
-    protected $url;  // 回覆用URL
-    protected $header;  // 回覆用header
+    protected $rawRequest = null;  // 原始request 資料
+    protected $inputType  = null;  // 訊息的類型
+    protected $replyToken = null;  // API 回覆用token
+    protected $inputText  = null;  // 訊息的內文
+    protected $url        = null;  // 回覆用URL
+    protected $header     = null;  // 回覆用header
 
-    public function __construct()
+    public function __construct(Request $request)
     {
-        $this->rawRequest = request()->all();
+        $this->rawRequest = $request->all();
 
         $this->handelInput($this->rawRequest);
     }
@@ -39,7 +39,172 @@ abstract class Stocks extends Controller
         }
     }
 
-    public function handleMessageText($string)
+    protected function handleMessageType($request)
+    {
+        switch ($this->inputType) {
+            case 'text':
+                $contents = $this->handleMessageText($this->inputText);
+                break;
+
+            case 'sticker':
+                $contents[] =
+                    [
+                        "type"   => "text",
+                        "text"   => "sticker",
+                        "weight" => "bold",
+                        "size"   => "3xl",
+                        "align"  => "center"
+                    ];
+                break;
+
+            case 'image':
+                $contents[] =
+                    [
+                        "type"   => "text",
+                        "text"   => "image",
+                        "weight" => "bold",
+                        "size"   => "3xl",
+                        "align"  => "center"
+                    ];
+                break;
+
+            case 'video':
+                $contents[] =
+                    [
+                        "type"   => "text",
+                        "text"   => "video",
+                        "weight" => "bold",
+                        "size"   => "3xl",
+                        "align"  => "center"
+                    ];
+                break;
+
+            case 'audio':
+                $contents[] =
+                    [
+                        "type"   => "text",
+                        "text"   => "audio",
+                        "weight" => "bold",
+                        "size"   => "3xl",
+                        "align"  => "center"
+                    ];
+                break;
+
+            case 'location':
+                $latitude   = $request['events'][0]['message']['latitude'];
+                $longitude  = $request['events'][0]['message']['longitude'];
+                $zoomInRate = 17;
+                $message    = "https://www.google.com/maps/search/food/@{$latitude},{$longitude},{$zoomInRate}z";
+                $contents[]           =
+                    [
+                        "type"   => "button",
+                        "action" => [
+                            "type"  => "uri",
+                            "label" => "按鈕",
+                            "uri"   => $message
+                        ],
+                        "style" => "primary"
+                    ];
+                break;
+
+            case 'imagemap':
+                $contents[] =
+                    [
+                        "type"   => "text",
+                        "text"   => "imagemap",
+                        "weight" => "bold",
+                        "size"   => "3xl",
+                        "align"  => "center"
+                    ];
+                break;
+
+            case 'template':
+                $contents[] =
+                    [
+                        "type"   => "text",
+                        "text"   => "template",
+                        "weight" => "bold",
+                        "size"   => "3xl",
+                        "align"  => "center"
+                    ];
+                break;
+
+            case 'flex':
+                $contents[] =
+                    [
+                        "type"   => "text",
+                        "text"   => "flex",
+                        "weight" => "bold",
+                        "size"   => "3xl",
+                        "align"  => "center"
+                    ];
+                break;
+
+            default:
+                $contents[] =
+                    [
+                        "type"   => "text",
+                        "text"   => "none",
+                        "weight" => "bold",
+                        "size"   => "3xl",
+                        "align"  => "center"
+                    ];
+                break;
+        }
+
+        $returnMessage = [
+            [
+                "type"     => "flex",
+                "altText"  => "This is a Flex Message",
+                "contents" => [
+                    "type" => "bubble",
+                    "body" => [
+                        "type"            => "box",
+                        "layout"          => "vertical",
+                        "contents"        => $contents,
+                        "backgroundColor" => "#ffffaa"
+                    ]
+                ]
+            ],
+            [ // quick replies 電腦版無法跟quick replies互動
+                "type"       => "text",
+                "text"       => "請從下列中選擇關鍵詞",
+                "quickReply" => [
+                    "items" => [
+                        [
+                            "type"     => "action",
+                            "imageUrl" => "https://pht.qoo-static.com/NuyOBNU1CGmbWlUxjDZOfUMZ43qjtUro8w2FhFU6YRwAoT7rh-VdsYhuPCV_lbI-7j8=w300",
+                            "action"   => [
+                                "type"  => "message",
+                                "label" => "Stocks",
+                                "text"  => "Stocks"
+                            ]
+                        ],
+                        [
+                            "type"     => "action",
+                            "imageUrl" => "https://pht.qoo-static.com/NuyOBNU1CGmbWlUxjDZOfUMZ43qjtUro8w2FhFU6YRwAoT7rh-VdsYhuPCV_lbI-7j8=w300",
+                            "action"   => [
+                                "type"  => "message",
+                                "label" => "Percent",
+                                "text"  => "Percent"
+                            ]
+                        ],
+                        [
+                            "type"   => "action",
+                            "action" => [
+                                "type"  => "location",
+                                "label" => "Send location"
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ];
+
+        return $returnMessage;
+    }
+
+    private function handleMessageText($string)
     {
         // 在此METHOD處理文字訊息
 
@@ -62,6 +227,7 @@ abstract class Stocks extends Controller
                 $contents = $this->handlePercent($contents);
                 break;
             default:
+                // error_log('here');
                 $contents = $this->handleDefault($contents, $string);
                 break;
         }
@@ -167,24 +333,13 @@ abstract class Stocks extends Controller
         $allStocks = StocksModel::get();
 
         foreach ($allStocks as $stock) {
-            // 未含交易手續費
-            $sum = $stock->purchase_price * $stock->amount;
-            // 含交易手續費
-            $sumAfterFee = floor($sum * (1 + $this->tradeFeeRate * $this->tradeDiscount));
-            // 取得現在股價
-            $nowStockPrice = round($this->getStockPrice($stock->stock_code), 2);
-            // $nowStockPrice = 20;
-            // 計算現在市價
-            $marketValue = $stock->amount * $nowStockPrice;
-            // 含交易手續費&交易稅
-            $marketValueSoldPrice = floor($marketValue * (1 - ($this->tradeFeeRate * $this->tradeDiscount) - ($this->tradeTaxRate)));
-            // 與購買時的差額
-            $profit = number_format($marketValueSoldPrice - $sumAfterFee);
-            // 賺:紅色 虧:綠色
-            $profitColor = $profit >= 0 ? "#ff0000" : "#00ff00";
-
-            // $totalCost += $sumAfterFee;
-            // // 單項明細
+            $sum                  = $stock->purchase_price * $stock->amount;                                                           // 未含交易手續費
+            $sumAfterFee          = floor($sum * (1 + $this->tradeFeeRate * $this->tradeDiscount));                                    // 含交易手續費
+            $nowStockPrice        = round($this->getStockPrice($stock->stock_code), 2);                                                // 取得現在股價
+            $marketValue          = $stock->amount * $nowStockPrice;                                                                   // 計算現在市價
+            $marketValueSoldPrice = floor($marketValue * (1 - ($this->tradeFeeRate * $this->tradeDiscount) - ($this->tradeTaxRate)));  // 含交易手續費&交易稅
+            $profit               = number_format($marketValueSoldPrice - $sumAfterFee);                                               // 與購買時的差額
+            $profitColor          = $profit >= 0 ? "#ff0000" : "#00ff00";                                                              // 賺:紅色 虧:綠色
             // 加手續費後取得金額
             $sumAfterFee = number_format($sumAfterFee);
             // 持有天數
@@ -272,23 +427,14 @@ abstract class Stocks extends Controller
     {
         $stockData = StocksModel::where('stock_code', '=', $string)->first();
         if ($stockData !== null) {
-            // 未含交易手續費
-            $sum = $stockData->purchase_price * $stockData->amount;
-            // 含交易手續費
-            $sumAfterFee = floor($sum * (1 + $this->tradeFeeRate * $this->tradeDiscount));
-            // 取得現在股價
-            $nowStockPrice = round($this->getStockPrice($stockData->stock_code), 2);
-            // $nowStockPrice = 20;
-            // 計算現在市價
-            $marketValue = $stockData->amount * $nowStockPrice;
-            // 含交易手續費&交易稅
-            $marketValueSoldPrice = floor($marketValue * (1 - ($this->tradeFeeRate * $this->tradeDiscount) - ($this->tradeTaxRate)));
-            // 與購買時的差額
-            $profit = number_format($marketValueSoldPrice - $sumAfterFee);
-            // 賺:紅色 虧:綠色
-            $profitColor = $profit >= 0 ? "#ff0000" : "#00ff00";
-            // 持有天數
-            $obtainDays = Carbon::parse($stockData->purchase_date)->diffInDays(now());
+            $sum                  = $stockData->purchase_price * $stockData->amount;                                                   // 未含交易手續費
+            $sumAfterFee          = floor($sum * (1 + $this->tradeFeeRate * $this->tradeDiscount));                                    // 含交易手續費
+            $nowStockPrice        = round($this->getStockPrice($stockData->stock_code), 2);                                            // 取得現在股價
+            $marketValue          = $stockData->amount * $nowStockPrice;                                                               // 計算現在市價
+            $marketValueSoldPrice = floor($marketValue * (1 - ($this->tradeFeeRate * $this->tradeDiscount) - ($this->tradeTaxRate)));  // 含交易手續費&交易稅
+            $profit               = number_format($marketValueSoldPrice - $sumAfterFee);                                               // 與購買時的差額
+            $profitColor          = $profit >= 0 ? "#ff0000" : "#00ff00";                                                              //  賺:紅色 虧:綠色
+            $obtainDays           = Carbon::parse($stockData->purchase_date)->diffInDays(now());                                       // 持有天數
 
             $contents[] =
                 [
@@ -381,38 +527,14 @@ abstract class Stocks extends Controller
             4 => 'Thursday',
             5 => 'Friday',
             6 => 'Saturday',
-            // 0 => '星期日',
-            // 1 => '星期一',
-            // 2 => '星期二',
-            // 3 => '星期三',
-            // 4 => '星期四',
-            // 5 => '星期五',
-            // 6 => '星期六',
         ];
         $timestampStart = strtotime($dateStart);
         $timestampEnd   = strtotime($dateEnd);
         $targetStock    = "{$stockCode}";
+        $apiUrl         = "https://query1.finance.yahoo.com/v8/finance/chart/{$targetStock}.TW?period1={$timestampStart}&period2={$timestampEnd}&interval=1d&events=history&=hP2rOschxO0";
+        $response       = Http::get($apiUrl);
+        $targetArray    = $response['chart']['result'][0]['indicators']['quote'][0]['close'];
 
-        $apiUrl   = "https://query1.finance.yahoo.com/v8/finance/chart/{$targetStock}.TW?period1={$timestampStart}&period2={$timestampEnd}&interval=1d&events=history&=hP2rOschxO0";
-        $response = Http::get($apiUrl);
-
-        // // 應該是時間array
-        // $response['chart']['result'][0]['timestamp'];
-        // // 股價array
-        // $response['chart']['result'][0]['indicators']['quote'][0]['open'];
-        // $response['chart']['result'][0]['indicators']['quote'][0]['close'];
-
-        // $data = [];
-        // for ($i = 0; $i < count($response['chart']['result'][0]['timestamp']); $i++) {
-        //     $data[] = [
-        //         'timestamp' => Carbon::createFromTimestamp($response['chart']['result'][0]['timestamp'][$i], 'Asia/Taipei')->toDateString(),
-        //         'weekday' => $weekMap[Carbon::createFromTimestamp($response['chart']['result'][0]['timestamp'][$i], 'Asia/Taipei')->dayOfWeek],
-        //         'open' => number_format($response['chart']['result'][0]['indicators']['quote'][0]['open'][$i], 2),
-        //         'close' => number_format($response['chart']['result'][0]['indicators']['quote'][0]['close'][$i], 2),
-        //     ];
-        // }
-        $targetArray = $response['chart']['result'][0]['indicators']['quote'][0]['close'];
         return end($targetArray);
-        // return $response['chart']['result'][0]['timestamp'];
     }
 }
