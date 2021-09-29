@@ -4,46 +4,54 @@ namespace App\Http\Controllers\Abstracts;
 
 use App\Stocks as StocksModel;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\LineBotRequest;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Http\Request;
 use Carbon\Carbon;
 
 abstract class Stocks extends Controller
 {
-    protected $rawRequest = null;  // 原始request 資料
-    protected $inputType  = null;  // 訊息的類型
-    protected $replyToken = null;  // API 回覆用token
-    protected $inputText  = null;  // 訊息的內文
-    protected $url        = null;  // 回覆用URL
-    protected $header     = null;  // 回覆用header
+    protected $validatedRequest = null;      // 原始request 資料
+    protected $inputType        = null;      // 訊息的類型
+    protected $replyToken       = null;      // API 回覆用token
+    protected $inputText        = null;      // 訊息的內文
+    protected $url              = null;      // 回覆用URL
+    protected $header           = null;      // 回覆用header
+    protected $tradeFeeRate     = 0.001425;  // 股票買賣都要扣
+    protected $tradeTaxRate     = 0.003;     // 股票賣出要扣
+    protected $tradeDiscount    = 0.28;      // 卷商手續費折扣
 
-    public function __construct(Request $request)
+    public function __construct(LineBotRequest $request)
     {
-        $this->rawRequest = $request->all();
+        $this->validatedRequest = $request->validated();
 
-        $this->handelInput($this->rawRequest);
+        $this->handelInput();
     }
 
-    private function handelInput($rawRequest)
+    protected function returnMessage()
     {
-        $this->inputType  = $rawRequest['events'][0]['message']['type'];
-        $this->replyToken = $rawRequest['events'][0]['replyToken'];
+        Http::withHeaders($this->header)->post($this->url, [
+            'replyToken' => $this->replyToken,            // 辨識用token
+            'messages'   => $this->handleMessageType(),   // BOT要回覆的訊息
+        ]);
+    }
+
+    private function handelInput()
+    {
+        $this->inputType  = $this->validatedRequest['events'][0]['message']['type'];
+        $this->replyToken = $this->validatedRequest['events'][0]['replyToken'];
         $this->url        = 'https://api.line.me/v2/bot/message/reply';
         $this->header     = [
             'Content-Type'  => 'application/json',
             'Authorization' => 'Bearer ' . env('LINE_ACCESS_TOKEN'),
         ];
-
-        if ($this->inputType == 'text') {
-            $this->inputText  = $rawRequest['events'][0]['message']['text'];
-        }
     }
 
-    protected function handleMessageType($request)
+    protected function handleMessageType()
     {
         switch ($this->inputType) {
             case 'text':
-                $contents = $this->handleMessageText($this->inputText);
+                $this->inputText = strtolower($this->validatedRequest['events'][0]['message']['text']);
+                $contents = $this->handleMessageText();
                 break;
 
             case 'sticker':
@@ -91,8 +99,8 @@ abstract class Stocks extends Controller
                 break;
 
             case 'location':
-                $latitude   = $request['events'][0]['message']['latitude'];
-                $longitude  = $request['events'][0]['message']['longitude'];
+                $latitude   = $this->validatedRequest['events'][0]['message']['latitude'];
+                $longitude  = $this->validatedRequest['events'][0]['message']['longitude'];
                 $zoomInRate = 17;
                 $message    = "https://www.google.com/maps/search/food/@{$latitude},{$longitude},{$zoomInRate}z";
                 $contents[]           =
@@ -204,39 +212,32 @@ abstract class Stocks extends Controller
         return $returnMessage;
     }
 
-    private function handleMessageText($string)
+    private function handleMessageText()
     {
         // 在此METHOD處理文字訊息
 
-        // 轉小寫
-        $string = strtolower($string);
         // 判斷該文字在stocks資料庫中存在與否
         // !!!!!!!!!!!!!這個邏輯有同代碼多筆的問題存在!!!!待解決
         // 目前先這樣測試功能;
 
-        $contents            = [];
-        $this->tradeFeeRate  = 0.001425;
-        $this->tradeTaxRate  = 0.003;
-        $this->tradeDiscount = 0.28;
-
-        switch ($string) {
+        switch ($this->inputText) {
             case 'stocks':
-                $contents = $this->handleStocks($contents);
+                $contents = $this->handleStocks();
                 break;
             case 'percent':
-                $contents = $this->handlePercent($contents);
+                $contents = $this->handlePercent();
                 break;
             default:
-                // error_log('here');
-                $contents = $this->handleDefault($contents, $string);
+                $contents = $this->handleDefault($this->inputText);
                 break;
         }
 
         return $contents;
     }
 
-    private function handleStocks($contents)
+    private function handleStocks()
     {
+        $contents = [];
         // 目前還沒想到line bot request這個controller的時候怎麼辨識是哪個user
         // 先綁定特定會員
         $allStocks = StocksModel::where('user_id', 1)->get();
@@ -328,8 +329,9 @@ abstract class Stocks extends Controller
         return $contents;
     }
 
-    private function handlePercent($contents)
+    private function handlePercent()
     {
+        $contents = [];
         $allStocks = StocksModel::get();
 
         foreach ($allStocks as $stock) {
@@ -423,8 +425,9 @@ abstract class Stocks extends Controller
         return $contents;
     }
 
-    private function handleDefault($contents, $string)
+    private function handleDefault($string)
     {
+        $contents = [];
         $stockData = StocksModel::where('stock_code', '=', $string)->first();
         if ($stockData !== null) {
             $sum                  = $stockData->purchase_price * $stockData->amount;                                                   // 未含交易手續費
