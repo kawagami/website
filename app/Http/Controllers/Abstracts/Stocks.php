@@ -5,11 +5,14 @@ namespace App\Http\Controllers\Abstracts;
 use App\Stocks as StocksModel;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LineBotRequest;
+use App\Traits\GetStockPrice;
 use Illuminate\Support\Facades\Http;
 use Carbon\Carbon;
 
 abstract class Stocks extends Controller
 {
+    use GetStockPrice;
+
     protected $validatedRequest = null;      // 原始request 資料
     protected $inputType        = null;      // 訊息的類型
     protected $replyToken       = null;      // API 回覆用token
@@ -517,27 +520,4 @@ abstract class Stocks extends Controller
         return $contents;
     }
 
-    private function getStockPrice($stockCode)
-    {
-        // Carbon::parse();
-        $dateStart = Carbon::now()->subDays(7);
-        $dateEnd   = now();
-        $weekMap   = [
-            0 => 'Sunday',
-            1 => 'Monday',
-            2 => 'Tuesday',
-            3 => 'Wednesday',
-            4 => 'Thursday',
-            5 => 'Friday',
-            6 => 'Saturday',
-        ];
-        $timestampStart = strtotime($dateStart);
-        $timestampEnd   = strtotime($dateEnd);
-        $targetStock    = "{$stockCode}";
-        $apiUrl         = "https://query1.finance.yahoo.com/v8/finance/chart/{$targetStock}.TW?period1={$timestampStart}&period2={$timestampEnd}&interval=1d&events=history&=hP2rOschxO0";
-        $response       = Http::get($apiUrl);
-        $targetArray    = $response['chart']['result'][0]['indicators']['quote'][0]['close'];
-
-        return end($targetArray);
-    }
 }
