@@ -13,15 +13,18 @@ abstract class Stocks extends Controller
 {
     use GetStockPrice;
 
-    protected $validatedRequest = null;      // 原始request 資料
-    protected $inputType        = null;      // 訊息的類型
-    protected $replyToken       = null;      // API 回覆用token
-    protected $inputText        = null;      // 訊息的內文
-    protected $url              = null;      // 回覆用URL
-    protected $header           = null;      // 回覆用header
-    protected $tradeFeeRate     = 0.001425;  // 股票買賣都要扣
-    protected $tradeTaxRate     = 0.003;     // 股票賣出要扣
-    protected $tradeDiscount    = 0.28;      // 卷商手續費折扣
+    protected $validatedRequest      = null;      // 原始request 資料
+    protected $inputType             = null;      // 訊息的類型
+    protected $replyToken            = null;      // API 回覆用token
+    protected $inputText             = null;      // 訊息的內文
+    protected $url                   = null;      // 回覆用URL
+    protected $header                = null;      // 回覆用header
+    protected $tradeFeeRate          = 0.001425;  // 股票買賣都要扣
+    protected $tradeTaxRate          = 0.003;     // 股票賣出要扣
+    protected $tradeDiscount         = 0.28;      // 卷商手續費折扣
+    protected $quickReplyIcon        = null;      // 預設quick reply icon
+    protected $quickReplyIconUpdated = null;      // 修改後Icon
+
 
     public function __construct(LineBotRequest $request)
     {
@@ -40,10 +43,11 @@ abstract class Stocks extends Controller
 
     private function handelInput()
     {
-        $this->inputType  = $this->validatedRequest['events'][0]['message']['type'];
-        $this->replyToken = $this->validatedRequest['events'][0]['replyToken'];
-        $this->url        = 'https://api.line.me/v2/bot/message/reply';
-        $this->header     = [
+        $this->inputType      = $this->validatedRequest['events'][0]['message']['type'];
+        $this->replyToken     = $this->validatedRequest['events'][0]['replyToken'];
+        $this->url            = 'https://api.line.me/v2/bot/message/reply';
+        $this->quickReplyIcon = "https://pht.qoo-static.com/NuyOBNU1CGmbWlUxjDZOfUMZ43qjtUro8w2FhFU6YRwAoT7rh-VdsYhuPCV_lbI-7j8=w300";
+        $this->header         = [
             'Content-Type'  => 'application/json',
             'Authorization' => 'Bearer ' . env('LINE_ACCESS_TOKEN'),
         ];
@@ -53,7 +57,7 @@ abstract class Stocks extends Controller
     {
         switch ($this->inputType) {
             case 'text':
-                $this->inputText = strtolower($this->validatedRequest['events'][0]['message']['text']);
+                // $this->inputText = strtolower($this->validatedRequest['events'][0]['message']['text']);
                 $contents = $this->handleMessageText();
                 break;
 
@@ -164,7 +168,7 @@ abstract class Stocks extends Controller
         }
 
         $returnMessage = [
-            [
+            [ // 回傳內容的最外層
                 "type"     => "flex",
                 "altText"  => "This is a Flex Message",
                 "contents" => [
@@ -177,14 +181,14 @@ abstract class Stocks extends Controller
                     ]
                 ]
             ],
-            [ // quick replies 電腦版無法跟quick replies互動
+            [ // quick replies 可快速選擇的小文字方塊
                 "type"       => "text",
                 "text"       => "請從下列中選擇關鍵詞",
                 "quickReply" => [
                     "items" => [
                         [
                             "type"     => "action",
-                            "imageUrl" => "https://pht.qoo-static.com/NuyOBNU1CGmbWlUxjDZOfUMZ43qjtUro8w2FhFU6YRwAoT7rh-VdsYhuPCV_lbI-7j8=w300",
+                            "imageUrl" => $this->quickReplyIconUpdated ?: $this->quickReplyIcon,
                             "action"   => [
                                 "type"  => "message",
                                 "label" => "Stocks",
@@ -193,7 +197,7 @@ abstract class Stocks extends Controller
                         ],
                         [
                             "type"     => "action",
-                            "imageUrl" => "https://pht.qoo-static.com/NuyOBNU1CGmbWlUxjDZOfUMZ43qjtUro8w2FhFU6YRwAoT7rh-VdsYhuPCV_lbI-7j8=w300",
+                            "imageUrl" => $this->quickReplyIconUpdated ?: $this->quickReplyIcon,
                             "action"   => [
                                 "type"  => "message",
                                 "label" => "Percent",
@@ -218,27 +222,29 @@ abstract class Stocks extends Controller
     private function handleMessageText()
     {
         // 在此METHOD處理文字訊息
+        // 輸入的文字要有特別的動作、判斷在這增加
 
         // 判斷該文字在stocks資料庫中存在與否
         // !!!!!!!!!!!!!這個邏輯有同代碼多筆的問題存在!!!!待解決
         // 目前先這樣測試功能;
 
+        $this->inputText = strtolower($this->validatedRequest['events'][0]['message']['text']);
         switch ($this->inputText) {
             case 'stocks':
-                $contents = $this->handleStocks();
+                $contents = $this->handleMessageTextStocks();
                 break;
             case 'percent':
-                $contents = $this->handlePercent();
+                $contents = $this->handleMessageTextPercent();
                 break;
             default:
-                $contents = $this->handleDefault($this->inputText);
+                $contents = $this->handleMessageTextDefault($this->inputText);
                 break;
         }
 
         return $contents;
     }
 
-    private function handleStocks()
+    private function handleMessageTextStocks()
     {
         $contents = [];
         // 目前還沒想到line bot request這個controller的時候怎麼辨識是哪個user
@@ -332,7 +338,7 @@ abstract class Stocks extends Controller
         return $contents;
     }
 
-    private function handlePercent()
+    private function handleMessageTextPercent()
     {
         $contents = [];
         $allStocks = StocksModel::get();
@@ -428,7 +434,7 @@ abstract class Stocks extends Controller
         return $contents;
     }
 
-    private function handleDefault($string)
+    private function handleMessageTextDefault($string)
     {
         $contents = [];
         $stockData = StocksModel::where('stock_code', '=', $string)->first();
@@ -520,4 +526,9 @@ abstract class Stocks extends Controller
         return $contents;
     }
 
+    protected function quickReplyIconUpdate($newIconPath)
+    {
+        // https://laravel.tw/docs/5.2/validation#rule-image
+        $this->quickReplyIconUpdated = $newIconPath;
+    }
 }
